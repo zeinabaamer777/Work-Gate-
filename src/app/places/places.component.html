@@ -1,0 +1,88 @@
+<div class="main-content">
+  <div class="custom-class-for-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="search-container">
+            <input type="text" class="form-control" placeholder="&#xf002; Search places" [(ngModel)]="searchText">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="countries-data-content" *ngFor="let country of countries | searchPipe : searchText"
+            (click)="getChilern(country)">
+
+            <p (click)=getChilern(country)>
+              {{ country.placeNameEn }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4" *ngIf="home">
+          <span>Country-Name English : </span> <br>{{ home.placeNameEn }}
+          <br>
+          <span>Country-Name Arabic : </span> <br>{{ home.placeNameAr }}
+          <br>
+          <span>Country Code : </span> <br>{{ home.code }}
+          <br><br>
+          <strong>List Of Governments </strong> <br><br>
+          <ul class="governments-content" *ngFor="let government of governmentNew">
+            <li>
+              <p (click)=getGovernmentDetails(government)>{{government.placeNameEn}} </p> <br>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4" *ngIf="governmentDetailsNew">
+          <!-- <p *ngIf="!governmentDetailsNew" class="align-middle">Click on Position To display it's Name in Arabic and English</p> -->
+
+          <ul class="positions-content">
+            <li>
+              <label><span style="color: #b00006;"> Government-Name English :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.placeNameEn}}</h5>
+              </label>
+              <br><br>
+              <label><span style="color: #b00006;"> Government-Name Arabic :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.placeNameAr}}</h5>
+              </label><br><br>
+              <label><span style="color: #b00006;"> Government-Name Code :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.code}}</h5>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="custom-class-for-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1" *ngFor="let country of countries;let i = index;"  (click)="getGovernmentByFilter(countries[i].children, i)">
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{country.placeNameEn}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  code: {{country.code}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="panel-content">
+                <mat-panel-description class="panel-content" *ngFor="let government of countries[i].children">
+                  <p>{{government.placeNameEn}}</p>
+                   <p>code: {{government.code}}</p>
+                </mat-panel-description>
+              </div>
+             
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+    
+  </div> -->
+
+
+</div>

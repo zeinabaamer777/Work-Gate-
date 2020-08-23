@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="search-container">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="&#xf002; Search Sites"
+        [(ngModel)]="searchText"
+      />
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div
+      class="card"
+      *ngFor="let site of sitesData | searchPipe: searchText"
+      (click)="gotoDetails(site)"
+    >
+      <div class="body text-center">
+        <a class="sites-link">
+          <img
+            class="thumbnail-image align-self-center"
+            src="{{ site.imagePath }}"
+            onerror="this.src='assets/images/placeholder-image-blank.png';"
+            alt="user image"
+          />
+        </a>
+        <h6>{{ site.siteName }}</h6>
+        <address>{{ site.address }}</address>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="">
+    <label for="">Site name: </label> : {{ site?.siteName }} <br />
+    <label for="">Site type: </label> : {{ site?.siteType }} <br />
+    <label for="">Site Lat: </label> : {{ site?.latitude }}<br />
+  </div> -->
+</div>

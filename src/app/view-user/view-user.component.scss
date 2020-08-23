@@ -1,0 +1,124 @@
+@import "../../assets/custom-shared-styles/variables.scss"; 
+.custom-class-for-style{
+    background-color: #e9ebee !important;
+}
+.user-content{
+    background-color: $white;
+    min-height: 100vh;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    &.container{
+        @media (min-width: 992px){
+            max-width: 720px !important;
+        }
+    }
+}    
+.view-user{
+    background-color: $white;
+    color: $main-color;
+    .profile-header{
+        background-color: $ligt-main-dash-bg-color;
+        background: $ligt-main-dash-bg-color;
+        background: -webkit-linear-gradient(to right, #c31432, #a27abf);
+        background: linear-gradient(to right, #c31432, #a27abf);
+        height:150px;
+    }
+    .user-info{
+        margin: -100px 0px 30px 0px;
+    }
+    .card{
+        background-color: transparent;
+        box-shadow: none !important;
+    }
+}
+.propertyTitle,.propertyValue
+{
+    text-align: left;
+    color: $dark-main-color;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+.propertyValue{
+    margin-left: 10px;
+    color: $ligt-main-dash-bg-color;
+    
+}
+.user-avatar{
+    position: relative;
+    display: block;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid $ligt-main-dash-bg-color;
+    padding: 2px;
+    // margin: auto;
+    margin-bottom: 20px;
+    background-color: $white;
+    text-align: left;
+    img{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+.card-title{
+    margin-top: 50px;
+    margin-left: 30px;
+    color: $white;
+    vertical-align: top;
+}
+.btn-flat{
+    border-color: #8a0e47;
+    background-color: #800d4b;
+    border-color: $white;
+    padding: .375rem .75rem;
+}
+.form-horizontal .control-label {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    
+}
+.form-horizontal .controls {
+    display: inline-block;
+    margin-left: 20px;
+}
+input{
+    background: transparent;
+    border: none;
+    color: $ligt-main-dash-bg-color;
+    &.form-control{
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+    &#edit-input{
+        float: right;
+        text-align: center;
+        color: $white;
+        padding: 5px;
+        margin-top: 8px;
+        border: 1px solid $white;
+    }
+    
+    
+}
+
+.input-container{
+    &::before{
+        content: ":";
+        margin-left: -10px;
+        position: absolute;
+        color: $ligt-main-dash-bg-color;
+    }
+}
+input::placeholder{
+    color: $ligt-main-dash-bg-color;
+}
+input::-moz-placeholder{
+    color: $ligt-main-dash-bg-color;
+}
+input::-webkit-input-placeholder{
+    color: $ligt-main-dash-bg-color;
+}

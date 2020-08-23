@@ -1,0 +1,18 @@
+<div class="main-content">
+    <div class="custom-class-for-style sites-list">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <app-sites (viewSite)="SelectData($event)" (company_name)="selectCompany($event)"></app-sites>
+                     <!-- <p>{{site | json}}</p> -->
+                </div>
+                <div class="col-md-8" *ngIf=site>
+                    <app-site-details [tstViewSite]="site" [company_name]="company_name"></app-site-details>
+                </div>
+                <div class="col-md-8 text-center text-capitalize align-middle no-data" *ngIf=!site>
+                    <p class="align-middle">Click on Site Name To display it's details and location</p>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

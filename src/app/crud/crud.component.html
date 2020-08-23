@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">Edit Activites List</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="activityForm" #form="ngForm">
+      <div class="row custom-no-gutters">
+        <div class="col-md-12">
+          <button mat-raised-button class="btn btn-info pull-right btn-sm"
+          [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
+
+        <button mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
+          [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
+        </div>
+      </div>
+      <div class="row custom-no-gutters">
+        <!-- <div class="col-md-12">
+          
+            <input placeholder="Activity Id" type="hidden" formControlName="activityId" class="form-control" >
+          
+        </div> -->
+      </div>
+      <div class="row custom-no-gutters">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="En Name" type="text" formControlName="enName" class="form-control">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row custom-no-gutters">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ar Name" type="text" formControlName="arName" class="form-control">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row custom-no-gutters">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Central Admin En Name" type="text" formControlName="centeralAdminEnName"
+              class="form-control">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row custom-no-gutters">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Central Admin Ar Name" type="text" formControlName="centralAdminArName"
+              class="form-control">
+          </mat-form-field>
+        </div>
+      </div>
+     
+      
+      <div class="row custom-no-gutters"  [hidden]="isHiddenSaveCreateBtn">
+        <button mat-raised-button class="btn btn-danger pull-left btn-sm" (click)="createActivity()" [disabled]="activityForm.invalid">save activity</button>
+        <button mat-raised-button class="btn btn-danger pull-right btn-sm"
+        (click)="onReset()">cancel</button>
+      </div>
+      <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
+        <button mat-raised-button  class="btn btn-danger pull-left btn-sm" [disabled]="activityForm.invalid"
+          (click)="updateRecord()">save</button>
+
+        <button mat-raised-button class="btn btn-danger pull-right btn-sm"
+          (click)="onReset()">cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

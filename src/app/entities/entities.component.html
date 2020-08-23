@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="custom-class-for-style users-component-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-container">
+                        <input type="text" class="form-control" style="visibility: hidden;"
+                            placeholder="&#xf002; Search entities" [(ngModel)]="searchText">
+
+                        <!-- <input type="text" class="form-control" style="visibility: hidden;" placeholder="&#xf002; Search users" [(ngModel)]="searchText"> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4" *ngFor="let entity of entitiesList | searchPipe: searchText">
+                    <div class="media-container" routerLink="/{{entity.router}}">
+                        <div class="media">
+                            <a class="image-container">
+                                <img class="thumbnail-image align-self-center" src='{{entity.avatar}}'
+                                    onerror="this.src='assets/images/placeholder-image-blank.png';" alt="user image" />
+                            </a>
+                            <div class="media-body">
+                                <h6 class="user-name text-capitalize"> {{ entity.name }} </h6>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

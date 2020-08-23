@@ -1,0 +1,45 @@
+// colors //
+$background-color : #d8d8d8;
+$second-background-color: #2190CF;
+$anchor-color: #2190CF;
+$main-color: #4a4a4a;
+$dark-main-color: #424242;
+$gray : #656565;
+//  Admin -colors
+$main-dash-bg-color: #b00006;
+$ligt-main-dash-bg-color : #c31432;
+$dark-dash-bg-color: #820005;
+$sections-bg-color: #f4f7f6;
+$black : #000;
+$white : #fff;
+
+// //////////////////// Fonts /////////////////////////
+@font-face {
+    font-family: 'SegoeUI';
+    src: url("/assets/fonts/SEGOEUI2.TTF");
+ }
+ @font-face {
+    font-family: 'Poppins';
+    src: url("/assets/fonts/Poppins-Regular.ttf");
+ }
+
+ @font-face {
+    font-family: 'HelveticaNeue';
+    src: url("/assets/fonts/HelveticaNeue.ttf");
+ }
+ 
+ @font-face {
+    font-family: 'FiraSans';
+    src: url("/assets/fonts/FiraSans-Regular.ttf");
+ }
+
+ @font-face {
+    font-family: 'RobotoMono';
+    src: url("/assets/fonts/RobotoMono-Regular.ttf");
+ }
+
+$font-SegoeUI: 'SegoeUI', sans-serif;
+$font-Poppins: 'Poppins', sans-serif;
+$font-HelveticaNeue: 'HelveticaNeue', sans-serif;
+$font-FiraSans: 'FiraSans', sans-serif;
+$font-RobotoMono : 'RobotoMono', sans-serif;

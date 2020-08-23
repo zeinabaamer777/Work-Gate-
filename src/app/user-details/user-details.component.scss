@@ -1,0 +1,41 @@
+@import "../../assets/custom-shared-styles/custom-style.scss";
+.media-photo.media-photo{
+    a{
+        position: relative;
+        display: block;  
+        
+        .profile-pic {
+            border-radius: 50%;
+            vertical-align: middle;
+        }  
+    }
+}
+.card-form{
+    &.card{
+        background-color: $white !important;
+        border-radius: 0.2rem !important;
+        margin: 15px 0;
+        .card-body{
+            padding: 0.5rem;
+        }
+    }
+}
+.datePickerLabel{
+    color: #222222;
+    padding-left: 0;
+    h5{
+        margin: 0;
+    }
+}
+.datePickerFormGroup{
+    position: absolute;
+    z-index: 999;
+    width: 95%;
+    background: #fff;
+    padding: 3px 5px;
+}
+.in-out-table{
+    color: #6f6f6f;
+    background: #f7f7f7;
+    margin-top: 10px;
+}

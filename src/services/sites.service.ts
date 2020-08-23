@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, pipe, Subject, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
+import {forkJoin} from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SitesService {
+
+  private serverUrl = environment.apiUrl;
+  private endpoint = "en/Sites/AllSites";
+  private companyendpoint = "companies";
+
+  private serverreqHeader = environment.reqHeader;
+
+  constructor(public http: HttpClient) { }
+
+  public getSites(): Observable<object[]>{
+
+    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader})
+    .pipe(map((res : any) => {
+      // console.log(res);
+      return res;
+    }));
+    
+  }
+
+  public getCom(): Observable <object[]>{
+    return this.http.get<object[]>(`${this.serverUrl}/${this.companyendpoint}`,{headers : this.serverreqHeader})
+    .pipe(map((res : any) => {
+      return res;
+      console.log(res);
+    }))
+  }
+  // Uses forkJoin() to run multiple concurrent http.get() requests.
+  // The entire operation will result in an error state if any single request fails.
+  public getSitesAndCompanies() : Observable<any> {
+    const sites_response = this.http.get(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader});
+    const companies_response = this.http.get(`${this.serverUrl}/${this.companyendpoint}`,{headers : this.serverreqHeader});
+    return forkJoin([sites_response, companies_response]);
+  }
+}

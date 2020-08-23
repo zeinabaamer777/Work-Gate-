@@ -1,0 +1,91 @@
+@import "../custom-shared-styles/variables";
+.wrapper {
+    position: relative;
+    display: block;
+    &.landing-wrapper{
+        height: 100vh;
+        background: $background-color;
+        &:before{
+            content: "";
+            background-color: $second-background-color;
+            height: 222px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 9;
+            
+        }
+        .landing-header{
+            position: relative;
+            display: block;
+            z-index: 99;
+            padding: 21px 0;
+            margin-bottom: 15px;
+            .landing-headerTitle {
+                color: #fff;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: normal;
+                text-transform: uppercase;
+                vertical-align: middle;
+                margin-left: 14px;
+            }
+            .icon{
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .landing-window{
+            position: relative;
+            display: block;
+            z-index: 99;
+            background-color: #fff;
+            border-radius: 3px;
+            box-shadow: 0 17px 50px 0 rgba(0,0,0,.19), 0 12px 15px 0 rgba(0,0,0,.24);
+            margin: 0 70px;
+            .landing-main{
+                padding: 64px 60px 110px;
+                .landing-title{
+                    margin-bottom: 52px;
+                    color: #525252;
+                    font-size: 28px;
+                    font-weight: 300;
+                    line-height: normal;
+                }
+                ol{
+                    padding: 0 0 0 24px;
+                    li{
+                        font-size: 18px;
+                        line-height: 28px;
+                        &:not(:first-child){
+                            margin-top: 18px;
+                        }
+                    }
+                }
+                .help{
+                    position: relative;
+                    display: block;
+                    overflow: hidden;
+                    margin-top: 66px;
+                    a{
+                        font-size: 14px;
+                        line-height: 1;
+                        color: $anchor-color;
+                    }
+                }
+                .keep-signed{
+                    input {
+                        margin-right: 6px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+
+        
+    }
+  }
+  .connectioQr{
+      display: none;
+  }

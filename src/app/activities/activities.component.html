@@ -1,0 +1,42 @@
+
+  <div class="main-content">
+    <div class="custom-class-for-style activities-component-content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Activites List</h4>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <th>En Name</th>
+                    <th>Ar Name</th>
+                    <th>Central Admin En Name</th>
+                    <th>Central Admin Ar Name</th>
+                  </thead>
+                  <tbody *ngFor="let activityData of activities | async">
+                    <td (click)="onSelect(activityData)">{{activityData.enName}}</td>
+                    <td (click)="onSelect(activityData)">{{activityData.arName }}</td>
+                    <td (click)="onSelect(activityData)">{{activityData.centeralAdminEnName}}</td>
+                    <td (click)="onSelect(activityData)">{{activityData.centralAdminArName}}</td>
+                    <td><a (click)="deleteActivity(activityData.activityId)"><span class="material-icons">
+                      delete
+                      </span></a></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <app-crud></app-crud>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

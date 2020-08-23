@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="custom-class-for-style activities-component-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-container" style="margin-top: 10px;">
+                        <input type="text" class="form-control" placeholder="&#xf002; Search activities"
+                            [(ngModel)]="searchText">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media-container" style="margin-top: 10px;"
+                        *ngFor="let timegroup of timegroupList | searchPipe : searchText"
+                        (click)="getTimeGroup(timegroup)">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="activity-enName text-capitalize" style="color :#b00006 ;">
+                                    {{timegroup.timeGroupName }}</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8" *ngIf="timeGroupNew">
+                    <p *ngIf="!timeGroupNew" class="align-middle">Click on Time-Group To display it's Name in Arabic and
+                        English</p>
+                    <ul class="positions-content">
+                        <li>
+                            <label class="activity-enName text-capitalize">
+                                <h5>{{timeGroupNew.timeGroupName}}</h5>
+                            </label>
+                            <br><br>
+                            <span style="color: #b00006;"> Working Days :</span><br>
+                            <p class="centeralAdmin-EnName text-capitalize">{{ timeGroupNew.fromDayOfWeek }} -
+                                {{timeGroupNew.toDayOfWeek}}</p>
+                            <span style="color: #b00006;"> Day Time :</span><br>
+                            <h6> From :<span style="color: #b00006;"> {{timeGroupNew.timeFrom | date : 'shortTime'}}
+                                </span> To : <span
+                                    style="color: #b00006;">{{timeGroupNew.timeTo | date : 'shortTime' }}</span></h6>
+                            <span style="color: #b00006;"> flexible Hours :</span><br>
+                            <h6> Has <span
+                                    style="color: #b00006;">{{ (timeGroupNew.flexibleHours) !==null ? (timeGroupNew.flexibleHours) : "Zero"  }}</span>
+                                flexible Hours</h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

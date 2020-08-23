@@ -1,0 +1,390 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$work-gate-primary: mat-palette($mat-indigo);
+$work-gate-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$work-gate-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$work-gate-theme: mat-light-theme($work-gate-primary, $work-gate-accent, $work-gate-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($work-gate-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/custom-shared-styles/variables.scss";
+
+// *****************   Start Global items Style ****************** //
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-Poppins, $font-SegoeUI, $font-HelveticaNeue, $font-FiraSans;
+  color: $main-color;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern=1";
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+.btn:hover,
+.btn:focus,
+.btn.active,
+.btn-flat:hover,
+.btn-flat:focus,
+.form-control:hover,
+.form-control:focus,
+input,
+textarea,
+select,
+button,
+button:focus {
+  box-shadow: none;
+  outline: unset;
+}
+button,
+button:focus {
+  outline: unset;
+}
+
+.dropdown-item {
+  &.active,
+  &:active,
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+.btn:hover,
+.btn:focus,
+.btn-flat:hover,
+.btn-flat:focus,
+.form-control:hover,
+.form-control:focus {
+  box-shadow: none;
+  outline: unset;
+}
+h6,
+.h6 {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+section {
+  // padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding: 90px 0;
+}
+
+// *****************   End Global items Style ****************** //
+
+// Custimize Angular Theme
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $main-dash-bg-color !important;
+}
+
+//  Specific Components Styles
+.custom-class-for-style{
+    // position: relative;
+    // background-color: $sections-bg-color;
+    // height: auto;
+    // min-height: 100%;
+    .search-container{
+        input{
+            border: none;
+            box-shadow: 0 3px 10px rgba(234, 234, 234, 0.7);
+            padding: 22px 20px;
+            margin-bottom: 24px;
+            // margin: 15px 0;
+            font-family: FontAwesome, $font-FiraSans;
+            &.form-control{
+                color: lighten($color: $gray, $amount: 7) ;
+            }
+        }
+        input::placeholder {
+            color: lighten($color: $gray, $amount: 25) ;
+            font-size: 14px;
+            font-weight: 300;
+            // font-family: Font-aweom$font-HelveticaNeue;
+        }
+    }
+.media-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    padding: 7px 4px;
+    
+    border-radius: 7px;
+    background-color: $white;
+    .media{
+    
+      .media-body{
+          align-self: center;
+          font-size: 14px;
+          color: $dark-main-color;
+          // padding: 20px;
+          font-weight: 400;
+          h6{
+              // font-weight: 600;
+              margin: 0;
+              // font-size: .9rem;
+              @media (min-width: 767px) and (max-width: 991px) {
+                  // font-size: 12px;
+                  font-weight: 600;
+              }
+          }
+          p{
+              margin: 0;
+              font-size: 14px;
+          }
+      }
+      a.image-container{
+          position: relative;
+          display: block;
+          height: 60px;
+          width: 60px;
+          margin-right: 10px;
+          border-radius: 50%;
+          border: 2px solid #dedede;
+          padding: 2px;
+          img{
+              position: relative;
+              display: block;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              // border: 2px solid #e2e2e2;
+          }
+      }
+  }
+}
+
+
+.card {
+  background: $white;
+  margin-bottom: 5px;
+  transition: .5s;
+  border: 0;
+  border-radius: .55rem;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+  .body {
+      font-size: 14px;
+      color: $dark-main-color;
+      padding: 0;
+      font-weight: 400;
+      a{
+          position: relative;
+          display: block;
+          height: 60px;
+          width: 60px;
+          margin-right: 10px;
+          border-radius: 50%;
+          border: 2px solid #dedede;
+          padding: 2px;
+          margin: 10px auto;
+          img{
+              position: relative;
+              display: block;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+          }
+      }
+  }
+}
+}
+.ngx-pagination {
+  padding-left: 0px !important;
+}
+
+.ngx-pagination .current,
+.btn-info {
+  background: $ligt-main-dash-bg-color !important;
+  border: transparent !important;
+  border-radius: 3px !important;
+}
+
+.ngx-pagination .current:hover {
+  background: $ligt-main-dash-bg-color !important;
+  border-radius: 3px !important; 
+  border: transparent !important;
+}
+.btn-flat{
+  background: $ligt-main-dash-bg-color ;
+  color: $white !important;
+  padding: .1rem .55rem;
+}
+
+.propertyTitle {
+  display:block;
+  font-weight: 600;
+  width: auto;
+  text-transform: capitalize;
+}
+.titleWrap{
+  display:inline-block;
+}
+
+.propertyValue {
+  display:block;
+  width:auto;
+  &::before {
+      content: ":";
+      margin-left: -10px;
+      position: absolute;
+  }
+}
+.valueWrap {
+  display:inline-block;
+}
+
+//  card data form (Now in site and user view conponent)
+.card-form{
+  &.card{
+    background-color: transparent;
+    box-shadow: none !important;
+    width: 100%;
+    border: none
+  }
+  .card-title{
+    // margin-top: 50px;
+    // margin-left: 30px;
+    color: $black;
+    vertical-align: top;
+  }
+  .btn-flat{
+    border-color: #8a0e47;
+    background-color: #800d4b;
+    border-color: $white;
+    padding: .375rem .75rem;
+  }
+  .form-horizontal .control-label {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    
+  }
+  .form-horizontal .controls {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .form-control:disabled, .form-control[readonly] {
+    background-color: transparent;
+}
+  input{
+    background: transparent;
+    border: none;
+    color: $ligt-main-dash-bg-color;
+    &.form-control{
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+    &#edit-input{
+        float: right;
+        text-align: right;
+        color: $white;
+    }
+    
+  }
+  
+  .input-container{
+    &::before{
+        content: ":";
+        margin-left: -10px;
+        position: absolute;
+        color: $ligt-main-dash-bg-color;
+    }
+  }
+  input::placeholder{
+    color: $ligt-main-dash-bg-color;
+  }
+  input::-moz-placeholder{
+    color: $ligt-main-dash-bg-color;
+  }
+  input::-webkit-input-placeholder{
+    color: $ligt-main-dash-bg-color;
+  }
+}
+
+.row.custom-no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/**************************tables style*********************/
+
+table{
+  word-break: break-all;
+}
+.table thead th {
+  vertical-align: top;
+  font-size: 0.75rem;
+    font-weight: 600;
+}
+// form edits
+.form-control[disabled], fieldset[disabled] .form-control, .form-group .form-control[disabled], fieldset[disabled] .form-group .form-control{
+  border-bottom: none
+}
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: rgba(0, 0, 0, 0.88);
+}
+.main-panel .main-content{
+  padding: 30px 0;
+}
+.card .card-body{
+  padding: 0.9375rem 0;
+}

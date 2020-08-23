@@ -1,0 +1,112 @@
+<div class="main-content">
+  <div class="custom-class-for-style view-user">    
+    <div class="container user-content">
+        
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-12 profile-header">
+                  <div class="row">
+                    <div class="col-md-2 offset-md-10">
+                      <input type="text" class="form-control btn edit-form" id="edit-input" type="submit" value="Edit">
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card user-info card-form">            
+                    <div class="card-body text-left">
+                        <div class="card-head">
+                            <a class="user-avatar" style="display: inline-block;">
+                                <img  class="align-self-center img-circle" src='{{viewUser.imagePath}}' 
+                                onerror="this.src='assets/images/placeholder-image-blank.png';"  alt="user image"/>
+                            </a>
+                            <h6 class="card-title text-capitalize"  style="display: inline-block;">{{viewUser.firstName + ' ' + viewUser.lastName}}</h6>  
+                        </div>
+                        <div class="user-detsils">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <label for="works-as" class="col-lg-3 control-label">
+                                        <i class="lnr lnr-checkmark-circle mr-2"></i>Works As
+                                    </label>
+                                    <div class="col-lg-9 input-container">
+                                      <input type="text" class="form-control" id="works-as" placeholder="{{viewUser.position.positionNameEn}}" value="{{viewUser.position.positionNameEn}}">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="row">
+                                    <label for="email" class="col-lg-3 control-label"><i class="lnr lnr-envelope mr-2"></i>email</label>
+                                    <div class="col-lg-9 input-container">
+                                      <input type="text" class="form-control" id="email" placeholder="{{viewUser.email}}" value="{{viewUser.email}}" disabled>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                      <label for="phone" class="col-lg-3 control-label"><i class="lnr lnr-smartphone mr-2"></i>Phone</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="phone" class="form-control" id="phone" placeholder="{{viewUser.phoneNumber}}" value="{{viewUser.phoneNumber}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <label for="lives-at" class="col-lg-3 control-label"><i class="lnr lnr-map-marker mr-2"></i>Lives At</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="text" class="form-control" id="lives-at" placeholder="{{viewUser.placeViewModel.placeName +', '+ viewUser.placeViewModel.countryName}}" value="{{viewUser.placeViewModel.placeName +', '+ viewUser.placeViewModel.countryName}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <label for="works-at" class="col-lg-3 control-label"><i class="lnr lnr-map mr-2"></i>Works at</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="text" class="form-control" id="works-at" placeholder="{{viewUser.companyInfo.companyName}}"  value="{{viewUser.companyInfo.companyName}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <label for="works-at" class="col-lg-3 control-label"><i class="lnr lnr-menu-circle mr-2"></i>Depratment</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="text" class="form-control" id="works-at" placeholder="{{viewUser.companyInfo.departmentName}}"  value="{{viewUser.companyInfo.departmentName}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <label for="works-at" class="col-lg-3 control-label"><i class="lnr lnr-frame-expand mr-2"></i>devision</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="text" class="form-control" id="works-at" placeholder="{{viewUser.companyInfo.divisionName}}" value="{{viewUser.companyInfo.divisionName}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <label for="uid" class="col-lg-3 control-label"><i class="lnr lnr-hand mr-2"></i>UID</label>
+                                      <div class="col-lg-9 input-container">
+                                        <input type="text" class="form-control" id="uid" placeholder="{{viewUser.uid}}" value="{{viewUser.uid}}" disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </form>
+                           
+                        </div>
+                        <hr>
+                          <a href="#" class="btn btn-flat btn-sm text-capitalize">Emploee Sites</a>
+                          <a href="#" class="btn btn-danger btn-sm ml-3 text-capitalize">Reset serial number</a>     
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+
+

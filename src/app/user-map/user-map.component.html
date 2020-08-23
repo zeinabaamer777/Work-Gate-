@@ -1,0 +1,40 @@
+<google-map
+height="500px"
+width="100%"
+[zoom]="zoom"
+[center]="center"
+[options]="options"
+>
+<map-marker
+    #markerElem
+    *ngFor="let marker of markers;"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    [icon]="marker.icon"
+    (mapClick)="openInfo(markerElem, marker.info)"
+  >
+  <map-circle
+  *ngFor="let circle of circles"
+    [center]="circle.center"
+    [radius]="circle.radius"
+    [options]="circle.options"
+  >
+  </map-circle>
+  </map-marker>
+
+  <map-marker
+    #markerElem
+    *ngFor="let marker of newmarkers;"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    [icon]="marker.icon"
+    (mapClick)="openInfo(markerElem, marker.info)"
+  >
+  
+  </map-marker>
+  <map-info-window>{{ infoContent }}</map-info-window>
+</google-map>

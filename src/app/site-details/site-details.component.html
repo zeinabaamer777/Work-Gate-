@@ -1,0 +1,116 @@
+<div class="site-details-wrapper">
+  <!-- <p>{{tstViewSite | json}}</p> -->
+  <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p class="text">Loading...</p>
+  </ngx-spinner> -->
+  <!-- {{tstViewSite |json}} -->
+  <app-google-map [ChangeMap]="tstViewSite"></app-google-map>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 offset-lg-10">
+        <input type="text" class="form-control btn edit-form" id="edit-input" type="submit" value="Edit" />
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="card user-info card-form">
+        <div class="card-body text-left">
+          <div class="user-detsils">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="row">
+                  <label for="site-name" class="col-lg-4 col-md-5 control-label">
+                    <i class="lnr lnr-chevron-right-circle mr-2"></i>Site Name
+                  </label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="text" class="form-control" id="site-name" value="{{ tstViewSite?.siteName }}"
+                      placeholder="{{ tstViewSite?.siteName }}" disabled />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label for="country-name" class="col-lg-4 col-md-5 control-label"><i
+                      class="lnr lnr-chevron-right-circle mr-2"></i>Country
+                    Name</label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="text" class="form-control" id="country-name"
+                      value="{{ tstViewSite?.place.countryName }}" placeholder="{{ tstViewSite?.place.countryName }}"
+                      disabled />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="address" class="col-lg-4 col-md-5 control-label"><i
+                      class="lnr lnr-chevron-right-circle mr-2"></i>Address</label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="phone" class="form-control" id="address" placeholder="{{ tstViewSite?.address }}"
+                      value="{{ tstViewSite?.address }}" disabled />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="site-type" class="col-lg-4 col-md-5 control-label"><i
+                      class="lnr lnr-chevron-right-circle mr-2"></i>Lives
+                    At</label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="text" class="form-control" id="site-type" value="{{ tstViewSite?.siteType }}"
+                      placeholder="{{ tstViewSite?.siteType }}" disabled />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="Company_id" class="col-lg-4 col-md-5 control-label"><i
+                      class="lnr lnr-chevron-right-circle mr-2"></i>Company Id: </label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="text" class="form-control" id="site-type" value="{{ tstViewSite?.companyId }}"
+                      placeholder="{{ tstViewSite?.companyId }}" disabled />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Company Name  -->
+              <div class="form-group">
+                <div class="row">
+                  <label for="site-type" class="col-lg-4 col-md-5 control-label"><i
+                      class="lnr lnr-chevron-right-circle mr-2"></i>Company
+                    Name</label>
+                  <div class="col-lg-8 col-md-7 input-container">
+                    <input type="text" class="form-control" id="site-type" value="{{ company_name}}"
+                      placeholder="{{ company_name }}" disabled />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr />
+          <a href="#" class="btn btn-danger btn-sm text-capitalize">Emploee Assignee To this site</a>
+          <div class="time-group">
+            <fieldset class="scheduler-border">
+              <legend class="scheduler-border">Time Group</legend>
+              <div class="control-group">
+                <form class="form-inline">
+                  <div class="form-group mb-2">
+                    <label for="to" class="text-capitalize">from:</label>
+                    <input type="text" class="form-control ml-2" id="to" placeholder="08:00 AM" />
+                  </div>
+                  <div class="form-group mx-sm-2 mb-2">
+                    <label for="to" class="text-capitalize">To:</label>
+                    <input type="text" class="form-control ml-2" id="to" placeholder="05:00 PM" />
+                  </div>
+                </form>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

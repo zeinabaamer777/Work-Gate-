@@ -1,0 +1,69 @@
+<div class="site-details-wrapper">
+  <div class="container">
+    <div class="row">
+        <div class="before-data">
+            <p *ngIf="!siteTimeGroupsData">
+                Click To user you want to show his sites time group.
+            </p>
+        </div>
+        
+      <div class="col-md-4"
+        *ngFor="let siteTimeGroup of siteTimeGroupsData">
+        <div class="card user-info card-form">
+          <div class="card-body text-left">
+            <div class="user-detsils" *ngIf="siteTimeGroup">
+              <h5 class="text-center card-title">{{ siteTimeGroup?.siteName }}</h5>
+              <!-- <h5 class="text-center card-title">{{ siteTimeGroup?.userId }}</h5> -->
+              <hr/>
+              <div class="flex">
+                <p class="card-text"><span><b>From:</b> {{siteTimeGroup.timeFrom|date: "hh:mm"}}</span> - <span class=""><b>To: </b>{{siteTimeGroup.timeTo|date: "hh:mm"}}</span></p>
+               
+                <p class="card-text text-capitalize"> Has {{ (siteTimeGroup?.flexibleHours) !==null ? (siteTimeGroup?.flexibleHours) : "Zero"  }} flexible Hours</p>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div  *ngIf="siteTimeGroupsData" class="col-xs-12 col-12 col-md-12">
+        <div class="datePickerFormGroup form-group row">
+          <label for="datePickerInput" class="datePickerLabel col-md-3 col-form-label"><h5>Select Date: </h5></label>
+          <div class="col-md-6">
+            <input 
+              class="form-control"
+              id="datePickerInput"
+              placeholder="Datepicker"
+              [(ngModel)]="selectedStartDate"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              [minDate]="minDate"
+              [maxDate]="maxDate"
+              (ngModelChange)="updateMyDate($event)">
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-12">
+        <app-user-map *ngIf="siteAttandanceVM && siteAttandanceVM?.length || siteTimeGroupsData" [locationsMarkerWithNumbers]="listOflocations" [siteMarkerData]="siteAttandanceVM" [ChangeMap]="siteTimeGroupsData"></app-user-map>
+      </div>
+  
+     <div class="col-md-12">
+      <table *ngIf="siteAttandanceVM && siteAttandanceVM?.length && siteTimeGroupsData"
+       class="in-out-table table table-striped">
+        <tr>
+          <th>Site Name</th>
+          <th>In</th>
+          <th>Out</th>
+        </tr>
+        <tr  *ngFor="let siteAttandance of siteAttandanceVM">
+          <td>{{ siteAttandance?.siteName }}</td>
+          <td>{{siteAttandance?.timeAttendance|date: "hh:mm"}}</td>
+          <td>{{siteAttandance?.timeAttendance|date: "hh:mm"}}</td>
+        </tr>
+      </table>
+     </div>
+    </div>
+  </div>
+</div>
+<!-- {{userIdd|json}}
+{{siteAttandanceVM|json}} -->
