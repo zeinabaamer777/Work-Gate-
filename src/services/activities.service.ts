@@ -70,7 +70,6 @@ export class ActivitiesService {
             }
             i++;
           }
-          debugger
           this.activitesBehaviorSubject.next(Object.assign({}, this.dataStoreActivites).activites); 
       }
     );

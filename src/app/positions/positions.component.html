@@ -1,41 +1,38 @@
+
 <div class="main-content">
-    
-<div class="custom-class-for-style positions-component-content">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="search-container">
-                    <input type="text" class="form-control"  placeholder="&#xf002; Search Positions" [(ngModel)]="searchText">
-                </div>
-            </div>
-            <div class="col-lg-4" >
-                <div class="media-container" 
-                *ngFor="let position of positionData | searchPipe : searchText"
-                 (click)="getPosition(position)"
-                  style="margin-top: 10px;">
-                    <div class="media">
-                        <div class="media-body">
-                          <h6 class="position-positionNameEn text-capitalize">{{position.positionNameEn }}</h6>
+    <div class="custom-class-for-style activities-component-content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Position List</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <th>Position Name</th>
+                                    <th>اسم المنصب</th>
+                                </thead>
+                                <tbody *ngFor="let position of positions | async" (click)="catchPosition(position)">
+                                    <td>{{ position.positionNameEn }}</td>
+                                    <td>{{ position.positionNameAr }}</td>
+                                    <td><a (click)="deletePosition(position)"><span class="material-icons">
+                                        delete
+                                        </span></a></td>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <app-positions-form [PositionObject]="position"></app-positions-form>
+                </div>
             </div>
-            
-            <div class="col-md-8" *ngIf="positionNew">
-                <p *ngIf="!positionNew" class="align-middle">Click on Position To display it's Name in Arabic and English</p>
-        
-                <ul class="positions-content" >
-                  <li> 
-                    <label><span style="color: #b00006;"> PositionName English :</span></label><br>
-                     <label><h5>{{positionNew.positionNameEn}}</h5></label>
-                  <br><br>
-                  <label><span style="color: #b00006;"> PositionName Arabic :</span></label><br>
-                   <label><h5>{{positionNew.positionNameAr}}</h5></label>
-                  </li>
-                </ul>
-              </div> 
+
         </div>
     </div>
-</div>
+
 </div>

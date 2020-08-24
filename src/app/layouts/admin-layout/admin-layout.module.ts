@@ -49,6 +49,7 @@ import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CrudComponent } from 'app/crud/crud.component';
+import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -97,6 +98,7 @@ import { CrudComponent } from 'app/crud/crud.component';
     ChatComponent,
     SettingsComponent,
     CrudComponent,
+    PositionsFormComponent,
     SearchPipe
   ],
   providers:[DatePipe] 
