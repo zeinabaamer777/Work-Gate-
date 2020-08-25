@@ -19,7 +19,6 @@ export class ActivitiesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllActivities();
-    // this.isSave = false;
   }
 
   getAllActivities(){

@@ -17,6 +17,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
  
+import { TestComponent } from './test/test.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -37,7 +38,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    TestComponent
 
   ],
   providers: [

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PositionsService } from '../../services/positions.service';
+import { Observable } from 'rxjs';
+import { Position } from 'app/model/Response/position.model'
 
 @Component({
   selector: 'app-positions',
@@ -9,25 +11,28 @@ import { PositionsService } from '../../services/positions.service';
 export class PositionsComponent implements OnInit {
 
   searchText:string;
-  positionsList: any;
-  positionData: any;
-  positionNew : any;
+  positions: Observable<Position[]>;
+  position: Position;
+
   
-  constructor(private positions_service: PositionsService) { }
+  constructor(private positionService: PositionsService) { }
 
   ngOnInit() {
-    this.positions_service
-    .getPositions()
-    .subscribe(lists => {
-        this.positionsList= lists;
-        this.positionData = this.positionsList.data;
-    });
+    this.loadAllPositions();
+  }
+
+  private loadAllPositions() {
+    this.positions = this.positionService.readonlyactivitiesModel;
+    this.positionService.getPositions();
   }
   
-  getPosition(position){
-    this.positionNew = position;
-    console.log(  this.positionNew);
+  catchPosition(position: Position){
+    this.position = position;
+  }
 
+
+  deletePosition(position: Position){
+    this.positionService.deletePosition(position.positionId);
   }
 
 }

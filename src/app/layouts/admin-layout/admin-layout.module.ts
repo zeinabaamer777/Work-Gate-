@@ -50,6 +50,7 @@ import { SettingsComponent } from 'app/settings/settings.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
+import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 
 @NgModule({
   imports: [
@@ -100,7 +101,8 @@ import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/d
     SettingsComponent,
     CrudComponent,
     SearchPipe,
-    DepartmentsCrudComponent
+    DepartmentsCrudComponent,
+    PositionsFormComponent,
   ],
   providers:[DatePipe] 
 })
