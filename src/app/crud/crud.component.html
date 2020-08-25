@@ -3,23 +3,18 @@
     <h4 class="card-title">Edit Activites List</h4>
   </div>
   <div class="card-body">
-    <form [formGroup]="activityForm" #form="ngForm">
+    <form [formGroup]="activityForm"  id="activityForm" (ngSubmit)="onSubmit(activityForm.value)">
+      <input type="hidden" formControlName="activityId">
       <div class="row custom-no-gutters">
         <div class="col-md-12">
-          <button mat-raised-button class="btn btn-info pull-right btn-sm"
+          <button type="button" mat-raised-button class="btn btn-info pull-right btn-sm"
           [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
 
-        <button mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
+        <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
           [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
         </div>
       </div>
-      <div class="row custom-no-gutters">
-        <!-- <div class="col-md-12">
-          
-            <input placeholder="Activity Id" type="hidden" formControlName="activityId" class="form-control" >
-          
-        </div> -->
-      </div>
+      
       <div class="row custom-no-gutters">
         <div class="col-md-12">
           <mat-form-field class="example-full-width">
@@ -56,13 +51,16 @@
      
       
       <div class="row custom-no-gutters"  [hidden]="isHiddenSaveCreateBtn">
-        <button mat-raised-button class="btn btn-danger pull-left btn-sm" (click)="createActivity()" [disabled]="activityForm.invalid">save activity</button>
+        <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm" 
+           [disabled]="activityForm.invalid">save activity</button>
+
         <button mat-raised-button class="btn btn-danger pull-right btn-sm"
         (click)="onReset()">cancel</button>
       </div>
+
       <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
-        <button mat-raised-button  class="btn btn-danger pull-left btn-sm" [disabled]="activityForm.invalid"
-          (click)="updateRecord()">save</button>
+        <button type="submit"  mat-raised-button  class="btn btn-danger pull-left btn-sm" [disabled]="activityForm.invalid"
+          >save</button>
 
         <button mat-raised-button class="btn btn-danger pull-right btn-sm"
           (click)="onReset()">cancel</button>
@@ -71,3 +69,10 @@
     </form>
   </div>
 </div>
+<!-- <p>
+  {{activityObject?.activityId}}
+</p>
+<h4>
+  {{activityId}}
+</h4>
+{{activityObject|json}} -->

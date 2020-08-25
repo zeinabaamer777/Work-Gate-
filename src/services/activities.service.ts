@@ -47,12 +47,9 @@ export class ActivitiesService {
       .subscribe((data: Activities) => {
         this.dataStoreActivites.activites.push(data);
         this.activitesBehaviorSubject.next(Object.assign({}, this.dataStoreActivites).activites);
-
         return data;
       });
-      // .pipe(
-      //   catchError(this.errorHandler)
-      // )
+     
   }
   //#endregion
 
