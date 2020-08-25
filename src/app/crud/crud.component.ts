@@ -98,6 +98,7 @@ export class CrudComponent implements OnInit {
       console.log(model);
       this.ActivitiesService.createActivities(model);
       this.activityForm.reset();
+      this.onReset();
       this.activityForm.controls['activityId'].setValue(0);
     }
     //edit
