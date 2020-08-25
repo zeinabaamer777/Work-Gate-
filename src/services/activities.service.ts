@@ -34,9 +34,9 @@ export class ActivitiesService {
   }
 
   //#region 00  getActivities() to read all activites data
-   getActivities(): Observable<Activities[]> {
-    return this.http.get<Activities[]>(this.endpoint)
-  }
+  //  getActivities(): Observable<Activities[]> {
+  //   return this.http.get<Activities[]>(this.endpoint)
+  // }
 
   // getActivities()
   //#endregion

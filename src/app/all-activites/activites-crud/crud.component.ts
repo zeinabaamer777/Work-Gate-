@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActivitiesService } from '../../services/activities.service';
+import { ActivitiesService } from '../../../services/activities.service';
 import { Activities } from 'app/model/activities.model';
 
 @Component({
@@ -91,7 +91,7 @@ export class CrudComponent implements OnInit {
   }
   //#endregion
 //#region  update and create form in the same method
-  onSubmit(model: any){
+  onSubmit(model: Activities){
     debugger
     //create
     if(model.activityId == 0){
@@ -121,6 +121,4 @@ export class CrudComponent implements OnInit {
     // this.activityForm.reset();
     this.activityForm.disable();
   }
-
-
 }

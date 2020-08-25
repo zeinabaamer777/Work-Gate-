@@ -1,0 +1,38 @@
+
+  <div class="main-content">
+    <div class="custom-class-for-style activities-component-content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Activites List</h4>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <th>En Name</th>
+                    <th>Ar Name</th>
+                  </thead>
+                  <tbody *ngFor="let departmentData of departments | async">
+                    <td (click)="onSelect(departmentData)">{{departmentData.enName}}</td>
+                    <td (click)="onSelect(departmentData)">{{departmentData.arName }}</td>
+                    <td><a (click)="deleteDepartment(departmentData.departmentId)"><span class="material-icons">
+                      delete
+                      </span></a></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+                <app-departments-crud></app-departments-crud>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

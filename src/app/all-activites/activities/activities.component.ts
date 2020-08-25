@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivitiesService } from '../../services/activities.service';
+import { ActivitiesService } from '../../../services/activities.service';
 import { Activities } from 'app/model/activities.model';
 import { Observable } from 'rxjs';
 
@@ -23,9 +23,9 @@ export class ActivitiesComponent implements OnInit {
   }
 
   getAllActivities(){
-    this.activitiesService.getActivities().subscribe(res => {
-      this.activitiesData = res;
-    })
+    // this.activitiesService.getAllActivitesSubject().subscribe(res => {
+    //   this.activitiesData = res;
+    // })
 
     this.activities = this.activitiesService.readonlyactivitiesModel;
     this.activitiesService.getAllActivitesSubject();
