@@ -52,6 +52,9 @@ import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 
+import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
+import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
+import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selector.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -103,6 +106,10 @@ import { PositionsFormComponent } from 'app/positions/positions-form/positions-f
     SearchPipe,
     DepartmentsCrudComponent,
     PositionsFormComponent,
+    ComapnyFormComponent,
+    ActivitySelectorComponent,
+    PlaceSelectorComponent,
+    SearchPipe
   ],
   providers:[DatePipe] 
 })

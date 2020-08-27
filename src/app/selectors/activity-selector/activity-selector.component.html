@@ -1,0 +1,8 @@
+<div class="row custom-no-gutters">
+    <div class="col-md-12">
+        <select #mySelect class="form-control" name="mySelect"  [(ngModel)]="selectedObject"  (change)="selectActivity()">
+            <option disabled>Select Activity</option>
+            <option *ngFor="let activity of activities | async" [ngValue]="activity" >{{ activity.arName }}</option>
+        </select>
+    </div>
+</div>

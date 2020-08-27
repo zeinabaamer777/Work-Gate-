@@ -25,6 +25,7 @@ import { PlacesComponent } from 'app/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
+import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -91,5 +92,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'chat',                 component: ChatComponent},
     { path: 'settings',             component: SettingsComponent},
     { path: 'users/:id',            component: ViewUserComponent},
+    { path: 'test',                 component: ActivitySelectorComponent},  
     { path: '**',                   component: PageNotFoundComponent }
 ];
