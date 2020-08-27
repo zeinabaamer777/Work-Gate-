@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { Departments } from 'app/model/departments.model';
-import { MainResponse } from 'app/model/mainResponse.model';
+import { Departments } from '../models/departments.model';
+import { MainResponse } from '../models/mainResponse.model';
 
 
 @Injectable({

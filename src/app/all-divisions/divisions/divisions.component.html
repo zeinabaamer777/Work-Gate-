@@ -1,0 +1,43 @@
+
+<div class="main-content">
+    <div class="custom-class-for-style activities-component-content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">division List</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="search-container" style="margin-top: 10px;">
+                                <input type="text" class="form-control"  placeholder="&#xf002; Search division" [(ngModel)]="searchText">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <th>division Name</th>
+                                    <th>اسم القسم</th>
+                                </thead>
+                                <tbody *ngFor="let division of divisions | async | searchPipe: searchText">
+                                    <td (click)="catchDivision(division)">{{ division.divisionNameEn }}</td>
+                                    <td (click)="catchDivision(division)">{{ division.divisionNameAr }}</td>
+                                    <td><a (click)="deleteDivision(division)"><span class="material-icons">
+                                        delete
+                                        </span></a></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <app-divisions-crud  (searchText)="clearTextOutput($event)"></app-divisions-crud>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

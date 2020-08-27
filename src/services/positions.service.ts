@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { MainResponse } from 'app/model/mainResponse.model';
-import { Position } from 'app/model/Response/position.model'
-import { CreatePositionModel } from 'app/model/Request/Position/createPosition.model';
+import { MainResponse } from '../models/mainResponse.model';
+import { Position } from '../models/Response/position.model'
+import { CreatePositionModel } from '../models/Request/Position/createPosition.model';
 
 
 @Injectable({

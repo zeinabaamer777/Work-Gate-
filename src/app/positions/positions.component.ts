@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PositionsService } from '../../services/positions.service';
 import { Observable } from 'rxjs';
-import { Position } from 'app/model/Response/position.model'
+import { Position } from '../../models/Response/position.model'
 
 @Component({
   selector: 'app-positions',

@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { LocationInSoecificDate } from 'app/model/locationInSpecificDate.model';
-import { SiteAttandanceVM } from 'app/model/siteAttandanceVM.model';
-import { LocationsList } from 'app/model/locationsList.model';
-import { MainResponse } from 'app/model/mainResponse.model';
+import { LocationInSoecificDate } from '../models/locationInSpecificDate.model';
+import { SiteAttandanceVM } from '../models/siteAttandanceVM.model';
+import { LocationsList } from '../models/locationsList.model';
+import { MainResponse } from '../models/mainResponse.model';
 
 @Injectable({
   providedIn: 'root'

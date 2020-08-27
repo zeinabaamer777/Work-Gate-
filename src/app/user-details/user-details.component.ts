@@ -6,8 +6,8 @@ import { GetLocationForUserInSpecificDateService } from '../../services/get-loca
 import { UsersService } from 'services/users.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SiteAttandanceVM } from 'app/model/siteAttandanceVM.model';
-import { LocationsList } from 'app/model/locationsList.model';
+import { SiteAttandanceVM } from '../../models/siteAttandanceVM.model';
+import { LocationsList } from '../../models/locationsList.model';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',

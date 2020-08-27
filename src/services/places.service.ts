@@ -3,8 +3,8 @@ import { environment } from '../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Place } from 'app/model/Response/place.model';
-import { MainResponse } from 'app/model/mainResponse.model';
+import { Place } from '../models/Response/place.model';
+import { MainResponse } from '../models/mainResponse.model';
 
 @Injectable({
   providedIn: 'root'

@@ -16,15 +16,9 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
- 
 import { TestComponent } from './test/test.component';
-import { ComapnyFormComponent } from './companies/comapny-form/comapny-form.component';
-import { ActivitySelectorComponent } from './selectors/activity-selector/activity-selector.component';
-import { PlaceSelectorComponent } from './selectors/place-selector/place-selector.component';
-import { CompanySelectorComponent } from './selectors/company-selector/company-selector.component';
-import { DepartmentSelectorComponent } from './selectors/department-selector/department-selector.component';
-import { DivisionSelectorComponent } from './selectors/division-selector/division-selector.component';
-import { PositionSeleclorComponent } from './selectors/position-seleclor/position-seleclor.component';
+import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -46,7 +40,8 @@ import { PositionSeleclorComponent } from './selectors/position-seleclor/positio
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    TestComponent
+    TestComponent,
+    DivisionsCrudComponent
 
   ],
   providers: [

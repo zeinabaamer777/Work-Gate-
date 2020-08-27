@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Activities } from 'app/model/activities.model';
+import { Activities } from '../../../models/activities.model';
 
 @Component({
   selector: 'app-activity-selector',

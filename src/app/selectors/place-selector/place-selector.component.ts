@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Place } from 'app/model/Response/place.model';
+import { Place } from '../../../models/Response/place.model';
 
 @Component({
   selector: 'app-place-selector',

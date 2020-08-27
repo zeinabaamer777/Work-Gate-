@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Company } from 'app/model/Response/company.model';
+import { Company } from '../../../models/Response/company.model';
 
 @Component({
   selector: 'app-company-selector',

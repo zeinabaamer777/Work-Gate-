@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CompaniesService } from '../../services/companies.service';
-import { Observable } from 'rxjs';
-import { Company } from 'app/model/Response/company.model';
-
+import { Observable, from } from 'rxjs';
+import { Company } from '../../models/Response/company.model';
 
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.scss']
 })
+
 export class CompaniesComponent implements OnInit {
 
   searchText:string;

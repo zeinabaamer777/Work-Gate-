@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivitiesService } from '../../../services/activities.service';
-import { Activities } from 'app/model/activities.model';
+import { Activities } from '../../../models/activities.model';
 
 @Component({
   selector: 'app-crud',

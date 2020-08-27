@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DepartmentsService } from '../../../services/departments.service';
-import { Departments } from 'app/model/departments.model';
-import { CompaniesService } from 'services/companies.service';
 import { Observable } from 'rxjs';
-import { Company } from 'app/model/Response/company.model';
+import { DepartmentsService } from '../../../services/departments.service';
+import { Departments } from '../../../models/departments.model';
+import { CompaniesService } from 'services/companies.service';
+import { Company } from '../../../models/Response/company.model';
 
 @Component({
   selector: 'app-departments-crud',

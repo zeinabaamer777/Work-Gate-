@@ -30,7 +30,7 @@ import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresp
 import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
-import { DivisionsComponent } from 'app/divisions/divisions.component';
+import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
 import { PlacesComponent } from 'app/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
 import { UserMapComponent } from 'app/user-map/user-map.component';

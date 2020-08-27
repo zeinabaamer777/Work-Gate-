@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PositionsService } from 'services/positions.service';
-import { Position } from 'app/model/Response/position.model'
-import { CreatePositionModel } from 'app/model/Request/Position/createPosition.model';
+import { Position } from '../../../models/Response/position.model'
+import { CreatePositionModel } from '../../../models/Request/Position/createPosition.model';
 import { ActivitiesService } from 'services/activities.service';
 import { Observable } from 'rxjs';
-import { Activities } from 'app/model/activities.model';
+import { Activities } from '../../../models/activities.model';
 
 @Component({
   selector: 'app-positions-form',

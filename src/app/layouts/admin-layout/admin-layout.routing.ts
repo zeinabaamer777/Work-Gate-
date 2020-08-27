@@ -18,7 +18,7 @@ import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
-import { DivisionsComponent } from 'app/divisions/divisions.component';
+import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { PageNotFoundComponent } from 'app/page-not-found/page-not-found.component';
 import { PlacesComponent } from 'app/places/places.component';
