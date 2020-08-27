@@ -1,10 +1,11 @@
 <div class="card">
     <div class="card-header card-header-danger">
-      <h4 class="card-title">Edit Activites List</h4>
+      <h4 class="card-title">Edit Departments List</h4>
     </div>
     <div class="card-body">
       <form [formGroup]="departmentForm"  id="departmentForm" (ngSubmit)="onSubmit(departmentForm.value)">
         <input type="hidden" formControlName="departmentId">
+        <input type="hidden" formControlName="companyId">
         <div class="row custom-no-gutters">
           <div class="col-md-12">
             <button type="button" mat-raised-button class="btn btn-info pull-right btn-sm"

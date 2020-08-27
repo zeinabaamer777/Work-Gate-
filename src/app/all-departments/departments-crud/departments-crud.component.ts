@@ -41,6 +41,7 @@ export class DepartmentsCrudComponent implements OnInit {
     this.isHiddendepartmentId =  true;
     this.departmentForm = this.fb.group({
       departmentId: [0],
+      companyId: [0],
       departmentEnName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       departmentArName: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
@@ -57,6 +58,7 @@ export class DepartmentsCrudComponent implements OnInit {
 
       this.departmentForm = this.fb.group({
         departmentId: new FormControl({ value: res.departmentId,disabled: true }),
+        companyId: new FormControl({ value: res.companyID,disabled: true }),
         departmentEnName: new FormControl({ value: res.enName, disabled: true }, [Validators.required]),
         departmentArName: new FormControl({ value: res.arName, disabled: true }, [Validators.required])
 
@@ -90,12 +92,13 @@ export class DepartmentsCrudComponent implements OnInit {
   onSubmit(model: Departments){
     debugger
     //create
-    if(model.departmentId == 0){
+    if(model.departmentId == 0 && model.companyID == null || model.companyID == 0){
       console.log(model);
       this.DepartmentsService.createDepartments(model);
       this.departmentForm.reset();
       this.onReset();
       this.departmentForm.controls['departmentId'].setValue(0);
+      this.departmentForm.controls['companyID'].setValue(0);
     }
     //edit
     else{
@@ -104,6 +107,7 @@ export class DepartmentsCrudComponent implements OnInit {
       this.departmentForm.reset();
       this.onReset();
       this.departmentForm.controls['departmentId'].setValue(0);
+      this.departmentForm.controls['companyID'].setValue(0);
     }
   }
 
@@ -114,6 +118,7 @@ export class DepartmentsCrudComponent implements OnInit {
     this.isHiddenEditActionBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.departmentForm.controls['departmentId'].setValue('');
+    this.departmentForm.controls['companyID'].setValue('');
     // this.departmentForm.reset();
     this.departmentForm.disable();
   }

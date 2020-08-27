@@ -7,7 +7,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header card-header-danger">
-                <h4 class="card-title">Activites List</h4>
+                <h4 class="card-title">Departments List</h4>
               </div>
               <div class="card-body">
                 <table class="table">
@@ -15,10 +15,10 @@
                     <th>En Name</th>
                     <th>Ar Name</th>
                   </thead>
-                  <tbody *ngFor="let departmentData of departments | async">
-                    <td (click)="onSelect(departmentData)">{{departmentData.enName}}</td>
-                    <td (click)="onSelect(departmentData)">{{departmentData.arName }}</td>
-                    <td><a (click)="deleteDepartment(departmentData.departmentId)"><span class="material-icons">
+                  <tbody *ngFor="let department of departments | async">
+                    <td (click)="onSelect(department)">{{department.enName}}</td>
+                    <td (click)="onSelect(department)">{{department.arName }}</td>
+                    <td><a (click)="deleteDepartment(department.departmentI)"><span class="material-icons">
                       delete
                       </span></a></td>
                   </tbody>

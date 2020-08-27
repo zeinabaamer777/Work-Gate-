@@ -48,15 +48,15 @@ export class DepartmentsService {
   //#endregion
 
   //#region 2 updateDepartment() method to update (put verb)
-  updateDepartment( id:number, Department: Departments) {
-    this.http.put<MainResponse<Departments>>(`${this.endpoint}/${id}`, Department)
+  updateDepartment(id:number, Department: Departments) {
+    this.http.put<Departments>(`${this.endpoint}/${id}`, Department)
     .subscribe(
-       (result: MainResponse<Departments>)=> {
+       (result: Departments)=> {
           let i = 0;
           for (let departmentData of this.dataStoredepartments.departments) {
             debugger;
-            if (departmentData.departmentId === result.data.departmentId) {
-              this.dataStoredepartments.departments[i] = result.data;
+            if (departmentData.departmentId === result.departmentId) {
+              this.dataStoredepartments.departments[i] = result;
               break;
             }
             i++;

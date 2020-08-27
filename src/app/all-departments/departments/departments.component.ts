@@ -10,45 +10,40 @@ import { Observable } from 'rxjs';
   styleUrls: ['./departments.component.scss']
 })
 export class DepartmentsComponent implements OnInit {
-  searchText:string;
+  searchText: string;
   departmentsList: any;
-  departmentNew : any;
- // companyData: any;
+  departmentNew: any;
+  // companyData: any;
 
- departmentsData: Departments[];
- departments: Observable<Departments[]>;
+  departmentsData: Departments[];
+  departments: Observable<Departments[]>;
 
- constructor(private departmentsService: DepartmentsService) { }
+  constructor(private departmentsService: DepartmentsService) { }
 
- ngOnInit() {
-   this.getAllDepartments();
- }
+  ngOnInit() {
+    this.getAllDepartments();
+  }
 
- getAllDepartments(){
-  // this.departmentsService.getActivities().subscribe(res => {
-  //   this.departmentsData = res;
-  // })
+  getAllDepartments() {
 
-  this.departments = this.departmentsService.readonlyDepartmentsModel;
-  this.departmentsService.getAlldepartmentsSubject();
+    this.departments = this.departmentsService.readonlyDepartmentsModel;
+    this.departmentsService.getAlldepartmentsSubject();
 
-}
+  }
 
- deleteDepartment(DepartmentId: number){
-   this.departmentsService.deleteDepartment(DepartmentId).subscribe(
-     () => {
-       console.log("successfuly deleted")
-       this.getAllDepartments()
-     });
-     
- }
+  deleteDepartment(DepartmentId: number) {
+    this.departmentsService.deleteDepartment(DepartmentId).subscribe(
+      () => {
+        console.log("successfuly deleted")
+        this.getAllDepartments()
+      });
 
- //  19/8/2016
- onSelect(selectedDepartment: object) {
-   this.departmentsService.setDepartmentSubject(selectedDepartment);
-}
+  }
 
- 
+  //  19/8/2016
+  onSelect(selectedDepartment: object) {
+    this.departmentsService.setDepartmentSubject(selectedDepartment);
+  }
 
 
 }
