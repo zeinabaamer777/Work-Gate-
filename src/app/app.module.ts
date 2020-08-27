@@ -46,11 +46,7 @@ import { PositionSeleclorComponent } from './selectors/position-seleclor/positio
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    TestComponent,
-    CompanySelectorComponent,
-    DepartmentSelectorComponent,
-    DivisionSelectorComponent,
-    PositionSeleclorComponent,
+    TestComponent
 
   ],
   providers: [

@@ -1,4 +1,4 @@
-import "./companies.model"
+// import "./companies.model"
 export interface Departments{    
     departmentId: number,
     enName: string,

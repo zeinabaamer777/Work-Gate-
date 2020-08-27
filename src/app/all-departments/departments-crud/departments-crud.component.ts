@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator
 import { Router } from '@angular/router';
 import { DepartmentsService } from '../../../services/departments.service';
 import { Departments } from 'app/model/departments.model';
+import { CompaniesService } from 'services/companies.service';
+import { Observable } from 'rxjs';
+import { Company } from 'app/model/Response/company.model';
 
 @Component({
   selector: 'app-departments-crud',
@@ -22,17 +25,28 @@ export class DepartmentsCrudComponent implements OnInit {
   isHiddenCreateActionBtn: boolean;
   isHiddendepartmentId: boolean;
 
+  companies: Observable<Company[]>;
+
   constructor(
-    public fb: FormBuilder,
-    public fb2: FormBuilder,
-    public DepartmentsService: DepartmentsService
+    private fb: FormBuilder,
+    private fb2: FormBuilder,
+    private DepartmentsService: DepartmentsService,
+    private companiesService: CompaniesService
   ) { }
 
   ngOnInit(): void {
     this.initForm();
     this.printDataToForm();
+    this.loadComanpies();
 
   }
+
+  loadComanpies(){
+    this.companies = this.companiesService.readonlyactivitiesModel;
+    this.companiesService.getCompanies();
+    console.log(this.companies);
+  }
+
   initForm(){
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
@@ -55,6 +69,7 @@ export class DepartmentsCrudComponent implements OnInit {
       this.departmentId = res.departmentId;
 
       console.log(this.departmentId);
+      console.log("department Object", this.departmentObject);
 
       this.departmentForm = this.fb.group({
         departmentId: new FormControl({ value: res.departmentId,disabled: true }),
@@ -92,7 +107,7 @@ export class DepartmentsCrudComponent implements OnInit {
   onSubmit(model: Departments){
     debugger
     //create
-    if(model.departmentId == 0 && model.companyID == null || model.companyID == 0){
+    if(model.departmentId == 0){
       console.log(model);
       this.DepartmentsService.createDepartments(model);
       this.departmentForm.reset();

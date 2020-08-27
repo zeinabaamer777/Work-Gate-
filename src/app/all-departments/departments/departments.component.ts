@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { DepartmentsService } from '../../../services/departments.service';
 import { Departments } from 'app/model/departments.model';
 import { Observable } from 'rxjs';
@@ -28,6 +28,7 @@ export class DepartmentsComponent implements OnInit {
 
     this.departments = this.departmentsService.readonlyDepartmentsModel;
     this.departmentsService.getAlldepartmentsSubject();
+    console.log(this.departments);
 
   }
 

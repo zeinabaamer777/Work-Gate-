@@ -52,9 +52,12 @@ import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 
-import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
-import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
-import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selector.component';
+
+import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
+import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
+import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
+import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -106,9 +109,10 @@ import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selec
     SearchPipe,
     DepartmentsCrudComponent,
     PositionsFormComponent,
-    ComapnyFormComponent,
-    ActivitySelectorComponent,
-    PlaceSelectorComponent,
+    CompanySelectorComponent,
+    DepartmentSelectorComponent,
+    DivisionSelectorComponent,
+    PositionSeleclorComponent,
     SearchPipe
   ],
   providers:[DatePipe] 

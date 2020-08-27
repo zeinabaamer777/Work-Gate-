@@ -58,7 +58,7 @@
 
     <ul class="nav">
         <li routerLinkActive="active"  class="nav-item">
-            <a data-toggle="collapse" href="#collapseDash" class="parent-link collapsed nav-link">
+            <a data-toggle="collapse" href="#collapseDash" class=" collapsed nav-link">
 
                 <i class="material-icons">home</i>
                 <p>Dashboard <b class="caret"></b></p>
@@ -94,7 +94,7 @@
             </ul>
         </div>
     
-        <li routerLinkActive="active" class="nav-item main-li" *ngFor="let speratedItem of speratedItems"  class="{{ speratedItem.class }} nav-item">
+        <li routerLinkActive="active" *ngFor="let speratedItem of speratedItems"  class="{{ speratedItem.class }} nav-item">
             <a class="nav-link" [routerLink]="[speratedItem.path]">
                 <i class="material-icons">{{speratedItem.icon}}</i>
                 <p>{{speratedItem.title}}</p>
