@@ -34,9 +34,9 @@ export class ActivitiesService {
   }
 
   //#region 00  getActivities() to read all activites data
-   getActivities(): Observable<Activities[]> {
-    return this.http.get<Activities[]>(this.endpoint)
-  }
+  //  getActivities(): Observable<Activities[]> {
+  //   return this.http.get<Activities[]>(this.endpoint)
+  // }
 
   // getActivities()
   //#endregion
@@ -47,12 +47,9 @@ export class ActivitiesService {
       .subscribe((data: Activities) => {
         this.dataStoreActivites.activites.push(data);
         this.activitesBehaviorSubject.next(Object.assign({}, this.dataStoreActivites).activites);
-
         return data;
       });
-      // .pipe(
-      //   catchError(this.errorHandler)
-      // )
+     
   }
   //#endregion
 

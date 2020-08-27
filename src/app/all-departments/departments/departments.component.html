@@ -1,0 +1,38 @@
+
+  <div class="main-content">
+    <div class="custom-class-for-style activities-component-content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Departments List</h4>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <th>Department Name</th>
+                    <th>اسم القسم</th>
+                  </thead>
+                  <tbody *ngFor="let department of departments | async" >
+                    <td (click)="onSelect(department)">{{department.enName}}</td>
+                    <td (click)="onSelect(department)">{{department.arName}}</td>
+                    <td><a (click)="deleteDepartment(department.departmentId)"><span class="material-icons">
+                      delete
+                      </span></a></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+                <app-departments-crud></app-departments-crud>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

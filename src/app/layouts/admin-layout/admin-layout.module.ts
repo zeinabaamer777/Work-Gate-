@@ -23,12 +23,12 @@ import { SitesListDetailsComponent } from '../../sites-list-details/sites-list-d
 import { SitesComponent } from 'app/sites/sites.component';
 import { SiteDetailsComponent } from 'app/site-details/site-details.component';
 import { EntitiesComponent } from 'app/entities/entities.component';
-import { ActivitiesComponent } from 'app/activities/activities.component';
+import { ActivitiesComponent } from 'app/all-activites/activities/activities.component';
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
-import { DepartmentsComponent } from 'app/departments/departments.component';
+import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/divisions/divisions.component';
 import { PlacesComponent } from 'app/places/places.component';
@@ -48,11 +48,17 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { CrudComponent } from 'app/crud/crud.component';
+import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
+import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
 import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selector.component';
+import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
+import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
+import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
+import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -101,10 +107,16 @@ import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selec
     ChatComponent,
     SettingsComponent,
     CrudComponent,
+    SearchPipe,
+    DepartmentsCrudComponent,
     PositionsFormComponent,
     ComapnyFormComponent,
     ActivitySelectorComponent,
     PlaceSelectorComponent,
+    CompanySelectorComponent,
+    DepartmentSelectorComponent,
+    DivisionSelectorComponent,
+    PositionSeleclorComponent,
     SearchPipe
   ],
   providers:[DatePipe] 

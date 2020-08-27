@@ -10,6 +10,7 @@ export class CompanySelectorComponent implements OnInit {
 
   companies: Company[];
   selectedObject: Company;
+  isDisabled: boolean;
 
   @Output()
   companiesOut = new EventEmitter<Company>();
@@ -25,6 +26,11 @@ export class CompanySelectorComponent implements OnInit {
     this.companies = company;
     this.companiesOut.emit(company[0]);
     
+  }
+
+  @Input()
+  set setDisabled(isDisabled: boolean){
+    this.isDisabled = isDisabled;
   }
 
   public selectCompany(){

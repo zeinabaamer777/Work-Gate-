@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
+ 
 import { TestComponent } from './test/test.component';
 import { ComapnyFormComponent } from './companies/comapny-form/comapny-form.component';
 import { ActivitySelectorComponent } from './selectors/activity-selector/activity-selector.component';
@@ -45,11 +46,7 @@ import { PositionSeleclorComponent } from './selectors/position-seleclor/positio
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    TestComponent,
-    CompanySelectorComponent,
-    DepartmentSelectorComponent,
-    DivisionSelectorComponent,
-    PositionSeleclorComponent,
+    TestComponent
 
   ],
   providers: [
