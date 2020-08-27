@@ -50,6 +50,9 @@ import { SettingsComponent } from 'app/settings/settings.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CrudComponent } from 'app/crud/crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
+import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
+import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
+import { PlaceSelectorComponent } from 'app/selectors/place-selector/place-selector.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -99,6 +102,9 @@ import { PositionsFormComponent } from 'app/positions/positions-form/positions-f
     SettingsComponent,
     CrudComponent,
     PositionsFormComponent,
+    ComapnyFormComponent,
+    ActivitySelectorComponent,
+    PlaceSelectorComponent,
     SearchPipe
   ],
   providers:[DatePipe] 

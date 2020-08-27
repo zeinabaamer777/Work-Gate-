@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PositionsService } from 'services/positions.service';
 import { Position } from 'app/model/Response/position.model'
 import { CreatePositionModel } from 'app/model/Request/Position/createPosition.model';
+import { ActivitiesService } from 'services/activities.service';
+import { Observable } from 'rxjs';
+import { Activities } from 'app/model/activities.model';
 
 @Component({
   selector: 'app-positions-form',
@@ -18,20 +21,37 @@ export class PositionsFormComponent implements OnInit {
   isHiddenSaveCreateBtn: boolean;
   isHiddenSaveActionBtn: boolean;
 
+  activities: Observable<Activities[]>;
+  
+  
+
   position: Position;
+
+  @Output() searchText = new EventEmitter<string>();
 
   constructor(
     private fb: FormBuilder,
+    private activityService: ActivitiesService,
     private positionService: PositionsService
   ) { }
 
   ngOnInit(): void {
     
-
     this.initForm();
     this.initButtons();
+    this.loadActivities();
 
   }
+
+  private loadActivities(): void{
+    this.activities = this.activityService.readonlyactivitiesModel;
+    this.activityService.getAllActivitesSubject();
+  }
+
+  selectedActivity(activity: Activities){
+    console.log(activity);
+  }
+
 
   initButtons(){
     this.isHiddenCreateActionBtn = false;
@@ -87,6 +107,7 @@ export class PositionsFormComponent implements OnInit {
       this.isHiddenSaveActionBtn = true;
       this.isHiddenEditActionBtn = true;
       this.isHiddenSaveCreateBtn = true;
+      this.searchText.emit("");
 
     }
 

@@ -22,7 +22,7 @@ export class PositionsComponent implements OnInit {
   }
 
   private loadAllPositions() {
-    this.positions = this.positionService.readonlyactivitiesModel;
+    this.positions = this.positionService.readonlyPositionsModel;
     this.positionService.getPositions();
   }
   
@@ -33,6 +33,10 @@ export class PositionsComponent implements OnInit {
 
   deletePosition(position: Position){
     this.positionService.deletePosition(position.positionId);
+  }
+
+  clearTextOutput(searchText: string){
+    this.searchText = searchText;
   }
 
 }

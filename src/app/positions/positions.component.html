@@ -9,13 +9,18 @@
                         <div class="card-header card-header-danger">
                             <h4 class="card-title">Position List</h4>
                         </div>
+                        <div class="col-md-12">
+                            <div class="search-container" style="margin-top: 10px;">
+                                <input type="text" class="form-control"  placeholder="&#xf002; Search Position" [(ngModel)]="searchText">
+                            </div>
+                        </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
                                     <th>Position Name</th>
                                     <th>اسم المنصب</th>
                                 </thead>
-                                <tbody *ngFor="let position of positions | async" (click)="catchPosition(position)">
+                                <tbody *ngFor="let position of positions | async | searchPipe: searchText" (click)="catchPosition(position)">
                                     <td>{{ position.positionNameEn }}</td>
                                     <td>{{ position.positionNameAr }}</td>
                                     <td><a (click)="deletePosition(position)"><span class="material-icons">
@@ -28,7 +33,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <app-positions-form [PositionObject]="position"></app-positions-form>
+                    <app-positions-form [PositionObject]="position" (searchText)="clearTextOutput($event)"></app-positions-form>
                 </div>
             </div>
 

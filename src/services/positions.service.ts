@@ -20,7 +20,7 @@ export class PositionsService  {
   private positionBehaviorSubject = new BehaviorSubject<Position[]>([]);
   private dataStorePosition: { position: Position[] } = { position: [] };
 
-  readonly readonlyactivitiesModel = this.positionBehaviorSubject.asObservable();
+  readonly readonlyPositionsModel = this.positionBehaviorSubject.asObservable();
 
   constructor(public http: HttpClient) { }
 
