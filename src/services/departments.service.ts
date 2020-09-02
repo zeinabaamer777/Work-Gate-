@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subject } from 'rxjs';
@@ -19,7 +20,7 @@ export class DepartmentsService {
 
   readonly readonlyDepartmentsModel = this.departmentsBehaviorSubject.asObservable();
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private ToastrService: ToastrService) { }
 
  //#region 00  getDepartments() to read all departments data
 
@@ -51,19 +52,22 @@ export class DepartmentsService {
   updateDepartment(id:number, Department: Departments) {
     this.http.put<Departments>(`${this.endpoint}/${id}`, Department)
     .subscribe(
-       (result: Departments)=> {
+       // ignore result and use the original object "Department" Because the body returned without response in swagger (203)
+      //  (result: Departments)=> {
+       (Departments)=> {
           let i = 0;
           for (let departmentData of this.dataStoredepartments.departments) {
             debugger;
-            if (departmentData.departmentId === result.departmentId) {
-              this.dataStoredepartments.departments[i] = result;
+            if (departmentData.departmentId === Department.departmentId) {
+              this.dataStoredepartments.departments[i] = Department;
               break;
             }
             i++;
           }
           debugger
           this.departmentsBehaviorSubject.next(Object.assign({}, this.dataStoredepartments).departments); 
-      }
+      },
+      error => this.ToastrService.error(error,"no data")
     );
   }
   //#endregion

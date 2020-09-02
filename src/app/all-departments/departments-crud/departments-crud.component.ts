@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { DepartmentsService } from '../../../services/departments.service';
 import { Departments } from '../../../models/departments.model';
 import { CompaniesService } from 'services/companies.service';
-import { Company } from '../../../models/Response/company.model';
+import { Company } from '../../../models/companies.model';
+import { NotificationService } from '../../notification.service';
+
 
 @Component({
   selector: 'app-departments-crud',
@@ -24,21 +26,23 @@ export class DepartmentsCrudComponent implements OnInit {
   isHiddenEditActionBtn: boolean;
   isHiddenCreateActionBtn: boolean;
   isHiddendepartmentId: boolean;
-
+  IsUpdate: boolean;
   companies: Observable<Company[]>;
+  companyName: string;
 
   constructor(
     private fb: FormBuilder,
     private fb2: FormBuilder,
-    private DepartmentsService: DepartmentsService,
-    private companiesService: CompaniesService
+    private departmentsService: DepartmentsService,
+    private companiesService: CompaniesService,
+    private notifyService : NotificationService
   ) { }
 
   ngOnInit(): void {
     this.initForm();
     this.printDataToForm();
     this.loadComanpies();
-
+    this.IsUpdate = false;
   }
 
   loadComanpies(){
@@ -55,14 +59,14 @@ export class DepartmentsCrudComponent implements OnInit {
     this.isHiddendepartmentId =  true;
     this.departmentForm = this.fb.group({
       departmentId: [0],
-      companyId: [0],
+      companyFr: new FormControl({ value: '', disabled: true }, [Validators.required]),
       departmentEnName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       departmentArName: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
   }
   //#region 0 printDataToForm to print data on clcik on each td on the table
   printDataToForm() {
-    this.DepartmentsService.getDepartmentSubject().subscribe(res => {
+    this.departmentsService.getDepartmentSubject().subscribe(res => {
       this.isHiddenCreateActionBtn = true;
       this.isHiddenEditActionBtn = false;
       this.departmentObject = res;
@@ -73,15 +77,36 @@ export class DepartmentsCrudComponent implements OnInit {
 
       this.departmentForm = this.fb.group({
         departmentId: new FormControl({ value: res.departmentId,disabled: true }),
-        companyId: new FormControl({ value: res.companyID,disabled: true }),
+        companyFr: new FormControl({ value: '', disabled: true }, [Validators.required]),
         departmentEnName: new FormControl({ value: res.enName, disabled: true }, [Validators.required]),
         departmentArName: new FormControl({ value: res.arName, disabled: true }, [Validators.required])
 
       });
 
+      this.companies.subscribe(data => {
+        const company: Company = data.find(x => x.id === res.companyID);
+        this.departmentForm.controls['companyFr'].setValue(company, { onlySelf: true });
+       
+      });
+
+      this.IsUpdate = true;
+
     });
   }
   //#endregion
+
+//#region 
+
+// selectCompany(companyModel: Company) {
+//   if (companyModel === null) {
+//     return;
+//   }
+//   this.companyName = companyModel.enName;
+//   this.IsUpdate = true;
+// }
+
+//#endregion
+
   //#region showBtns() method to show save and cancel btns on click on update btn
   showBtns() {
     // this.isDisabled = true;
@@ -89,42 +114,63 @@ export class DepartmentsCrudComponent implements OnInit {
     this.isHiddenCreateActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
     this.departmentForm.enable();
+
   }
   //#endregion
 
-  //#region showBtns() method to show save and cancel btns on click on update btn
+  //#region showBtns() method to show save and cancel btns on click on Create btn
   showCreateSaveBtn() {
     // this.isDisabled = true;
     this.isHiddenSaveCreateBtn = false;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenEditActionBtn = true;
+    this.departmentForm.reset();
     this.departmentForm.enable();
   }
   //#endregion
 
 
 //#region  update and create form in the same method
-  onSubmit(model: Departments){
-    debugger
-    //create
-    if(model.departmentId == 0){
-      console.log(model);
-      this.DepartmentsService.createDepartments(model);
-      this.departmentForm.reset();
-      this.onReset();
-      this.departmentForm.controls['departmentId'].setValue(0);
-      this.departmentForm.controls['companyID'].setValue(0);
-    }
-    //edit
-    else{
-      console.log(model);
-      this.DepartmentsService.updateDepartment(model.departmentId, this.departmentForm.value);
-      this.departmentForm.reset();
-      this.onReset();
-      this.departmentForm.controls['departmentId'].setValue(0);
-      this.departmentForm.controls['companyID'].setValue(0);
-    }
+//#region  update and create form in the same method
+onSubmit(model: any){
+  debugger
+  //create
+  const department = new Departments();
+  department.arName = model.departmentArName;
+  department.enName = model.departmentEnName;
+
+  if(model.companyFr === undefined){
+    // pass error to UI
+    return;
   }
+
+  department.companyID = model.companyFr.id;
+
+  if(department.companyID === 0){
+    // pass error to UI
+    return;
+  }
+
+
+  if(!this.IsUpdate){
+    console.log(department);
+    this.departmentsService.createDepartments(department);
+    this.departmentForm.reset();
+    this.onReset();
+    this.departmentForm.controls['departmentId'].setValue(0);
+    this.IsUpdate = false;
+  }
+  //edit
+  else{
+    console.log(department);
+    department.departmentId = model.departmentId;
+    this.departmentsService.updateDepartment(department.departmentId, department);
+    this.departmentForm.reset();
+    this.onReset();
+    this.departmentForm.controls['departmentId'].setValue(0);
+    this.IsUpdate = false;
+  }
+}
 
   //#region onReset() method - fires on cancel
   onReset() {
@@ -133,7 +179,6 @@ export class DepartmentsCrudComponent implements OnInit {
     this.isHiddenEditActionBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.departmentForm.controls['departmentId'].setValue('');
-    this.departmentForm.controls['companyID'].setValue('');
     // this.departmentForm.reset();
     this.departmentForm.disable();
   }

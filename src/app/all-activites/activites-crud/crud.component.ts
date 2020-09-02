@@ -61,10 +61,10 @@ export class CrudComponent implements OnInit {
 
       this.activityForm = this.fb.group({
         activityId: new FormControl({ value: res.activityId,disabled: true }),
-        enName: new FormControl({ value: res.enName, disabled: true }, [Validators.required]),
-        arName: new FormControl({ value: res.arName, disabled: true }, [Validators.required]),
-        centralAdminArName: new FormControl({ value: res.centralAdminArName, disabled: true }, [Validators.required]),
-        centeralAdminEnName: new FormControl({ value: res.centeralAdminEnName, disabled: true }, [Validators.required]),
+        enName: new FormControl({ value: res.enName, disabled: true }, [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/)]),
+        arName: new FormControl({ value: res.arName, disabled: true }, [Validators.required, Validators.pattern(/^[\u0621-\u064A\u0660-\u0669 ]+$/)]),
+        centralAdminArName: new FormControl({ value: res.centralAdminArName, disabled: true }, [Validators.required,Validators.pattern(/^[\u0621-\u064A\u0660-\u0669 ]+$/)]),
+        centeralAdminEnName: new FormControl({ value: res.centeralAdminEnName, disabled: true }, [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
 
       });
 

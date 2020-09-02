@@ -28,6 +28,7 @@
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
               "src/assets/css/demo.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss",
               "src/assets/custom-shared-styles/custom-style.scss",
               "src/assets/css/custom-public-style.scss"

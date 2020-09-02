@@ -18,6 +18,8 @@ import { JwtInterceptor } from './helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { TestComponent } from './test/test.component';
 import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions
     AppRoutingModule,
     BsDatepickerModule,
     NgxSpinnerModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ToastrModule.forRoot()
+
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     // })

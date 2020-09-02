@@ -2,6 +2,7 @@
 // For more information: https://material.angular.io/guide/theming
 @import "~@angular/material/theming";
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '~ngx-toastr/toastr.css';  
 
 
 // Plus imports for other components in your app.
@@ -378,6 +379,12 @@ table{
 // form edits
 .form-control[disabled], fieldset[disabled] .form-control, .form-group .form-control[disabled], fieldset[disabled] .form-group .form-control{
   border-bottom: none
+}
+.form-control:read-only{
+  background-image: none;
+}
+.mat-select-disabled .mat-select-value {
+  color: rgba(0 ,0 ,0, 79%);
 }
 .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
   color: rgba(0, 0, 0, 0.88);

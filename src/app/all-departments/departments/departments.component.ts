@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { DepartmentsService } from '../../../services/departments.service';
 import { Departments } from '../../../models/departments.model';
 import { Observable } from 'rxjs';
+import { Company } from 'models/Response/company.model';
 
 
 @Component({
@@ -11,12 +12,10 @@ import { Observable } from 'rxjs';
 })
 export class DepartmentsComponent implements OnInit {
   searchText: string;
-  departmentsList: any;
-  departmentNew: any;
-  // companyData: any;
-
   departmentsData: Departments[];
   departments: Observable<Departments[]>;
+  //  Company list from company model
+  companiesList: Observable<Company[]>;
 
   constructor(private departmentsService: DepartmentsService) { }
 

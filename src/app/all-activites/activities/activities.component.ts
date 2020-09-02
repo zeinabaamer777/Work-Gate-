@@ -1,7 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { ActivitiesService } from '../../../services/activities.service';
 import { Activities } from '../../../models/activities.model';
 import { Observable } from 'rxjs';
+import { NotificationService } from '../../notification.service';
+import { title } from 'process';
 
 @Component({
   selector: 'app-activities',
@@ -15,29 +18,27 @@ export class ActivitiesComponent implements OnInit {
   activitiesData: Activities[];
   activities: Observable<Activities[]>;
 
-  constructor(private activitiesService: ActivitiesService) { }
+  constructor(private activitiesService: ActivitiesService,
+    private NotificationService: NotificationService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getAllActivities();
   }
 
   getAllActivities(){
-    // this.activitiesService.getAllActivitesSubject().subscribe(res => {
-    //   this.activitiesData = res;
-    // })
-
     this.activities = this.activitiesService.readonlyactivitiesModel;
     this.activitiesService.getAllActivitesSubject();
-
   }
+  // this.toastr.success('Post Added', 'Success');
 
   deleteActivity(activityId: number){
-    this.activitiesService.deleteActivity(activityId).subscribe(
-      () => {
-        console.log("successfuly deleted")
-        this.getAllActivities()
-      });
-      
+      this.activitiesService.deleteActivity(activityId).subscribe(
+        () => {
+          console.log("successfuly deleted");
+          // debugger       
+          this.getAllActivities();
+        });
   }
 
   //  19/8/2016

@@ -1,7 +1,7 @@
 // import "./companies.model"
-export interface Departments{    
-    departmentId: number,
-    enName: string,
-    arName: string,
-    companyID: number
+export class Departments{    
+    departmentId: number;
+    enName: string;
+    arName: string;
+    companyID: number;
 } 
