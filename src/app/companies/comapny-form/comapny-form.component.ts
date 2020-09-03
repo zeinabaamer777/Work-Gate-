@@ -57,9 +57,9 @@ export class ComapnyFormComponent implements OnInit {
 
   initForm(){
     this.companyForm = this.fb.group({
-      countryId: new FormControl({value: '0', disabled: true}),
-      govermentId: new FormControl({value: '0', disabled: true}),
-      activityId: new FormControl({value: '0', disabled: true}),
+      country: new FormControl({value: '0', disabled: true}),
+      goverment: new FormControl({value: '0', disabled: true}),
+      activity: new FormControl({value: '0', disabled: true}),
       ComapnyNameAr: new FormControl({ value: '', disabled: true }, [Validators.required]),
       CompanyNameEn: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
@@ -79,23 +79,24 @@ export class ComapnyFormComponent implements OnInit {
   set companyObject(company: Company) {
 
     this.isHiddenEditActionBtn = false;
-    this.companyForm.disable();
+    // this.companyForm.disable();
+    // this.companyForm.disable();
 
     if(company !== undefined){
       this.company = company;
       console.log(this.company);
 
       this.companyForm = this.fb.group({
-        countryId: new FormControl({value: '', disabled: true }),
-        govermentId: new FormControl({value: '', disabled: true }),
-        activityId: new FormControl({value: '', disabled: true }),
+        country: new FormControl({value: '', disabled: true }),
+        goverment: new FormControl({value: '', disabled: true }),
+        activity: new FormControl({value: '', disabled: true }),
         ComapnyNameAr: new FormControl({ value: this.company.arName, disabled: true }, [Validators.required]),
         CompanyNameEn: new FormControl({ value: this.company.enName, disabled: true }, [Validators.required]),
       });
   
       this.activities.subscribe( data => {
         const activity = data.find(x => x.activityId === this.company.activityId);
-        this.companyForm.controls['activityId'].setValue(activity, { onlySelf: true });
+        this.companyForm.controls['activity'].setValue(activity, { onlySelf: true });
       });
 
       this.places.subscribe( data => {
@@ -113,15 +114,17 @@ export class ComapnyFormComponent implements OnInit {
 
             this.goverments = data[index].children;
 
-            this.companyForm.controls['countryId'].setValue(data[index], { onlySelf: true });
+            this.companyForm.controls['country'].setValue(data[index], { onlySelf: true });
             
-            this.companyForm.controls['govermentId'].setValue(goverment, { onlySelf: true });
+            this.companyForm.controls['goverment'].setValue(goverment, { onlySelf: true });
 
         }
+        
 
       });
+    }else{
+      this.companyForm.reset();
     }
-
   }
 
   
@@ -142,7 +145,17 @@ export class ComapnyFormComponent implements OnInit {
 
   onSubmit(model: any): void{
 
-    // const comany
+    console.log(model);
+    const company = new Company();
+    company.activityId = model.activity.activityId;
+    company.placeId = model.goverment.id;
+    company.arName = model.ComapnyNameAr;
+    company.enName = model.CompanyNameEn;
+    company.id = 0;
+
+    this.companyService.CreateCompanies(company);
+
+    this.Cancel();
 
   }
 
@@ -154,8 +167,18 @@ export class ComapnyFormComponent implements OnInit {
     this.isHiddenSaveActionBtn = true;
   }
 
-  updatePosition(): void{
+  updatePosition(model: any): void{
+    console.log(model);
+    const company = new Company();
+    company.activityId = model.activity.activityId;
+    company.placeId = model.goverment.id;
+    company.arName = model.ComapnyNameAr;
+    company.enName = model.CompanyNameEn;
+    company.id = this.company.id;
 
+    this.companyService.Update(company);
+
+    this.Cancel();
   }
 
   selectPlace(event: any){

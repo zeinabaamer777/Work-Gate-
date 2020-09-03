@@ -19,6 +19,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { TestComponent } from './test/test.component';
 import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
 import { ToastrModule } from 'ngx-toastr';
+import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     AdminLayoutComponent,
     LoginComponent,
     TestComponent,
-    DivisionsCrudComponent
+    DivisionsCrudComponent,
+    SiteTypeFormComponent
 
   ],
   providers: [
