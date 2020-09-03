@@ -2,7 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { DepartmentsService } from '../../../services/departments.service';
 import { Departments } from '../../../models/departments.model';
 import { Observable } from 'rxjs';
-import { Company } from 'models/Response/company.model';
+import { Company } from '../../../models/companies.model';
 
 
 @Component({

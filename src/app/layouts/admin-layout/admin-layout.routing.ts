@@ -16,16 +16,17 @@ import { ActivitiesComponent } from 'app/all-activites/activities/activities.com
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
-import { CompaniesComponent } from 'app/companies/companies.component';
+// import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { PageNotFoundComponent } from 'app/page-not-found/page-not-found.component';
-import { PlacesComponent } from 'app/places/places.component';
+import { PlacesComponent } from 'app/all-places/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
 import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
+import { CompaniesComponent } from 'app/companies/companies.component';
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
