@@ -28,7 +28,6 @@ export class CompaniesComponent implements OnInit {
 
   catchCompany(company: Company){
     this.company = company;
-
   }
 
   deleteCompany(company: Company) {
