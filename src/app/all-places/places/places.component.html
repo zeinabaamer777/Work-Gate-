@@ -1,0 +1,122 @@
+<div class="main-content">
+  <div class="custom-class-for-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="search-container">
+            <input type="text" class="form-control" placeholder="&#xf002; Search places" [(ngModel)]="searchText">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="countries-data-content" *ngFor="let country of countries | searchPipe : searchText"
+            (click)="getChilern(country)">
+
+            <p (click)=getChilern(country)>
+              {{ country.placeNameEn }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4" *ngIf="home">
+          <span>Country-Name English : </span> <br>{{ home.placeNameEn }}
+          <br>
+          <span>Country-Name Arabic : </span> <br>{{ home.placeNameAr }}
+          <br>
+          <span>Country Code : </span> <br>{{ home.code }}
+          <br><br>
+          <strong>List Of Governments </strong> <br><br>
+          <ul class="governments-content" *ngFor="let government of governmentNew">
+            <li>
+              <p (click)=getGovernmentDetails(government)>{{government.placeNameEn}} </p> <br>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4" *ngIf="governmentDetailsNew">
+          <!-- <p *ngIf="!governmentDetailsNew" class="align-middle">Click on Position To display it's Name in Arabic and English</p> -->
+
+          <ul class="positions-content">
+            <li>
+              <label><span style="color: #b00006;"> Government-Name English :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.placeNameEn}}</h5>
+              </label>
+              <br><br>
+              <label><span style="color: #b00006;"> Government-Name Arabic :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.placeNameAr}}</h5>
+              </label><br><br>
+              <label><span style="color: #b00006;"> Government-Name Code :</span></label><br>
+              <label>
+                <h5>{{governmentDetailsNew.code}}</h5>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Master Toggle Button -->
+
+  <table mat-table [dataSource]="dataStudentsList" multiTemplateDataRows>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef> age </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> actions </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-button href="javascript:void()" (click)="element.isExpanded = !element.isExpanded">View
+          Subjects</a>
+      </td>
+    </ng-container>
+
+
+    <!-- Template for details row -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedStudentsColumnsList.length">
+
+        <div class="row student-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+          <mat-list>
+            <div mat-subheader>Subjects of {{element.name}}</div>
+            <mat-list-item *ngFor="let subject of element.subjects">
+              <div mat-line>{{subject.name}}</div>
+              <div mat-line> {{subject.type}} | Grade: {{subject.grade}}</div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedStudentsColumnsList;sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedStudentsColumnsList;" class="student-element-row"
+      [class.student-expanded-row]="element.isExpanded"></tr>
+
+    <!-- Extra row to show detail content column -->
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr>
+
+  </table>

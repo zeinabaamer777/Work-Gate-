@@ -1,7 +1,11 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
-import { PlacesService } from '../../services/places.service';
+import { PlacesService } from '../../../services/places.service';
 import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
+import { MatTableDataSource } from '@angular/material/table';
+import { Place } from 'models/Response/places.model';
+import { DataSource } from '@angular/cdk/table';
 
 
 @Component({
@@ -43,22 +47,25 @@ export class PlacesComponent implements OnInit {
     this.step--;
   }
 
+
+
+  //  new
+
+  places: Observable<Place[]>;
+
   constructor(private placesService: PlacesService,private route: ActivatedRoute,) { }
 
+  dataStudentsList = new MatTableDataSource();
+  displayedStudentsColumnsList: string[] = ['Country-Name English', 'Country-Name English'];
+
   ngOnInit() {
+    // this.dataStudentsList = this.places;
+
     this.getPlaces();
   }
   getPlaces() : void{
-    this.placesService.getPlaces().subscribe(res => {
-      // countries
-      this.countries = res;
-      //console.log(this.countries);
-      // // goverments
-      // this.governments = this.countries
-      // .filter(element => element.parentId == this.id)[0]
-      // .children;
-
-    });
+    this.places = this.placesService.readonlyPlacesModel;
+    this.placesService.loadPlaces();
   }
 
   // getGovernmentByFilter(country_children){

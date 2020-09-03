@@ -31,7 +31,7 @@ import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
-import { PlacesComponent } from 'app/places/places.component';
+import { PlacesComponent } from 'app/all-places/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
 import { UserMapComponent } from 'app/user-map/user-map.component';
 import { GoogleMapComponent } from 'app/google-map/google-map.component';
@@ -57,6 +57,8 @@ import { CompanySelectorComponent } from 'app/selectors/company-selector/company
 import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
 import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
 import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
+import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
+import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
 
 @NgModule({
   imports: [
@@ -113,6 +115,8 @@ import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/posit
     DepartmentSelectorComponent,
     DivisionSelectorComponent,
     PositionSeleclorComponent,
+    DivisionsCrudComponent,
+    PlacesFormComponent,
     SearchPipe
   ],
   providers:[DatePipe] 

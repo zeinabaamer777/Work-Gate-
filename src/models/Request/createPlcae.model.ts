@@ -1,10 +1,7 @@
 import { BaseModel } from "../base.model";
 
-export class Place extends BaseModel{
-    
+export class createPlace extends BaseModel{
     placeNameAr: string;
     placeNameEn: string;
     code: number;
-    parentId?: number;
-    children?: Place[]
 }
