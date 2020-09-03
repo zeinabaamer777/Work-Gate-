@@ -27,7 +27,6 @@ import { ActivitiesComponent } from 'app/all-activites/activities/activities.com
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
-import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
@@ -90,7 +89,6 @@ import { PlacesFormComponent } from 'app/all-places/places-form/places-form.comp
     PositionsComponent,
     SitetypesComponent,
     SiteresponsibilitiesComponent,
-    CompaniesComponent,
     DepartmentsComponent ,
     DivisionsComponent,
     TimegroupComponent,
