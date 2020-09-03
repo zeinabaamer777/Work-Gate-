@@ -126,14 +126,6 @@ export class ComapnyFormComponent implements OnInit {
 
   
 
-  selectedActivity(event: any){
-    console.log(event.value);
-  }
-
-  SelectPlace(place: Place){
-    console.log(place);
-  }
-
   showBtns(): void {
     this.companyForm.enable();
     this.isHiddenSaveActionBtn = false;
@@ -148,7 +140,9 @@ export class ComapnyFormComponent implements OnInit {
     
   }
 
-  createPosition(): void{
+  onSubmit(model: any): void{
+
+    // const comany
 
   }
 

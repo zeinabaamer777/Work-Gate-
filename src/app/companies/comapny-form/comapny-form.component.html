@@ -3,7 +3,7 @@
     <h4 class="card-title">Edit Position List</h4>
   </div>
   <div class="card-body">
-    <form [formGroup]="companyForm" #form="ngForm">
+    <form [formGroup]="companyForm" #form="ngForm" id="companyForm" >
       <div class="row custom-no-gutters">
         <div class="col-md-12">
           <button mat-raised-button class="btn btn-info pull-right btn-sm" [hidden]="isHiddenEditActionBtn"
@@ -94,14 +94,14 @@
             <select class="country" name="child_selection" [ngModel]="selectedGoverment" (change)="selectGoverment()" 
                   formControlName="govermentId" id="goverment-select">
               <option *ngFor="let place of goverments" [ngValue]='place'>{{place.placeNameAr}}</option>
-            </select>
+            </select> (click)="createPosition()"
           </div>
         </div>
       </div> -->
 
         <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
-          <button mat-raised-button class="btn btn-danger pull-left btn-sm" (click)="createPosition()"
-            [disabled]="companyForm.invalid">save new position</button>
+          <button type="submit" mat-raised-button  class="btn btn-danger pull-left btn-sm" 
+            [disabled]="companyForm.invalid" (click)="onSubmit(companyForm.value)">create new company</button>
           <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
         </div>
         <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
