@@ -22,6 +22,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
+import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { MatButtonModule } from '@angular/material/button';
     LoginComponent,
     TestComponent,
 
+    DivisionsCrudComponent,
+    SiteTypeFormComponent
 
   ],
   providers: [

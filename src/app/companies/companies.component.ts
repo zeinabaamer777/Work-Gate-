@@ -32,7 +32,8 @@ export class CompaniesComponent implements OnInit {
   }
 
   deleteCompany(company: Company) {
-
+    this.companiesService.Delete(company.id);
+    this.company = null;
   }
 
 }
