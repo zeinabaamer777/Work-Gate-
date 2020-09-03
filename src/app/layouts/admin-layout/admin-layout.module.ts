@@ -57,6 +57,7 @@ import { CompanySelectorComponent } from 'app/selectors/company-selector/company
 import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
 import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
 import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
+import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 
 @NgModule({
   imports: [
@@ -109,6 +110,7 @@ import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/posit
     SearchPipe,
     DepartmentsCrudComponent,
     PositionsFormComponent,
+    ComapnyFormComponent,
     CompanySelectorComponent,
     DepartmentSelectorComponent,
     DivisionSelectorComponent,

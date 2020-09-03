@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, timer } from 'rxjs';
 import * as signalR from '@aspnet/signalr';
 import { Login } from '../../models/login.model';
 import { environment } from 'environments/environment';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,13 @@ export class LoginService {
       .withUrl(environment.url + 'WebLoginHub')
       .build();
 
+    this.hubConnection.serverTimeoutInMilliseconds= 30000;
+    this.hubConnection.onclose((error: Error) => {
+      // console.error(error);
+      this.QrSignalR();
+    });
+
+
     this.hubConnection
       .start()
       .then(() => {
@@ -46,7 +54,7 @@ export class LoginService {
 
           })
           .catch(err => {
-            console.error(err);
+            this.QrSignalR();
           });
         this.ListenToAuth();
       })
@@ -63,6 +71,11 @@ export class LoginService {
       localStorage.setItem('currentUser', JSON.stringify(data));
       this.currentUserSubject.next(data);
     });
+  }
+
+
+  ngOnDestroy(){
+    
   }
 
 

@@ -26,6 +26,11 @@ export class ComapnyFormComponent implements OnInit {
   isHiddenCreateActionBtn: boolean;
   isHiddenSaveCreateBtn: boolean;
   isHiddenSaveActionBtn: boolean;
+  isEdit: boolean;
+
+  selectedCountry: Place;
+  selectedGoverment: Place;
+  goverments: Place[];
 
   constructor(
     private fb: FormBuilder,
@@ -52,10 +57,11 @@ export class ComapnyFormComponent implements OnInit {
 
   initForm(){
     this.companyForm = this.fb.group({
-      positionId: new FormControl({value: '0'}),
-      activitySelect: new FormControl({value: '0'}),
-      positionNameAr: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      positionNameEn: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      countryId: new FormControl({value: '0', disabled: true}),
+      govermentId: new FormControl({value: '0', disabled: true}),
+      activityId: new FormControl({value: '0', disabled: true}),
+      ComapnyNameAr: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      CompanyNameEn: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
   }
 
@@ -71,11 +77,57 @@ export class ComapnyFormComponent implements OnInit {
 
   @Input()
   set companyObject(company: Company) {
-    this.company = company;
+
+    this.isHiddenEditActionBtn = false;
+    this.companyForm.disable();
+
+    if(company !== undefined){
+      this.company = company;
+      console.log(this.company);
+
+      this.companyForm = this.fb.group({
+        countryId: new FormControl({value: '', disabled: true }),
+        govermentId: new FormControl({value: '', disabled: true }),
+        activityId: new FormControl({value: '', disabled: true }),
+        ComapnyNameAr: new FormControl({ value: this.company.arName, disabled: true }, [Validators.required]),
+        CompanyNameEn: new FormControl({ value: this.company.enName, disabled: true }, [Validators.required]),
+      });
+  
+      this.activities.subscribe( data => {
+        const activity = data.find(x => x.activityId === this.company.activityId);
+        this.companyForm.controls['activityId'].setValue(activity, { onlySelf: true });
+      });
+
+      this.places.subscribe( data => {
+
+        for(let index = 0; index < data.length; index++){
+          
+          if(data[0].children === null || data[0].children === undefined){
+            continue;
+          }
+          
+          const goverment = data[index].children.find(x => x.id === company.placeId);
+
+          if(goverment === null || goverment ===  undefined)
+            continue;
+
+            this.goverments = data[index].children;
+
+            this.companyForm.controls['countryId'].setValue(data[index], { onlySelf: true });
+            
+            this.companyForm.controls['govermentId'].setValue(goverment, { onlySelf: true });
+
+        }
+
+      });
+    }
+
   }
 
-  selectedActivity(activity: Activities){
-    console.log(activity);
+  
+
+  selectedActivity(event: any){
+    console.log(event.value);
   }
 
   SelectPlace(place: Place){
@@ -83,11 +135,17 @@ export class ComapnyFormComponent implements OnInit {
   }
 
   showBtns(): void {
-
+    this.companyForm.enable();
+    this.isHiddenSaveActionBtn = false;
   }
 
   showCreateSaveBtn(): void{
+    this.companyForm.enable();
+    this.companyForm.reset();
 
+    this.isHiddenSaveCreateBtn = false;
+    this.isHiddenCreateActionBtn = true;
+    
   }
 
   createPosition(): void{
@@ -95,11 +153,24 @@ export class ComapnyFormComponent implements OnInit {
   }
 
   Cancel(): void{
-
+    this.isHiddenSaveCreateBtn = true;
+    this.isHiddenCreateActionBtn = false;
+    this.companyForm.disable();
+    this.companyForm.reset();
+    this.isHiddenSaveActionBtn = true;
   }
 
   updatePosition(): void{
 
+  }
+
+  selectPlace(event: any){
+
+    this.goverments = event.value.children;
+  }
+
+  selectGoverment(event: any){
+    console.log(event.value);
   }
 
 }
