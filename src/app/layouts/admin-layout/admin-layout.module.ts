@@ -60,6 +60,7 @@ import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/posit
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -76,6 +77,7 @@ import { PlacesFormComponent } from 'app/all-places/places-form/places-form.comp
     HttpClientModule,
     NgxSpinnerModule,
     GoogleMapsModule,
+    MatTableModule,
     BsDatepickerModule.forRoot()
   ],
   declarations: [

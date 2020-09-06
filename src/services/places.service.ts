@@ -44,6 +44,12 @@ export class PlacesService {
       // });
 
   }
+
+  getProducts(): Observable<MainResponse<Place[]>> {
+    return this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
+       .pipe(
+         map((response:MainResponse<Place[]>) => response))
+  }
   //#endregion
 
   //#region  createPlace() method to insert new place
