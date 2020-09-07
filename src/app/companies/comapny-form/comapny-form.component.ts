@@ -5,9 +5,11 @@ import { CompaniesService } from 'services/companies.service';
 import { ActivitiesService } from 'services/activities.service';
 import { PlacesService } from 'services/places.service';
 import { Observable } from 'rxjs';
-import { Activities } from '../../../models/activities.model';
-import { Place } from '../../../models/Response/place.model';
+// import { Activities } from '../../../models/activities.model';
+// import { Place } from '../../../models/Response/place.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Activities } from 'models/activities.model';
+import { Place } from 'models/Response/place.model';
 
 @Component({
   selector: 'app-comapny-form',
