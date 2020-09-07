@@ -13,7 +13,6 @@ export class TimeGroupsService {
 
   private serverUrl = environment.apiUrl;
   private endpoint = "TimeGroups" ;
-  private serverreqHeader = environment.reqHeader;
   
   constructor(public http: HttpClient) { }
   public getTimeGroups(): Observable<object[]>{

@@ -11,7 +11,6 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
@@ -20,6 +19,8 @@ import { TestComponent } from './test/test.component';
 import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 
 @NgModule({
@@ -36,24 +37,24 @@ import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form
     NgxSpinnerModule,
     GoogleMapsModule,
     ToastrModule.forRoot()
-
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    // })
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
     TestComponent,
-    DivisionsCrudComponent,
-    SiteTypeFormComponent
+    DivisionsCrudComponent
 
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteTypesService } from '../../services/sitetypes.service';
+import { SiteType } from 'models/Response/siteType.model';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,24 +12,26 @@ import { SiteTypesService } from '../../services/sitetypes.service';
 export class SitetypesComponent implements OnInit {
 
   searchText:string;
-  sitetypesList: any;
-  sitetypeData: any;
-  siteTypeNew : any ;
-  constructor(private sitetypes_service: SiteTypesService) { }
+  siteTypes: Observable<SiteType[]>;
+  siteType: SiteType;
+  constructor(private siteTypesService: SiteTypesService) { }
 
   ngOnInit() {
-    this.sitetypes_service
-    .getSiteTypes()
-    .subscribe(lists => {
-        this.sitetypesList= lists;
-        this.sitetypeData = this.sitetypesList.data;
-        console.log(this.sitetypesList);
-    });
+    this.loadSiteType();
   }
 
-  getSiteType(sitetype){
-    this.siteTypeNew = sitetype;
-    console.log(  this.siteTypeNew);
+  loadSiteType(){
+    this.siteTypes = this.siteTypesService.readonlySiteTypeModel;
+    this.siteTypesService.getSiteTypes();
+  }
+
+  catchSiteType(siteType: SiteType){
+
+    this.siteType = siteType;
+
+  }
+
+  deleteSiteType(siteType: SiteType) {
 
   }
 

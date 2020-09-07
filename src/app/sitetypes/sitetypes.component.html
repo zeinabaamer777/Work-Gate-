@@ -1,42 +1,48 @@
 <div class="main-content">
-    
-<div class="custom-class-for-style sitetypes-component-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="search-container" style="margin-top: 10px;">
-                    <input type="text" class="form-control"  placeholder="&#xf002; Search sitetypes" [(ngModel)]="searchText">
-                </div>
-            </div>
-            <div class="col-lg-4" >
-                <div class="media-container" 
-                *ngFor="let sitetype of sitetypeData | searchPipe : searchText" 
-                style="margin-top: 10px;"
-                (click)="getSiteType(sitetype)">
-                    <div class="media">
-                        <div class="media-body">
-                          <h6 class="sitetype-sitetypeNameEn text-capitalize">{{sitetype.siteTypeEn }}</h6>
+    <div class="custom-class-for-style activities-component-content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Position List</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="search-container" style="margin-top: 10px;">
+                                <input type="text" class="form-control" placeholder="&#xf002; Search companies"
+                                    [(ngModel)]="searchText">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <th>Site Type</th>
+                                    <th>نوع الموقع</th>
+                                </thead>
+                                <!--  -->
+                                <tbody *ngFor="let siteType of siteTypes | async | searchPipe : searchText"
+                                    (click)="catchSiteType(siteType)">
+                                    <td>{{ siteType.siteTypeEn }}</td>
+                                    <td>{{ siteType.siteTypeAr }}</td>
+                                    <!--  -->
+                                    <td><a (click)="deleteSiteType(siteType)"><span class="material-icons">
+                                                delete
+                                            </span></a></td>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <!-- <app-positions-form [PositionObject]="company"></app-positions-form> -->
+                    <!-- <app-comapny-form [companyObject]="company"></app-comapny-form> -->
+                    <app-site-type-curd [siteTypeObject]="siteType"></app-site-type-curd>
+                </div>
             </div>
 
-            <div class="col-md-8" *ngIf="siteTypeNew">
-                <p *ngIf="!siteTypeNew" class="align-middle">Click on SiteType To display it's Name in Arabic and English</p>
-        
-                <ul class="siteTypes-content" >
-                  <li> 
-                    <label><span style="color: #b00006;"> SiteTypeName English :</span></label><br>
-                     <label><h5>{{siteTypeNew.siteTypeEn}}</h5></label>
-                  <br><br>
-                  <label><span style="color: #b00006;"> SiteTypeName Arabic :</span></label><br>
-                   <label><h5>{{siteTypeNew.siteTypeAr}}</h5></label>
-                  </li>
-                </ul>
-              </div> 
-            <!--  -->
-            
         </div>
     </div>
-</div>
+
 </div>

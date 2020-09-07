@@ -86,19 +86,6 @@
           </mat-form-field>
         </div>
       </div>
-
-      <!-- <div class="row custom-no-gutters">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="country-select">goverment</label>
-            <select class="country" name="child_selection" [ngModel]="selectedGoverment" (change)="selectGoverment()" 
-                  formControlName="govermentId" id="goverment-select">
-              <option *ngFor="let place of goverments" [ngValue]='place'>{{place.placeNameAr}}</option>
-            </select> (click)="createPosition()"
-          </div>
-        </div>
-      </div> -->
-
         <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
           <button type="submit" mat-raised-button  class="btn btn-danger pull-left btn-sm" 
             [disabled]="companyForm.invalid" (click)="onSubmit(companyForm.value)">create new company</button>

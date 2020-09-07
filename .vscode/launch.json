@@ -8,22 +8,15 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:4040",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}"
         }
+        // {
+        //     "type": "chrome",
+        //     "request": "attach",
+        //     "name": "Attach to Chrome",
+        //     "port": 9222,
+        //     "webRoot": "${workspaceFolder}"
+        // }
     ]
 }

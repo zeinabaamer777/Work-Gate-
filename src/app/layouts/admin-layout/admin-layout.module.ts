@@ -58,6 +58,7 @@ import { DepartmentSelectorComponent } from 'app/selectors/department-selector/d
 import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
 import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
+import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.co
     ActivitiesComponent,
     PositionsComponent,
     SitetypesComponent,
+    SiteTypeFormComponent,
     SiteresponsibilitiesComponent,
     CompaniesComponent,
     DepartmentsComponent ,

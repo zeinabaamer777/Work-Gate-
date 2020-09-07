@@ -14,7 +14,7 @@ export class PlacesService {
   
   private serverUrl = environment.apiUrl;
   private endpoint = "Places" ;
-  private serverreqHeader = environment.reqHeader;
+  // private serverreqHeader = environment.reqHeader;
 
 
   private _endpoint = environment.apiUrl + "/Places";
@@ -53,7 +53,7 @@ export class PlacesService {
   // Get Government 
   public getgovernment(CountryId : number): Observable<object[]>{
     
-    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader})
+    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`)
     .pipe(map((res : any) => {
       return res.data;
     }))
