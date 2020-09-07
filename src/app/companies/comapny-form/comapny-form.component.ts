@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Activities } from 'models/activities.model';
 import { Place } from 'models/Response/place.model';
-
+// push to master
 @Component({
   selector: 'app-comapny-form',
   templateUrl: './comapny-form.component.html',
