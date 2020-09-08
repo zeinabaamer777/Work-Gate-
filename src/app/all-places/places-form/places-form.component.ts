@@ -138,7 +138,6 @@ onSubmit(model: any){
     this.placesService.createPlace(place);
       // Toaster Notification
     this.notifyService.showSuccess("Created successfuly", "Create department");
-
     this.placesForm.reset();
     this.onReset();
     this.placesForm.controls['placeId'].setValue(0);
