@@ -33,12 +33,12 @@
         
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
             <button type="submit" mat-raised-button  class="btn btn-danger pull-left btn-sm" 
-              [disabled]="siteResponsibilityForm.invalid" (click)="onSubmit(siteResponsibilityForm.value)">create new site type</button>
+              [disabled]="siteResponsibilityForm.invalid" (click)="onSubmit(siteResponsibilityForm.value)">create new Site Responsibility</button>
             <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
           </div>
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
             <button mat-raised-button class="btn btn-danger pull-left btn-sm" [disabled]="siteResponsibilityForm.invalid"
-              (click)="updatePosition(siteResponsibilityForm.value)">Update Site Type</button>
+              (click)="updatePosition(siteResponsibilityForm.value)">Update Site Responsibility</button>
   
             <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
           </div>
