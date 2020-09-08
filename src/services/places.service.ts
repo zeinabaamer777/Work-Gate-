@@ -1,9 +1,9 @@
 import { NotificationService } from './../app/notification.service';
 import { ToastrService } from 'ngx-toastr';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 // response model
 import { Place } from '../models/Response/places.model';
@@ -26,6 +26,7 @@ export class PlacesService {
 
   readonly readonlyPlacesModel = this.placeBehaviorSubject.asObservable();
 
+
   constructor(public http: HttpClient, private ToastrService: ToastrService, private NotificationService: NotificationService) { }
 
   //#region 0 loadPlaces() method to load all places 
@@ -45,20 +46,17 @@ export class PlacesService {
 
   }
 
-  getProducts(): Observable<MainResponse<Place[]>> {
-    return this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
-       .pipe(
-         map((response:MainResponse<Place[]>) => response))
-  }
   //#endregion
 
   //#region  createPlace() method to insert new place
-  public createPlace(place: createPlace) {
+   createPlace(place: createPlace) {
     this.http.post<MainResponse<createPlace[]>>(`${this.endpoint}`, place)
       .subscribe(
         (data: MainResponse<createPlace[]>) => {
           // this.dataStorePlace.place.push(data);
           // this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place)
+          return data;
+         
         }
       )
   }
@@ -68,20 +66,11 @@ export class PlacesService {
   updatePlace(id: number, place: Place) {
     this.http.put<MainResponse<Place[]>>(`${this.endpoint}/${id}`, place)
       .subscribe(
-        (data: MainResponse<Place[]>) => {
-          let i = 0;
-          for (let placeData of this.dataStorePlace.place) {
-            debugger;
-            if (placeData.id === place.id) {
-              this.dataStorePlace.place[i] = place;
-              break;
-            }
-            i++;
-          }
-          debugger
-          this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place);
+        () => {
+          this.loadPlaces();
         }
       )
+     
   }
   //#endregion
 
@@ -114,6 +103,17 @@ export class PlacesService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+  }
+  //#endregion
+  //#region Subject 
+  private transferSubject$ : Subject<Place> = new Subject<Place>();
+
+  getPlaceSubject(){
+    return this.transferSubject$;
+  }
+
+  setPlaceSubject(PlaceId){
+    this.transferSubject$.next(PlaceId);
   }
   //#endregion
 

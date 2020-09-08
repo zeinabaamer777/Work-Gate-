@@ -8,19 +8,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Place } from 'models/Response/places.model';
 import { DataSource } from '@angular/cdk/table';
 import { trigger, animate, state, transition, style } from '@angular/animations';
-
+// 
 
 @Component({
   selector: 'app-places',
   templateUrl: './places.component.html',
   styleUrls: ['./places.component.scss'],
-  // animations: [
-  //   trigger('detailExpand', [
-  //     state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-  //     state('expanded', style({height: '*'})),
-  //     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-  //   ]),
-  // ],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -44,20 +37,21 @@ export class PlacesComponent implements OnInit {
   expandedElement: Place;
   // dataSource = new ProductDataSource(this.placesService);
 
-  constructor(private placesService: PlacesService,private route: ActivatedRoute,) { }
+  constructor(private placesService: PlacesService,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
     // this.dataStudentsList = this.places;
-    this.getPlaces();
+    this.loadPlaces();
     this.expandedElement = null;
     // this.createTable();
     this.dataStudentsList.data = this.newPlaces;
-
   }
   dataStudentsList = new MatTableDataSource();
   displayedStudentsColumnsList: string[] = ['placeNameAr', 'placeNameEn', 'code'];
 
-  getPlaces() : void{
+  loadPlaces() : void{
     this.places = this.placesService.readonlyPlacesModel;
     this.placesService.loadPlaces()
       .subscribe((result: MainResponse<Place[]>) => {
@@ -68,26 +62,22 @@ export class PlacesComponent implements OnInit {
     
   }
 
-// createTable(){
-//   this.placesService.getProducts()
-//   .subscribe(
-//   (places: MainResponse<Place[]>) => {
-//     this.products = places.data;
-//     console.log("pr", this.products);
-//   }
-// );
-// }
-  
+  //#region deletePlace()
+deletePlace(placeId){
+  this.placesService.deletePlace(placeId).subscribe(
+    () => {
+      this.loadPlaces();
+    }
+  )
+}
 
+  //#endregion
+
+//#region onSelect() to display country details on the form
+  onSelect(selectedPlace: object) {
+    this.placesService.setPlaceSubject(selectedPlace);
+  }
 
 
 }
-// export class ProductDataSource extends DataSource<Place> {
-//   constructor(private placeService: PlacesService) {
-//     super();
-//   }
-//   connect(): Observable<Place[]> {
-//     return this.placeService.getProducts();
-//   }
-//   disconnect() { }
-// }
+
