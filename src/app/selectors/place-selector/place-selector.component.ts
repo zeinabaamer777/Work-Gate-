@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Place } from 'models/Response/places.model';
 
-
 @Component({
   selector: 'app-place-selector',
   templateUrl: './place-selector.component.html',

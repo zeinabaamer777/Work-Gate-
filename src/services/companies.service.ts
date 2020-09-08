@@ -3,8 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from '../environments/environment';
+<<<<<<< HEAD
 import { Company } from '../models/Response/company.model';
 import { MainResponse } from 'models/mainResponse.model';
+=======
+import { Company } from '../models/companies.model';
+>>>>>>> b4278ec84f0cbde1ed7b3d361b793cd28787cd06
 
 @Injectable({
   providedIn: 'root'

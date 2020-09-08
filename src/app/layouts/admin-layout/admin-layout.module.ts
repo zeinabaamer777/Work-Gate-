@@ -27,7 +27,6 @@ import { ActivitiesComponent } from 'app/all-activites/activities/activities.com
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
-import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
@@ -52,7 +51,6 @@ import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 
-
 import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
 import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
 import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
@@ -63,6 +61,7 @@ import { SiteResponsibiltiyCurdComponent } from 'app/siteresponsibilities/site-r
 import { MatTableModule } from '@angular/material/table';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
+import { CompaniesComponent } from 'app/companies/companies.component';
 
 @NgModule({
   imports: [
@@ -118,7 +117,6 @@ import { PlacesFormComponent } from 'app/all-places/places-form/places-form.comp
     SearchPipe,
     DepartmentsCrudComponent,
     PositionsFormComponent,
-    ComapnyFormComponent,
     CompanySelectorComponent,
     DepartmentSelectorComponent,
     DivisionSelectorComponent,
