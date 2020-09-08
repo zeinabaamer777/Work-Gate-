@@ -15,13 +15,12 @@ export class SitesService {
   private endpoint = "en/Sites/AllSites";
   private companyendpoint = "companies";
 
-  private serverreqHeader = environment.reqHeader;
 
   constructor(public http: HttpClient) { }
 
   public getSites(): Observable<object[]>{
 
-    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader})
+    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`)
     .pipe(map((res : any) => {
       // console.log(res);
       return res;
@@ -30,7 +29,7 @@ export class SitesService {
   }
 
   public getCom(): Observable <object[]>{
-    return this.http.get<object[]>(`${this.serverUrl}/${this.companyendpoint}`,{headers : this.serverreqHeader})
+    return this.http.get<object[]>(`${this.serverUrl}/${this.companyendpoint}`)
     .pipe(map((res : any) => {
       return res;
       console.log(res);
@@ -39,8 +38,8 @@ export class SitesService {
   // Uses forkJoin() to run multiple concurrent http.get() requests.
   // The entire operation will result in an error state if any single request fails.
   public getSitesAndCompanies() : Observable<any> {
-    const sites_response = this.http.get(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader});
-    const companies_response = this.http.get(`${this.serverUrl}/${this.companyendpoint}`,{headers : this.serverreqHeader});
+    const sites_response = this.http.get(`${this.serverUrl}/${this.endpoint}`);
+    const companies_response = this.http.get(`${this.serverUrl}/${this.companyendpoint}`);
     return forkJoin([sites_response, companies_response]);
   }
 }

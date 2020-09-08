@@ -1,24 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
+import { SiteResponsibility } from 'models/Response/siteResponsibility.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SiteResponsibilitiesService {
-  private serverUrl = environment.apiUrl;
-  private endpoint = "SiteResponsibilities" ;
-  private serverreqHeader = environment.reqHeader;
- 
-  constructor(public http: HttpClient) { }
-  public getSiteResponsibilities(): Observable<object[]>{
-    return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`)
-    .pipe(map((res : any) => {
-      console.log("API response", res);
-      return res;
-    }))
-}
+
+  private endpoint = environment.apiUrl + "/SiteResponsibilities";
+
+  private siteResponsibilityBehaviorSubject = new BehaviorSubject<SiteResponsibility[]>([]);
+  private dataStoreSiteResponsibility: { SiteResponsibility: SiteResponsibility[] } = { SiteResponsibility: [] };
+
+  readonly readonlySiteResponsibilityModel = this.siteResponsibilityBehaviorSubject.asObservable();
+
+  constructor(private http: HttpClient) { }
+
+  public getSiteResponsibilities(): void {
+    this.http.get<SiteResponsibility[]>(`${this.endpoint}`)
+      .subscribe((data: SiteResponsibility[]) => {
+        this.dataStoreSiteResponsibility.SiteResponsibility = data;
+        this.siteResponsibilityBehaviorSubject.next(Object.assign({}, this.dataStoreSiteResponsibility).SiteResponsibility);
+      });
+  }
+
+  public createSiteResponsibility(siteResponsibility: SiteResponsibility): void {
+    this.http.post<SiteResponsibility>(`${this.endpoint}`, siteResponsibility)
+      .subscribe((data: SiteResponsibility) => {
+        this.dataStoreSiteResponsibility.SiteResponsibility.push(data);
+        this.siteResponsibilityBehaviorSubject.next(Object.assign({}, this.dataStoreSiteResponsibility).SiteResponsibility);
+      });
+  }
+
+  public updateSiteResponsibility(siteResponsibility: SiteResponsibility): void {
+    this.http.put<SiteResponsibility>(`${this.endpoint}/${siteResponsibility.siteResponsibilityId}`, siteResponsibility)
+    .subscribe((data: SiteResponsibility) => {
+      this.getSiteResponsibilities();
+    });
+  }
+
+  
 }

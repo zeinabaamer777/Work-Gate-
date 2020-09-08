@@ -17,7 +17,7 @@ export class GetLocationForUserInSpecificDateService {
 
   private endpoint = environment.apiUrl + '/Locations/GetLocationForUserInSpecificDate';
 
-  private serverreqHeader = environment.reqHeader;
+  // private serverreqHeader = environment.reqHeader;
 
   private privateSiteAttandanceBehaviorSubject = new BehaviorSubject<SiteAttandanceVM[]>([]);
   private dataStoreSiteAttandance: { siteAttendance: SiteAttandanceVM[] } = { siteAttendance: [] };

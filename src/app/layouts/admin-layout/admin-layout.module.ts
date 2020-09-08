@@ -58,9 +58,11 @@ import { DepartmentSelectorComponent } from 'app/selectors/department-selector/d
 import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
 import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
+import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
+import { SiteResponsibiltiyCurdComponent } from 'app/siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
+import { MatTableModule } from '@angular/material/table';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
-import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -92,7 +94,9 @@ import { MatTableModule } from '@angular/material/table';
     ActivitiesComponent,
     PositionsComponent,
     SitetypesComponent,
+    SiteTypeFormComponent,
     SiteresponsibilitiesComponent,
+    SiteResponsibiltiyCurdComponent,
     CompaniesComponent,
     DepartmentsComponent ,
     DivisionsComponent,
@@ -121,7 +125,9 @@ import { MatTableModule } from '@angular/material/table';
     PositionSeleclorComponent,
     DivisionsCrudComponent,
     PlacesFormComponent,
-    SearchPipe
+    SearchPipe,
+    SiteTypeFormComponent,
+    SiteResponsibiltiyCurdComponent
   ],
   providers:[DatePipe] 
 })

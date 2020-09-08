@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteResponsibilitiesService } from '../../services/siteresponsibilities.service';
+import { Observable } from 'rxjs';
+import { SiteResponsibility } from 'models/Response/siteResponsibility.model';
 
 @Component({
   selector: 'app-siteresponsibilities',
@@ -9,25 +11,29 @@ import { SiteResponsibilitiesService } from '../../services/siteresponsibilities
 export class SiteresponsibilitiesComponent implements OnInit {
 
   searchText:string;
-  siteresponsibilitiesList: any;
-  siteresponsibilityNew: any;
+  siteResponsibility: SiteResponsibility;
   //siteuserresponsibilityData: any;
-  constructor(private siteresponsibilities_service: SiteResponsibilitiesService) { }
+  siteResponsibilities: Observable<SiteResponsibility[]>;
+  constructor(private siteResponsibilitiesService: SiteResponsibilitiesService) { }
 
   ngOnInit() {
-    this.siteresponsibilities_service
-    .getSiteResponsibilities()
-    .subscribe(lists => {
-        this.siteresponsibilitiesList= lists;
-        //this.siteuserresponsibilityData = this.siteuserresponsibilitiesList.data;
-        console.log(this.siteresponsibilitiesList);
-    });
+    this.loadSiteResponsibility();
   }
-  getSiteResposibility(siteresponsibility){
-    this.siteresponsibilityNew = siteresponsibility;
-    console.log( "Data From getSiteResposibility" ,this.siteresponsibilityNew);
 
+  loadSiteResponsibility() {
+    this.siteResponsibilities = this.siteResponsibilitiesService.readonlySiteResponsibilityModel;
+    this.siteResponsibilitiesService.getSiteResponsibilities();
   }
+
+  catchSiteResponsibility(siteResponsibility: SiteResponsibility){
+    this.siteResponsibility = siteResponsibility;
+    // console.log(siteResponsibility);
+  }
+
+  deleteSiteResponsibility(siteResponsibility: SiteResponsibility) {
+    // console.log(siteResponsibility);
+  }
+
 
 
 }

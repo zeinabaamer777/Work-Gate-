@@ -11,7 +11,6 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
@@ -22,9 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
-
-
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -42,23 +40,22 @@ import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form
     MatListModule,
     MatButtonModule,
     ToastrModule.forRoot()
-
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    // })
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
     TestComponent,
-    SiteTypeFormComponent
-
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

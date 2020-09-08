@@ -10,7 +10,6 @@ import { environment } from '../environments/environment';
 export class UsersService {
   private serverUrl = environment.apiUrl;
   private endpoint = "dashboard/Users" ;
-  private serverreqHeader = environment.reqHeader;
 
 
   initinalValue = this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`);

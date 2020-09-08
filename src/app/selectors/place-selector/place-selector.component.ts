@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Place } from '../../../models/Response/places.model';
+import { Place } from 'models/Response/places.model';
+
 
 @Component({
   selector: 'app-place-selector',
@@ -7,7 +8,7 @@ import { Place } from '../../../models/Response/places.model';
   styleUrls: ['./place-selector.component.scss']
 })
 export class PlaceSelectorComponent implements OnInit {
-
+  
   selectedObject: Place;
   selectedGoverment: Place;
 
