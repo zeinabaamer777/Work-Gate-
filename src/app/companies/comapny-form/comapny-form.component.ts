@@ -15,7 +15,7 @@ import { Place } from 'models/Response/places.model';
 @Component({
   selector: 'app-comapny-form',
   templateUrl: './comapny-form.component.html',
-  styleUrls: ['./comapny-form.component.scss']
+  // styleUrls: ['./comapny-form.component.scss']
 })
 export class ComapnyFormComponent implements OnInit {
 

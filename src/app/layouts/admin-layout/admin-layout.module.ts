@@ -125,7 +125,8 @@ import { CompaniesComponent } from 'app/companies/companies.component';
     PlacesFormComponent,
     SearchPipe,
     SiteTypeFormComponent,
-    SiteResponsibiltiyCurdComponent
+    SiteResponsibiltiyCurdComponent,
+    ComapnyFormComponent
   ],
   providers:[DatePipe] 
 })
