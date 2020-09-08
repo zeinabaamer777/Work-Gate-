@@ -75,7 +75,9 @@ export class PlacesService {
   //#endregion
 
   //#region deletePlace() to delete record from table
-  deletePlace(id: number): Observable<void> {
+  deletePlace(id: number, event: Event): Observable<void> {
+    event.preventDefault();
+    event.stopPropagation();
     return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
       catchError(this.errorHandler)
     )

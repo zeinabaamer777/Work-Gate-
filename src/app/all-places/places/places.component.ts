@@ -37,8 +37,7 @@ export class PlacesComponent implements OnInit {
   expandedElement: Place;
   // dataSource = new ProductDataSource(this.placesService);
 
-  constructor(private placesService: PlacesService,
-    private route: ActivatedRoute,
+  constructor(private placesService: PlacesService
     ) { }
 
   ngOnInit() {
@@ -51,6 +50,7 @@ export class PlacesComponent implements OnInit {
   dataStudentsList = new MatTableDataSource();
   displayedStudentsColumnsList: string[] = ['placeNameAr', 'placeNameEn', 'code'];
 
+  //#region 0 loadPlaces() method to get All Places data
   loadPlaces() : void{
     this.places = this.placesService.readonlyPlacesModel;
     this.placesService.loadPlaces()
@@ -58,13 +58,13 @@ export class PlacesComponent implements OnInit {
         this.newPlaces = result.data;
         console.log(this.newPlaces);
       });
-    // console.log(this.newPlaces);
-    
   }
+  //#endregion
 
   //#region deletePlace()
-deletePlace(placeId){
-  this.placesService.deletePlace(placeId).subscribe(
+deletePlace(placeId, event: Event){
+  
+  this.placesService.deletePlace(placeId, event).subscribe(
     () => {
       this.loadPlaces();
     }

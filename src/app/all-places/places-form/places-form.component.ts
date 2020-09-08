@@ -53,6 +53,8 @@ export class PlacesFormComponent implements OnInit {
     this.isHiddendepartmentId =  true;
     this.placesForm = this.fb.group({
       placeId: [0],
+      parentId: [0],
+
       placeEnName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       placeArName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       placeCode: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -71,6 +73,8 @@ export class PlacesFormComponent implements OnInit {
 
       this.placesForm = this.fb.group({
         placeId: new FormControl({ value: res.id,disabled: true }),
+        parentId: new FormControl({ value: res.parentId,disabled: true }),
+
         placeEnName: new FormControl({ value: res.placeNameEn, disabled: true }, [Validators.required]),
         placeArName: new FormControl({ value: res.placeNameAr, disabled: true }, [Validators.required]),
         placeCode: new FormControl({ value: res.code, disabled: true }, [Validators.required]),
@@ -110,18 +114,24 @@ export class PlacesFormComponent implements OnInit {
 onSubmit(model: any){
 
   debugger
-  //create
-  const place = new createPlace();
+  
+  const place = new Place();
   place.id = model.placeId;
+  place.parentId  = model.parentId;
   place.placeNameAr = model.placeArName;
   place.placeNameEn = model.placeEnName;
   place.code = model.placeCode;
-// Update
-  if(!this.isCreate && model){
+  // Update
+  if(!this.isCreate && model && model.parentId == null){
     console.log(place);
     place.id = model.placeId;
     this.placesService.updatePlace(place.id, place);
-    this.placesService.getPlaceSubject();
+  //  Reload Data
+    this.placesService.loadPlaces().subscribe(
+      (result: MainResponse<Place[]>) =>{
+        return result;
+    })
+
     // Toaster Notification
     this.notifyService.showSuccess("updated successfully","update department");
     
@@ -133,15 +143,29 @@ onSubmit(model: any){
   }
   // Insert
   else{
-    console.log(place);
+    if(model.parentId == null){
+      console.log(place);
+      place.id = 0;
+      this.placesService.createPlace(place);
+        // Toaster Notification
+      this.notifyService.showSuccess("Created successfuly", "Create department");
+
+      this.placesForm.reset();
+      this.onReset();
+      this.placesForm.controls['placeId'].setValue(0);
+      this.isCreate = false;
+    }
+    else if(model.parentId != null) {
     place.id = 0;
     this.placesService.createPlace(place);
       // Toaster Notification
     this.notifyService.showSuccess("Created successfuly", "Create department");
+
     this.placesForm.reset();
     this.onReset();
     this.placesForm.controls['placeId'].setValue(0);
     this.isCreate = false;
+    }
   }
 }
 
