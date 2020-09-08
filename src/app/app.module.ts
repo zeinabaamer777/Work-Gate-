@@ -16,14 +16,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { TestComponent } from './test/test.component';
-import { DivisionsCrudComponent } from './all-divisions/divisions-crud/divisions-crud.component';
+
 import { ToastrModule } from 'ngx-toastr';
-import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 import { ErrorInterceptor } from './helper/error.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { SiteResponsibiltiyCurdComponent } from './siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
-
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -37,6 +36,9 @@ import { SiteResponsibiltiyCurdComponent } from './siteresponsibilities/site-res
     BsDatepickerModule,
     NgxSpinnerModule,
     GoogleMapsModule,
+    MatTableModule,
+    MatListModule,
+    MatButtonModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -44,7 +46,6 @@ import { SiteResponsibiltiyCurdComponent } from './siteresponsibilities/site-res
     AdminLayoutComponent,
     LoginComponent,
     TestComponent,
-    DivisionsCrudComponent
   ],
   providers: [
     {

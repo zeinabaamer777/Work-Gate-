@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from '../environments/environment';
-import { Company } from '../models/Response/company.model';
+import { Company } from '../models/companies.model';
 import { MainResponse } from 'models/mainResponse.model';
 
 @Injectable({

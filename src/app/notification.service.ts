@@ -10,7 +10,8 @@ export class NotificationService {
   constructor(private toastr: ToastrService) { }
 
   showSuccess(message, title){
-      this.toastr.success(message, title)
+      const options= { positionClass:'toast-custom' };
+      this.toastr.success(message, title,options)
   }
 
   showError(message, title){

@@ -1,5 +1,5 @@
 import { CompanyInfo } from './companyInfo.model';
-import { Place } from './place.model';
+import { Place } from '../models/Response/places.model';
 
 export interface Login {
     token: string;

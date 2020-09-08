@@ -9,12 +9,13 @@ import { Observable } from 'rxjs';
 // import { Place } from '../../../models/Response/place.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Activities } from 'models/activities.model';
-import { Place } from 'models/Response/place.model';
+import { Place } from 'models/Response/places.model';
+
 // push to master
 @Component({
   selector: 'app-comapny-form',
   templateUrl: './comapny-form.component.html',
-  styleUrls: ['./comapny-form.component.scss']
+  // styleUrls: ['./comapny-form.component.scss']
 })
 export class ComapnyFormComponent implements OnInit {
 

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -35,7 +36,8 @@ export class DepartmentsCrudComponent implements OnInit {
     private fb2: FormBuilder,
     private departmentsService: DepartmentsService,
     private companiesService: CompaniesService,
-    private notifyService : NotificationService
+    private notifyService : NotificationService,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -155,6 +157,9 @@ onSubmit(model: any){
   if(!this.IsUpdate){
     console.log(department);
     this.departmentsService.createDepartments(department);
+      // Toaster Notification
+    this.notifyService.showSuccess("Created successfuly", "Create department");
+
     this.departmentForm.reset();
     this.onReset();
     this.departmentForm.controls['departmentId'].setValue(0);
@@ -165,6 +170,9 @@ onSubmit(model: any){
     console.log(department);
     department.departmentId = model.departmentId;
     this.departmentsService.updateDepartment(department.departmentId, department);
+    // Toaster Notification
+    this.notifyService.showSuccess("updated successfully","update department");
+    
     this.departmentForm.reset();
     this.onReset();
     this.departmentForm.controls['departmentId'].setValue(0);

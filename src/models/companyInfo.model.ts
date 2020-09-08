@@ -1,4 +1,4 @@
-import { Place } from './place.model';
+import { Place } from './Response/places.model';
 
 export interface CompanyInfo {
     companyInfoId: number;
