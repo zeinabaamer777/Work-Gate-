@@ -59,6 +59,7 @@ import { DivisionSelectorComponent } from 'app/selectors/division-selector/divis
 import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
+import { SiteResponsibiltiyCurdComponent } from 'app/siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
 
 @NgModule({
   imports: [
@@ -91,6 +92,7 @@ import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-fo
     SitetypesComponent,
     SiteTypeFormComponent,
     SiteresponsibilitiesComponent,
+    SiteResponsibiltiyCurdComponent,
     CompaniesComponent,
     DepartmentsComponent ,
     DivisionsComponent,

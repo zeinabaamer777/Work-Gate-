@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SiteTypeFormComponent } from './sitetypes/site-type-form/site-type-form.component';
 import { ErrorInterceptor } from './helper/error.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { SiteResponsibiltiyCurdComponent } from './siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
 
 
 @NgModule({
@@ -44,7 +45,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     LoginComponent,
     TestComponent,
     DivisionsCrudComponent
-
   ],
   providers: [
     {

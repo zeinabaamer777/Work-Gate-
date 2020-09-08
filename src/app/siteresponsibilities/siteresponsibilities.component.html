@@ -1,50 +1,47 @@
 <div class="main-content">
-
-    <div class="custom-class-for-style siteresponsibilities-component-content">
-
-        <div class="container">
+    <div class="custom-class-for-style activities-component-content">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="search-container" style="margin-top: 10px;">
-                        <input type="text" class="form-control" placeholder="&#xf002; Search siteresponsibilities"
-                            [(ngModel)]="searchText">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="media-container"
-                        *ngFor="let siteresponsibility of siteresponsibilitiesList | searchPipe : searchText"
-                        style="margin-top: 10px;" (click)="getSiteResposibility(siteresponsibility)">
-                        <div class="media">
-                            <div class="media-body">
-                                <h6 class="position-positionNameEn text-capitalize">
-                                    {{siteresponsibility.siteResponsibilityNameEn }}</h6>
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Position List</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="search-container" style="margin-top: 10px;">
+                                <input type="text" class="form-control"  placeholder="&#xf002; Search companies" [(ngModel)]="searchText">
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <th>Site Responsibility Name</th>
+                                    <th>المسؤلية</th>
+                                </thead>
+                                <!--  -->
+                                <tbody *ngFor="let siteResponsibility of siteResponsibilities | async | searchPipe : searchText"
+                                 (click)="catchSiteResponsibility(siteResponsibility)">
+                                    <td>{{ siteResponsibility.siteResponsibilityNameAr }}</td>
+                                    <td>{{ siteResponsibility.siteResponsibilityNameEn }}</td>
+                                    <!--  -->
+                                    <td><a (click)="deleteSiteResponsibility(siteResponsibility)"><span class="material-icons">
+                                        delete
+                                        </span></a></td>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-8" *ngIf="siteresponsibilityNew">
-                    <p *ngIf="!siteresponsibilityNew" class="align-middle">Click on SiteResponsibility To display it's
-                        Name in Arabic and English</p>
-
-                    <ul class="siteresponsibilities-content">
-                        <li>
-                            <label><span style="color: #b00006;"> SiteResponsibility-Name English :</span></label><br>
-                            <label>
-                                <h5>{{siteresponsibilityNew.siteResponsibilityNameEn}}</h5>
-                            </label>
-                            <br><br>
-                            <label><span style="color: #b00006;"> SiteResponsibility-Name Arabic :</span></label><br>
-                            <label>
-                                <h5>{{siteresponsibilityNew.siteResponsibilityNameAr}}</h5>
-                            </label>
-                        </li>
-                    </ul>
+                <div class="col-md-4">
+                    <!-- <app-positions-form [PositionObject]="company"></app-positions-form> -->
+                    <!-- <app-comapny-form [companyObject]="siteResponsibility"></app-comapny-form> -->
+                    <app-site-responsibiltiy-curd [siteResponsibilityObject]="siteResponsibility"></app-site-responsibiltiy-curd>
                 </div>
-
-                <!--  -->
-
             </div>
+
         </div>
     </div>
+
 </div>
