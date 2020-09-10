@@ -1,3 +1,4 @@
+import { MatConfirmDialogComponent } from 'app/mat-confirm-dialog/mat-confirm-dialog.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -62,7 +63,11 @@ import { MatTableModule } from '@angular/material/table';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
-
+// import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {DialogService} from '../../../services/dialog.service';
+import { NotificationDialogService } from 'services/notificationDialog.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -79,6 +84,8 @@ import { CompaniesComponent } from 'app/companies/companies.component';
     NgxSpinnerModule,
     GoogleMapsModule,
     MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule,
     BsDatepickerModule.forRoot()
   ],
   declarations: [
@@ -126,9 +133,12 @@ import { CompaniesComponent } from 'app/companies/companies.component';
     SearchPipe,
     SiteTypeFormComponent,
     SiteResponsibiltiyCurdComponent,
-    ComapnyFormComponent
+    ComapnyFormComponent,
+    MatConfirmDialogComponent
+
   ],
-  providers:[DatePipe] 
+  providers:[DatePipe,DialogService,NotificationDialogService ] ,
+  entryComponents: [MatConfirmDialogComponent]
 })
 
 export class AdminLayoutModule {}

@@ -1,3 +1,5 @@
+import { NotificationService } from 'app/notification.service';
+import { DialogService } from 'services/dialog.service';
 import { PlaceDataSource } from './places.dataScource';
 import { MainResponse } from './../../../models/mainResponse.model';
 import { Observable, of } from 'rxjs';
@@ -9,7 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Place } from 'models/Response/places.model';
 import { DataSource } from '@angular/cdk/table';
 import { trigger, animate, state, transition, style } from '@angular/animations';
-// 
+import { NotificationDialogService } from 'services/notificationDialog.service';
+
 
 @Component({
   selector: 'app-places',
@@ -35,7 +38,9 @@ export class PlacesComponent implements OnInit {
 
   constructor(
     private placesService: PlacesService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private dialogService: DialogService,
+    private notificationService: NotificationDialogService
   ) { }
 
   ngOnInit() {
@@ -55,13 +60,19 @@ export class PlacesComponent implements OnInit {
   }
 
   //#region deletePlace()
-  deletePlace(placeId, event: Event) {
 
-    this.placesService.deletePlace(placeId, event).subscribe(
+  deletePlace(placeId, event: Event){
+    this.dialogService.openConfirmDialog('Are you sure to delete this record ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+         this.placesService.deletePlace(placeId, event).subscribe(
       () => {
         this.loadPlaces();
       }
     )
+        this.notificationService.warn('Deleted successfully!');
+      }
+    });
   }
 
   //#endregion

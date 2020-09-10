@@ -53,10 +53,10 @@ export class PlacesService {
    createPlace(place: createPlace) {
     this.http.post<MainResponse<createPlace[]>>(`${this.endpoint}`, place)
       .subscribe(
-        (data: MainResponse<createPlace[]>) => {
-          // this.dataStorePlace.place.push(data);
+        () => {
+     
           // this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place)
-          return data;
+          this.loadPlaces();
          
         }
       )

@@ -1,3 +1,4 @@
+// import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorInterceptor } from './helper/error.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -59,6 +61,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents: [MatConfirmDialogComponent]
 })
 export class AppModule { }

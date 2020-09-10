@@ -113,6 +113,7 @@ export class PlacesFormComponent implements OnInit {
     this.isHiddenSaveActionBtn = true;
     this.isHiddenEditActionBtn = true;
     this.isHiddenCreateGovernmentBtn = true;
+    this.isCreate = true;
     this.placesForm.reset();
     this.placesForm.enable();
   }
@@ -160,16 +161,15 @@ onSubmit(model: any){
   }
   // Insert
   else{
-    if(model.parentId == null) { 
-       model.parentId = 0;
-       place.id = 0;
-      }
+    place.id = 0;
+    // if(!place.parentId == null){
+    //   place.parentId = place.parentId;
+    // }
     this.placesService.createPlace(place);
-    this.cd.detectChanges();
+    
     this.Reload.emit("");
       // Toaster Notification
-    this.notifyService.showSuccess("Created successfuly", "Create department");
-
+    this.notifyService.showSuccess("Created successfuly", "Create");
     this.placesForm.reset();
     this.onCancel();
     this.placesForm.controls['placeId'].setValue(0);
@@ -177,7 +177,7 @@ onSubmit(model: any){
   }
 }
 
-  //#region onReset() method - fires on cancel
+  //#region onCancel() method - fires on cancel
   onCancel() {
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
@@ -185,7 +185,6 @@ onSubmit(model: any){
     this.isHiddenCreateGovernmentBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.placesForm.controls['placeId'].setValue('');
-    // this.departmentForm.reset();
     this.placesForm.disable();
   }
 
