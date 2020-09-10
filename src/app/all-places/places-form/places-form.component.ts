@@ -1,6 +1,6 @@
 import { createPlace } from './../../../models/Request/createPlcae.model';
 import { Places } from './../../../models/places.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PlacesService } from 'services/places.service';
@@ -19,7 +19,7 @@ export class PlacesFormComponent implements OnInit {
   placesForm: FormGroup;
   placeObject: Place;
 
-  placesCreateObjetc: createPlace;
+  placesCreateObjetc: Place;
   isHiddenSaveActionBtn: boolean;
   isDisabled: boolean;
   // isHiddenActionBtn: boolean;
@@ -27,16 +27,23 @@ export class PlacesFormComponent implements OnInit {
   isHiddenSaveCreateBtn: boolean;
   isHiddenEditActionBtn: boolean;
   isHiddenCreateActionBtn: boolean;
+
+  isHiddenCreateGovernmentBtn: boolean;
+
   isHiddendepartmentId: boolean;
   isCreate: boolean;
   newPlaces: Place[];
+
+  @Output() Reload = new EventEmitter<string>();
+ 
 
   constructor(
     private fb: FormBuilder,
     private fb2: FormBuilder,
     private placesService: PlacesService,
     private notifyService : NotificationService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +56,7 @@ export class PlacesFormComponent implements OnInit {
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
     this.isHiddenEditActionBtn = true;
+    this.isHiddenCreateGovernmentBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.isHiddendepartmentId =  true;
     this.placesForm = this.fb.group({
@@ -65,6 +73,7 @@ export class PlacesFormComponent implements OnInit {
     this.placesService.getPlaceSubject().subscribe(res => {
       this.isHiddenCreateActionBtn = true;
       this.isHiddenEditActionBtn = false;
+      this.isHiddenCreateGovernmentBtn = false;
       this.placesCreateObjetc = res;
       this.placeId = res.id;
 
@@ -90,19 +99,20 @@ export class PlacesFormComponent implements OnInit {
   showBtns() {
     // this.isDisabled = true;
     this.isHiddenSaveActionBtn = false;
-    this.isHiddenCreateActionBtn = true;
+    // this.isHiddenCreateActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
     this.placesForm.enable();
 
   }
   //#endregion
 
-  //#region showBtns() method to show save and cancel btns on click on Create btn
+  //#region showCreateSaveBtn()() method to show save and cancel btns on click on Create btn
   showCreateSaveBtn() {
     // this.isDisabled = true;
     this.isHiddenSaveCreateBtn = false;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenEditActionBtn = true;
+    this.isHiddenCreateGovernmentBtn = true;
     this.placesForm.reset();
     this.placesForm.enable();
   }
@@ -121,59 +131,58 @@ onSubmit(model: any){
   place.placeNameAr = model.placeArName;
   place.placeNameEn = model.placeEnName;
   place.code = model.placeCode;
+
+  if(model.parentId == null){
+    place.parentId = 0;
+  } else{
+    place.parentId = model.parentId;
+  }
+
   // Update
-  if(!this.isCreate && model && model.parentId == null){
+  // if(!this.isCreate && model && model.parentId == null){
+  if(!this.isCreate){
     console.log(place);
     place.id = model.placeId;
     this.placesService.updatePlace(place.id, place);
   //  Reload Data
-    this.placesService.loadPlaces().subscribe(
-      (result: MainResponse<Place[]>) =>{
-        return result;
-    })
 
+    this.Reload.emit("");
+    
     // Toaster Notification
-    this.notifyService.showSuccess("updated successfully","update department");
+    this.notifyService.showSuccess("updated successfully","update");
     
     this.placesForm.reset();
-    this.onReset();
+    this.onCancel();
     this.placesForm.controls['placeId'].setValue(0);
     this.isCreate = false;
+    
 
   }
   // Insert
   else{
-    if(model.parentId == null){
-      console.log(place);
-      place.id = 0;
-      this.placesService.createPlace(place);
-        // Toaster Notification
-      this.notifyService.showSuccess("Created successfuly", "Create department");
-
-      this.placesForm.reset();
-      this.onReset();
-      this.placesForm.controls['placeId'].setValue(0);
-      this.isCreate = false;
-    }
-    else if(model.parentId != null) {
-    place.id = 0;
+    if(model.parentId == null) { 
+       model.parentId = 0;
+       place.id = 0;
+      }
     this.placesService.createPlace(place);
+    this.cd.detectChanges();
+    this.Reload.emit("");
       // Toaster Notification
     this.notifyService.showSuccess("Created successfuly", "Create department");
 
     this.placesForm.reset();
-    this.onReset();
+    this.onCancel();
     this.placesForm.controls['placeId'].setValue(0);
     this.isCreate = false;
-    }
   }
 }
 
   //#region onReset() method - fires on cancel
-  onReset() {
+  onCancel() {
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
     this.isHiddenEditActionBtn = true;
+    this.isHiddenCreateGovernmentBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.placesForm.controls['placeId'].setValue('');
     // this.departmentForm.reset();

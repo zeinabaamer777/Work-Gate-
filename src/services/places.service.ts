@@ -29,20 +29,21 @@ export class PlacesService {
 
   constructor(public http: HttpClient, private ToastrService: ToastrService, private NotificationService: NotificationService) { }
 
-  //#region 0 loadPlaces() method to load all places 
-  loadPlaces(): Observable<MainResponse<Place[]>> {
-   return this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
+  //#region 0 loadPlaces() method to load all places
+
+  loadPlaces(): void{
+    this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
     
-      .pipe(map( data => {
+    .subscribe(
+      (data: MainResponse<Place[]>) => {
         if (data.code === 200) {
           this.dataStorePlace.place = data.data;
           this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place);
         }
         return data;
-      }));
-      // .subscribe((data: MainResponse<Place[]>) => {
-        
-      // });
+      }
+    );
+
 
   }
 
@@ -83,15 +84,6 @@ export class PlacesService {
     )
   }
   //#endregion
-
-  // Get Government 
-  // public getgovernment(CountryId : number): Observable<object[]>{
-
-  //   return this.http.get<object[]>(`${this.serverUrl}/${this.endpoint}`,{headers : this.serverreqHeader})
-  //   .pipe(map((res : any) => {
-  //     return res.data;
-  //   }))
-  // }
 
   //#region 4 handle errors
   errorHandler(error) {

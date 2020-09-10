@@ -1,6 +1,7 @@
+import { PlaceDataSource } from './places.dataScource';
 import { MainResponse } from './../../../models/mainResponse.model';
 import { Observable, of } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { PlacesService } from '../../../services/places.service';
 import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
@@ -24,60 +25,52 @@ import { trigger, animate, state, transition, style } from '@angular/animations'
 })
 export class PlacesComponent implements OnInit {
   isTableExpanded = false;
-
-  public products = [];
-  displayedColumns: string[] =  ['placeNameAr', 'placeNameEn', 'code','actions'];
+  displayedColumns: string[] = ['placeNameAr', 'placeNameEn', 'code', 'actions'];
+  expandedElement: Place | null;
 
   places: Observable<Place[]>;
+  newPlaces: Place[] = [];
+  dataSource :any;
+  // expandedElement: Place;
 
-  newPlaces: Place[];
-
- 
-  // columnsToDisplay = ['placeNameAr', 'placeNameEn', 'code'];
-  expandedElement: Place;
-  // dataSource = new ProductDataSource(this.placesService);
-
-  constructor(private placesService: PlacesService
-    ) { }
+  constructor(
+    private placesService: PlacesService,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
-    // this.dataStudentsList = this.places;
     this.loadPlaces();
     this.expandedElement = null;
-    // this.createTable();
-    this.dataStudentsList.data = this.newPlaces;
   }
-  dataStudentsList = new MatTableDataSource();
-  displayedStudentsColumnsList: string[] = ['placeNameAr', 'placeNameEn', 'code'];
 
   //#region 0 loadPlaces() method to get All Places data
-  loadPlaces() : void{
+  loadPlaces(): void {
     this.places = this.placesService.readonlyPlacesModel;
-    this.placesService.loadPlaces()
-      .subscribe((result: MainResponse<Place[]>) => {
-        this.newPlaces = result.data;
-        console.log(this.newPlaces);
-      });
+    this.placesService.loadPlaces();
   }
   //#endregion
 
+  Reload(test: string){
+    console.log("Here");
+  }
+
   //#region deletePlace()
-deletePlace(placeId, event: Event){
-  
-  this.placesService.deletePlace(placeId, event).subscribe(
-    () => {
-      this.loadPlaces();
-    }
-  )
-}
+  deletePlace(placeId, event: Event) {
 
-//#endregion
+    this.placesService.deletePlace(placeId, event).subscribe(
+      () => {
+        this.loadPlaces();
+      }
+    )
+  }
 
-//#region onSelect() to display country details on the form
+  //#endregion
+
+  //#region onSelect() to display country details on the form
   onSelect(selectedPlace: object) {
     this.placesService.setPlaceSubject(selectedPlace);
   }
-//#endregion
+  //#endregion
 
 }
 

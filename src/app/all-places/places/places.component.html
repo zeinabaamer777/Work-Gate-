@@ -1,4 +1,21 @@
 <div class="main-content">
+
+
+  <!-- <table class="table">
+    <thead>
+      <th>Department Name</th>
+      <th>اسم القسم</th>
+    </thead>
+    <tbody *ngFor="let department of newPlaces" >
+      <td (click)="onSelect(department)">{{department.placeNameAr}}</td>
+      <td (click)="onSelect(department)">{{department.placeNameEn}}</td>
+      <td (click)="onSelect(department)">{{department.code}}</td>
+      <td><a (click)="deleteDepartment(department.departmentId)"><span class="material-icons">
+        delete
+        </span></a></td>
+    </tbody>
+  </table> -->
+
   <div class="custom-class-for-style activities-component-content">
     <div class="container-fluid">
       <div class="row">
@@ -6,10 +23,10 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-header card-header-danger">
-              <h4 class="card-title">Departments List</h4>
+              <h4 class="card-title">Places List</h4>
             </div>
             <div class="card-body">
-              <table mat-table [dataSource]="newPlaces" class="" multiTemplateDataRows>
+              <table mat-table [dataSource]="places | async" class="" multiTemplateDataRows>
 
                 <!--- Note that these columns can be defined in any order.
                         The actual rendered columns are set as a property on the row definition" -->
@@ -41,7 +58,7 @@
                         delete
                       </span></a>
 
-                      <a class="ml-2" (click)="onSelect(place.children)">
+                      <a class="ml-2" (click)="openCreate()">
                         <span class="material-icons">
                           add_circle
                           </span>
@@ -71,7 +88,11 @@
                           <td (click)="onSelect(child)">{{child.placeNameAr}}</td>
                           <td (click)="onSelect(child)">{{child.placeNameEn}}</td>
                           <td (click)="onSelect(child)"> {{child.code}} </td>
-                         
+                          <td (click)="onSelect(child)"> {{child.code}} </td>
+                          <a (click)="deletePlace(child.id, $event)"><span
+                            class="material-icons">
+                            clear
+                          </span></a>
                         </tbody>
                      
                       </table>
@@ -97,7 +118,7 @@
 
         <!-- Form to display data -->
         <div class="col-md-4">
-          <app-places-form></app-places-form>
+          <app-places-form (Reload)="Reload($event)" ></app-places-form>
         </div>
       </div>
     </div>

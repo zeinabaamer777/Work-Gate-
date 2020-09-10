@@ -11,11 +11,16 @@
             <div class="col-md-12">
               <button type="button" mat-raised-button class="btn btn-info pull-right btn-sm"
                 [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
-    
-              <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
-                [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
+
+                <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
+                [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create Country</button>
+
+                <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
+                [hidden]="isHiddenCreateGovernmentBtn" (click)="showCreateSaveBtn()">create Goverment</button>
             </div>
           </div>
+
+          
     
           <div class="row custom-no-gutters">
             <div class="col-md-12">
@@ -43,21 +48,19 @@
               </mat-form-field>
             </div>
           </div>
-    
-        
-    
+
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
             <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
-              [disabled]="placesForm.invalid">save department</button>
+              [disabled]="placesForm.invalid">save</button>
     
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onReset()">cancel</button>
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
           </div>
     
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
             <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
               [disabled]="placesForm.invalid">save</button>
     
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onReset()">cancel</button>
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
           </div>
     
         </form>
