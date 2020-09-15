@@ -31,6 +31,7 @@ export class DivisionsService {
                this.divisionBehaviorSubject.next(Object.assign({}, this.dataStoreDivision).division);
            }
          );
+
    }
  
    public createDivision(division: Division): void  {
@@ -77,15 +78,15 @@ export class DivisionsService {
          );
    }
   //#region Subject 
-  private transferSubject$ : Subject<Division> = new Subject<Division>();
+  // private transferSubject$ : Subject<Division> = new Subject<Division>();
 
-  getDivisionSubject(){
-    return this.transferSubject$;
-  }
+  // getDivisionSubject(){
+  //   return this.transferSubject$;
+  // }
 
-  setDivisionSubject(divisionId){
-    this.transferSubject$.next(divisionId);
-  }
+  // setDivisionSubject(divisionId){
+  //   this.transferSubject$.next(divisionId);
+  // }
   //#endregion
  
  

@@ -12,38 +12,28 @@ import { Observable } from 'rxjs';
 export class DivisionsComponent implements OnInit {
 
   searchText:string;
-  divisionsList: any;
-  divisionNew : any;
+  division: Division ;
+  divisions: Observable<Division[]>;
 
- divisions: Observable<Division[]>;
- 
- division: Division;
   constructor(private divisionsService: DivisionsService) { }
 
   ngOnInit() {
-    this.loadAllDivisions();
+    this.loadDivisions();
   }
-//#region 0 loadAllDivisions() To Load All Stored divisions Data
-  private loadAllDivisions() {
+
+  loadDivisions(): void{
     this.divisions = this.divisionsService.readonlyDivisionsModel;
     this.divisionsService.getDivisions();
   }
-  //#endregion
 
-//#region deleteDivision() to delete record
-  deleteDivision(divistion: Division){
-    this.divisionsService.deleteDivision(divistion.divisionId)
-  }
-  //#endregion
-
-  clearTextOutput(searchText: string){
-    this.searchText = searchText;
+  catchDivision(division: Division): void{
+    this.division = division;
   }
 
-//#region  catchDivision() to pass data to form 
-  catchDivision(division: Division){
-    this.divisionsService.setDivisionSubject(division.divisionId);
+  deleteDivision(division: Division): void{
+
   }
-  //#endregion
+  
+ 
 
 }

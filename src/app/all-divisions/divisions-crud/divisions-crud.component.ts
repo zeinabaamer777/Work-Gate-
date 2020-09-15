@@ -3,6 +3,14 @@ import { Division } from './../../../models/division.model';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DivisionsService } from 'services/divisions.service';
+import { Departments } from 'models/departments.model';
+import { Company } from 'models/companies.model';
+import { Activities } from 'models/activities.model';
+import { Observable } from 'rxjs';
+import { DepartmentsService } from 'services/departments.service';
+import { CompaniesService } from 'services/companies.service';
+import { ActivitiesService } from 'services/activities.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-divisions-crud',
@@ -11,113 +19,208 @@ import { DivisionsService } from 'services/divisions.service';
 })
 export class DivisionsCrudComponent implements OnInit {
 
-  divisionForm: FormGroup;
+  activities: Observable<Activities[]>;
+  companies: Observable<Company[]>;
+  departments: Observable<Departments[]>;
 
-  isHiddenSaveActionBtn: boolean;
-  isDisabled: boolean;
-  // isHiddenActionBtn: boolean;
-  divisionId: number;
-  isHiddenSaveCreateBtn: boolean;
+
+  divisionForm: FormGroup;
+  division: Division;
+
   isHiddenEditActionBtn: boolean;
   isHiddenCreateActionBtn: boolean;
-  isSave: boolean;
-  division: Division;
-  isHiddenActivityId: boolean;
+  isHiddenSaveCreateBtn: boolean;
+  isHiddenSaveActionBtn: boolean;
+  isEdit: boolean;
 
-  divisionObject: Division;
+  activity: Activities;
+  company: Company;
+  department: Departments;
+
 
   constructor(
     public fb: FormBuilder,
-    public fb2: FormBuilder,
-    public divisionService: DivisionsService
+    private divisionService: DivisionsService,
+    private departmentService: DepartmentsService,
+    private companyService: CompaniesService,
+    private activitiesService: ActivitiesService
   ) { }
 
   ngOnInit(): void {
-    this.initForm();
-    this.printDataToForm();
 
+    this.loadDepartments();
+    this.loadCompanies();
+    this.loadActivities();
+
+    this.initButtons();
+    this.initForm();
   }
-  initForm(){
+
+  initButtons() {
+    this.isHiddenCreateActionBtn = false;
+    this.isHiddenEditActionBtn = true;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
-    this.isHiddenEditActionBtn = true;
-    this.isHiddenCreateActionBtn = false;
-    this.isHiddenActivityId =  true;
+  }
+
+  initForm() {
     this.divisionForm = this.fb.group({
-      divisionId: [0],
-      divisionEnName: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      divisionArName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      activity: new FormControl({ value: '0', disabled: true }),
+      company: new FormControl({ value: '0', disabled: true }),
+      department: new FormControl({ value: '0', disabled: true }),
+      enName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      arName: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
   }
-  //#region 0 printDataToForm to print data on clcik on each td on the table
-  printDataToForm() {
-      this.divisionService.getDivisionSubject().subscribe(res => {
-      this.isHiddenCreateActionBtn = true;
-      this.isHiddenEditActionBtn = false;
-      this.divisionObject = res;
-      this.divisionId = res.divisionId;
 
-      console.log(this.divisionId);
+  showBtns(): void {
+    this.divisionForm.enable();
+    this.isHiddenSaveActionBtn = false;
+  }
+
+  showCreateSaveBtn(): void {
+    this.divisionForm.enable();
+    this.divisionForm.reset();
+
+    this.isHiddenSaveCreateBtn = false;
+    this.isHiddenCreateActionBtn = true;
+
+  }
+
+  onSubmit(model: any): void {
+
+    console.log(model);
+
+    const division = new Division();
+    division.arName = model.arName;
+    division.enName = model.enName;
+    division.departmentId = model.department.departmentId;
+    division.divisionId = 0;
+  
+    this.divisionService.createDivision(division);
+    this.Cancel();
+
+  }
+
+  Cancel(): void {
+    this.isHiddenSaveCreateBtn = true;
+    this.isHiddenCreateActionBtn = false;
+    this.divisionForm.disable();
+    this.divisionForm.reset();
+    this.isHiddenSaveActionBtn = true;
+  }
+
+  updatePosition(model: any): void {
+    console.log(model);
+
+    const division = new Division();
+    division.arName = model.arName;
+    division.enName = model.enName;
+    division.departmentId = model.department.departmentId;
+    division.divisionId = this.division.divisionId;
+
+    this.divisionService.updateDivision(division.divisionId,division);
+    this.Cancel();
+    
+  }
+
+  loadDepartments(): void {
+    this.departments = this.departmentService.readonlyDepartmentsModel;
+    this.departmentService.getAlldepartmentsSubject();
+  }
+
+  loadCompanies(): void {
+    this.companies = this.companyService.readonlyactivitiesModel;
+    this.companyService.getCompanies();
+  }
+
+  loadActivities(): void {
+    this.activities = this.activitiesService.readonlyactivitiesModel;
+    this.activitiesService.getAllActivitesSubject();
+  }
+
+  @Input()
+  set divisionObject(division: Division) {
+
+    this.isHiddenEditActionBtn = false;
+    // this.companyForm.disable();
+    // this.companyForm.disable();
+    this.division = division;
+
+    if (division !== undefined) {
+      this.division = division;
+      console.log(this.company);
 
       this.divisionForm = this.fb.group({
-        activityId: new FormControl({ value: res.divisionId,disabled: true }),
-        divisionEnName: new FormControl({ value: res.enName, disabled: true }, [Validators.required]),
-        divisionArName: new FormControl({ value: res.arName, disabled: true }, [Validators.required]),
+        activity: new FormControl({ value: '0', disabled: true }),
+        company: new FormControl({ value: '0', disabled: true }),
+        department: new FormControl({ value: '0', disabled: true }),
+        enName: new FormControl({ value: this.division.arName, disabled: true }, [Validators.required]),
+        arName: new FormControl({ value: this.division.enName, disabled: true }, [Validators.required]),
 
       });
 
-    });
-  }
-  //#endregion
-  //#region showBtns() method to show save and cancel btns on click on update btn
-  showBtns() {
-    // this.isDisabled = true;
-    this.isHiddenSaveActionBtn = false;
-    this.isHiddenCreateActionBtn = true;
-    this.isHiddenSaveCreateBtn = true;
-    this.divisionForm.enable();
-  }
-  //#endregion
+      this.activities = this.activitiesService.readonlyactivitiesModel;
 
-  //#region showBtns() method to show save and cancel btns on click on update btn
-  showCreateSaveBtn() {
-    // this.isDisabled = true;
-    this.isHiddenSaveCreateBtn = false;
-    this.isHiddenSaveActionBtn = true;
-    this.isHiddenEditActionBtn = true;
-    this.divisionForm.enable();
-  }
-  //#endregion
-//#region  update and create form in the same method
-  onSubmit(model: Division){
-    debugger
-    //create
-    if(model.divisionId == 0){
-      console.log(model);
-      this.divisionService.createDivision(model);
-      this.divisionForm.reset();
-      this.onReset();
-      this.divisionForm.controls['divisionId'].setValue(0);
+      this.companies = this.companyService.readonlyactivitiesModel;
+      this.departments = this.departmentService.readonlyDepartmentsModel;
+
+
+
+      this.departments.subscribe(dataD => {
+
+        
+        const department = dataD.find(x => x.departmentId === this.division.departmentId);
+
+        this.departments = this.departments.pipe(map(filter => filter.filter(x => x.companyID === department.companyID)));
+
+        this.divisionForm.controls['department'].setValue(department, { onlySelf: true });
+
+        this.companies.subscribe(dataC => {
+
+          const company = dataC.find(x => x.id === department.companyID);
+          this.divisionForm.controls['company'].setValue(company, { onlySelf: true });
+
+          this.companies = this.companies.pipe(map(filter => filter.filter(x => x.activityId === company.activityId)))
+
+          this.activities.subscribe(dataA => {
+            console.log(company.activityId);
+            const activity = dataA.find(x => x.activityId === company.activityId);
+            console.log(activity);
+            this.divisionForm.controls['activity'].setValue(activity, { onlySelf: true });
+          });
+        });
+      });
     }
-    //edit
-    else{
-      console.log(model);
-      this.divisionService.updateDivision(model.divisionId, this.divisionForm.value);
-      this.divisionForm.reset();
-      this.onReset();
-      this.divisionForm.controls['divisionId'].setValue(0);
-    }
+
   }
 
-  //#region onReset() method - fires on cancel
-  onReset() {
-    this.isHiddenSaveActionBtn = true;
-    this.isHiddenSaveCreateBtn = true;
-    this.isHiddenEditActionBtn = true;
-    this.isHiddenCreateActionBtn = false;
-    this.divisionForm.controls['divisionId'].setValue('');
-    // this.activityForm.reset();
-    this.divisionForm.disable();
+  selectActivity($event){
+    console.log($event.value);
+
+    this.activity = $event.value;
+
+    this.companies = this.companyService.readonlyactivitiesModel;
+
+    this.companies = this.companies.pipe(map(filter => 
+      filter.filter(x => x.activityId === $event.value.activityId)));
+
   }
+
+  selectCompany($event){
+
+    this.company = $event.value;
+
+    this.departments = this.departmentService.readonlyDepartmentsModel;
+    this.departments = this.departments.pipe(map(filter => filter.filter(x => x.companyID === this.company.id)));
+    
+  }
+
+  selectDepartment($event){
+    this.department = $event.value;
+  }
+
+
+
 }
 

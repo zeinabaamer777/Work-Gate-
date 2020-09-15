@@ -1,54 +1,96 @@
 <div class="card">
-      <div class="card-header card-header-danger">
-        <h4 class="card-title">Edit Division List</h4>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="DivisionForm" #form="ngForm">
-          <div class="row custom-no-gutters">
-            <div class="col-md-12">
-              <button mat-raised-button class="btn btn-info pull-right btn-sm"
-              [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
-    
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
-              [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
-            </div>
-          </div>
-          <div class="row custom-no-gutters">
-              <!-- <mat-form-field class="example-full-width"> -->
-                  <input  placeholder="Division Id" type="hidden" formControlName="divisionId" class="form-control">
-                <!-- </mat-form-field> -->
-          </div>
-          <div class="row custom-no-gutters">
-            <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Division Name" type="text" formControlName="divisionEnName" class="form-control">
-              </mat-form-field>
-            </div>
-          </div>
-    
-          <div class="row custom-no-gutters">
-            <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="اسم المنصب" type="text" formControlName="divisionArName" class="form-control">
-              </mat-form-field>
-            </div>
-          </div>
+    <div class="card-header card-header-danger">
+      <h4 class="card-title">Edit Position List</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="divisionForm" #form="ngForm" id="companyForm" >
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <button mat-raised-button class="btn btn-info pull-right btn-sm" [hidden]="isHiddenEditActionBtn"
+              (click)="showBtns()">Edit</button>
   
-          
-          
-          <div class="row custom-no-gutters"  [hidden]="isHiddenSaveCreateBtn">
-            <button mat-raised-button class="btn btn-danger pull-left btn-sm" (click)="createDivision()" [disabled]="DivisionForm.invalid">save new Division</button>
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm"
-            (click)="Cancel()">cancel</button>
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto" [hidden]="isHiddenCreateActionBtn"
+              (click)="showCreateSaveBtn()">create</button>
+          </div>
+        </div>
+  
+  
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Activity</mat-label>
+              <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectActivity($event)"
+               formControlName="activity" >
+                <mat-option *ngFor="let activity of activities | async" [value]="activity">
+                  {{activity.arName + " / " + activity.enName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        
+  
+  
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Company</mat-label>
+              <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectCompany($event)"
+               formControlName="company" >
+                <mat-option *ngFor="let company of companies | async" [value]="company">
+                  {{company.arName + " / " + company.enName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        
+  
+  
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Department</mat-label>
+              <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectDepartment($event)"
+               formControlName="department" >
+                <mat-option *ngFor="let department of departments | async" [value]="department">
+                  {{department.arName + " / " + department.enName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        
+  
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="اسم القسم" type="text" formControlName="arName" class="form-control">
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row custom-no-gutters">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Division Name" type="text" formControlName="enName" class="form-control">
+            </mat-form-field>
+          </div>
+        </div>
+          <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
+            <button type="submit" mat-raised-button  class="btn btn-danger pull-left btn-sm" 
+              [disabled]="divisionForm.invalid" (click)="onSubmit(divisionForm.value)">create new company</button>
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
           </div>
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
-            <button mat-raised-button  class="btn btn-danger pull-left btn-sm" [disabled]="DivisionForm.invalid"
-              (click)="updateDivision()">save</button>
-    
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm"
-              (click)="Cancel()">cancel</button>
+            <button mat-raised-button class="btn btn-danger pull-left btn-sm" [disabled]="divisionForm.invalid"
+              (click)="updatePosition(divisionForm.value)">Update Company</button>
+  
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
           </div>
-    
-        </form>
-      </div>
+  
+      </form>
     </div>
+  </div>
