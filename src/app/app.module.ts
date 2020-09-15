@@ -24,6 +24,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorInterceptor } from './helper/error.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {DialogService} from 'services/dialog.service';
+import { NotificationDialogService } from 'services/notificationDialog.service';
+import { CustomValidationService } from './validators/CustomvalidationService.validator';
 
 @NgModule({
   imports: [
@@ -41,6 +46,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     MatTableModule,
     MatListModule,
     MatButtonModule,
+    MatDialogModule,
+    MatSnackBarModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -59,7 +66,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },
+    DialogService,
+    NotificationDialogService,
+    CustomValidationService
   ],
   bootstrap: [AppComponent],
   // entryComponents: [MatConfirmDialogComponent]

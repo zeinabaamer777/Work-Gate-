@@ -13,10 +13,10 @@
                 [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
 
                 <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
-                [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create Country</button>
+                [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn(false)">create Country</button>
 
                 <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
-                [hidden]="isHiddenCreateGovernmentBtn" (click)="showCreateSaveBtn()">create Goverment</button>
+                [hidden]="isHiddenCreateGovernmentBtn" (click)="showCreateSaveBtn(true)">create Goverment</button> 
             </div>
           </div>
 
@@ -25,7 +25,7 @@
           <div class="row custom-no-gutters">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Country Name" type="text" formControlName="placeEnName"
+                <input matInput [placeholder]="createGoverment? 'Govertment Name':'Country Name' " type="text" formControlName="placeEnName"
                   class="form-control">
               </mat-form-field>
             </div>
@@ -34,7 +34,7 @@
           <div class="row custom-no-gutters">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="إسم الدولة" type="text" formControlName="placeArName"
+                <input matInput [placeholder]="createGoverment? 'اسم المحافظة' : 'اسم الدولة'" type="text" formControlName="placeArName"
                   class="form-control">
               </mat-form-field>
             </div>
@@ -53,14 +53,14 @@
             <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
               [disabled]="placesForm.invalid">save</button>
     
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
+            <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
           </div>
     
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
             <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
               [disabled]="placesForm.invalid">save</button>
     
-            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
+            <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onCancel()">cancel</button>
           </div>
     
         </form>

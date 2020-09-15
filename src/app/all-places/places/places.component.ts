@@ -68,9 +68,12 @@ export class PlacesComponent implements OnInit {
          this.placesService.deletePlace(placeId, event).subscribe(
       () => {
         this.loadPlaces();
-      }
-    )
         this.notificationService.warn('Deleted successfully!');
+      }, 
+      err => {
+
+      })
+        
       }
     });
   }
@@ -82,6 +85,5 @@ export class PlacesComponent implements OnInit {
     this.placesService.setPlaceSubject(selectedPlace);
   }
   //#endregion
-
 }
 

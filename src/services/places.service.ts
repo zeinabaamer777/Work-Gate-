@@ -65,6 +65,7 @@ export class PlacesService {
 
   //#region updatePlace() method to update existing place 
   updatePlace(id: number, place: Place) {
+
     this.http.put<MainResponse<Place[]>>(`${this.endpoint}/${id}`, place)
       .subscribe(
         () => {
@@ -77,11 +78,11 @@ export class PlacesService {
 
   //#region deletePlace() to delete record from table
   deletePlace(id: number, event: Event): Observable<void> {
-    event.preventDefault();
-    event.stopPropagation();
-    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
-      catchError(this.errorHandler)
-    )
+      event.preventDefault();
+      event.stopPropagation();
+      return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
+        catchError(this.errorHandler)
+      )
   }
   //#endregion
 

@@ -1,3 +1,4 @@
+import { NotificationDialogService } from 'services/notificationDialog.service';
 import { createPlace } from './../../../models/Request/createPlcae.model';
 import { Places } from './../../../models/places.model';
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
@@ -32,6 +33,7 @@ export class PlacesFormComponent implements OnInit {
 
   isHiddendepartmentId: boolean;
   isCreate: boolean;
+  createGoverment: boolean;
   newPlaces: Place[];
 
   @Output() Reload = new EventEmitter<string>();
@@ -39,11 +41,10 @@ export class PlacesFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private fb2: FormBuilder,
     private placesService: PlacesService,
     private notifyService : NotificationService,
-    private toastr : ToastrService,
-    private cd: ChangeDetectorRef
+    private NotificationDialogService: NotificationDialogService,
+
   ) { }
 
   ngOnInit(): void {
@@ -60,12 +61,13 @@ export class PlacesFormComponent implements OnInit {
     this.isHiddenCreateActionBtn = false;
     this.isHiddendepartmentId =  true;
     this.placesForm = this.fb.group({
+
       placeId: [0],
       parentId: [0],
-
       placeEnName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       placeArName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       placeCode: new FormControl({ value: '', disabled: true }, [Validators.required]),
+
     });
   }
   //#region 0 printDataToForm to print data on clcik on each td on the table
@@ -76,14 +78,19 @@ export class PlacesFormComponent implements OnInit {
       this.isHiddenCreateGovernmentBtn = false;
       this.placesCreateObjetc = res;
       this.placeId = res.id;
-
+      this.placeObject = res;
+      if(res.parentId !== null && res.parentId){
+        this.createGoverment = true;
+      }else{
+        this.createGoverment = false;
+      }
       console.log("place id *id in API*" , this.placeId);
       console.log("department Object", this.placesCreateObjetc);
 
       this.placesForm = this.fb.group({
+
         placeId: new FormControl({ value: res.id,disabled: true }),
         parentId: new FormControl({ value: res.parentId,disabled: true }),
-
         placeEnName: new FormControl({ value: res.placeNameEn, disabled: true }, [Validators.required]),
         placeArName: new FormControl({ value: res.placeNameAr, disabled: true }, [Validators.required]),
         placeCode: new FormControl({ value: res.code, disabled: true }, [Validators.required]),
@@ -106,9 +113,11 @@ export class PlacesFormComponent implements OnInit {
   }
   //#endregion
 
-  //#region showCreateSaveBtn()() method to show save and cancel btns on click on Create btn
-  showCreateSaveBtn() {
+  //#region showCreateSaveBtn() method to show save and cancel btns on click on Create btn
+  showCreateSaveBtn(createGoverment: boolean) {
     // this.isDisabled = true;
+    this.createGoverment = createGoverment;
+    
     this.isHiddenSaveCreateBtn = false;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenEditActionBtn = true;
@@ -133,25 +142,36 @@ onSubmit(model: any){
   place.placeNameEn = model.placeEnName;
   place.code = model.placeCode;
 
-  if(model.parentId == null){
-    place.parentId = 0;
-  } else{
-    place.parentId = model.parentId;
+  if(this.createGoverment){
+    place.parentId = this.placeObject.id;
   }
+
+
 
   // Update
   // if(!this.isCreate && model && model.parentId == null){
   if(!this.isCreate){
     console.log(place);
-    place.id = model.placeId;
+    place.id = this.placeObject.id;
+
+    if(this.placeObject !== null && this.placeObject !== undefined &&
+       this.placeObject.parentId !== null &&  this.placeObject.parentId !== undefined)
+       {
+        place.parentId = this.placeObject.parentId;
+
+       }else{
+         place.parentId = 0;
+       }
+      
+
     this.placesService.updatePlace(place.id, place);
   //  Reload Data
 
     this.Reload.emit("");
     
     // Toaster Notification
-    this.notifyService.showSuccess("updated successfully","update");
-    
+    // this.notifyService.showSuccess("updated successfully","update");
+    this.NotificationDialogService.success("updated successfully");
     this.placesForm.reset();
     this.onCancel();
     this.placesForm.controls['placeId'].setValue(0);
@@ -169,7 +189,7 @@ onSubmit(model: any){
     
     this.Reload.emit("");
       // Toaster Notification
-    this.notifyService.showSuccess("Created successfuly", "Create");
+    this.NotificationDialogService.success("Created successfuly");
     this.placesForm.reset();
     this.onCancel();
     this.placesForm.controls['placeId'].setValue(0);
@@ -186,6 +206,8 @@ onSubmit(model: any){
     this.isHiddenCreateActionBtn = false;
     this.placesForm.controls['placeId'].setValue('');
     this.placesForm.disable();
+    this.placeObject = null;
+    this.createGoverment = false;
   }
 
 }
