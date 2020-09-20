@@ -19,13 +19,13 @@ import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresp
 // import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
-import { TimegroupComponent } from 'app/timegroup/timegroup.component';
+import { TimegroupComponent } from 'app/all-time-groups/timegroup/timegroup.component';
 import { PageNotFoundComponent } from 'app/page-not-found/page-not-found.component';
 import { PlacesComponent } from 'app/all-places/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
-import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
+// import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
 export const AdminLayoutRoutes: Routes = [
     
@@ -52,6 +52,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'chat',                 component: ChatComponent},
     { path: 'settings',             component: SettingsComponent},
     { path: 'users/:id',            component: ViewUserComponent},
-    { path: 'test',                 component: ActivitySelectorComponent},  
+    // { path: 'test',                 component: ActivitySelectorComponent},  
     { path: '**',                   component: PageNotFoundComponent }
 ];

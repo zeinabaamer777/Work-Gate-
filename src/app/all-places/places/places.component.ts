@@ -1,6 +1,5 @@
 import { NotificationService } from 'app/notification.service';
 import { DialogService } from 'services/dialog.service';
-import { PlaceDataSource } from './places.dataScource';
 import { MainResponse } from './../../../models/mainResponse.model';
 import { Observable, of } from 'rxjs';
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
@@ -40,7 +39,7 @@ export class PlacesComponent implements OnInit {
     private placesService: PlacesService,
     private cd: ChangeDetectorRef,
     private dialogService: DialogService,
-    private notificationService: NotificationDialogService
+    private notificationDialogService: NotificationDialogService
   ) { }
 
   ngOnInit() {
@@ -68,7 +67,7 @@ export class PlacesComponent implements OnInit {
          this.placesService.deletePlace(placeId, event).subscribe(
       () => {
         this.loadPlaces();
-        this.notificationService.warn('Deleted successfully!');
+        this.notificationDialogService.warn('Deleted successfully!');
       }, 
       err => {
 

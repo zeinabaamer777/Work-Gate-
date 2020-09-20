@@ -1,0 +1,129 @@
+<div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">Edit Time Group List</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="timeGroupsForm" id="timeGroupsForm" (ngSubmit)="onSubmit(timeGroupsForm.value)">
+
+          <input type="hidden" formControlName="timeGroupId">
+          
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <button type="button" mat-raised-button class="btn btn-info pull-right btn-sm"
+                [hidden]="isHiddenEditActionBtn" (click)="showBtns()">edit</button>
+    
+              <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
+                [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
+            </div>
+          </div>
+    
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="time From" type="text" formControlName="timeFrom" class="form-control">
+                <!-- Start Validation part -->
+                <div class="alert alert-danger"
+                  *ngIf="(timeGroupsForm.get('timeFrom').touched ) && timeGroupsForm.get('timeFrom').errors">
+                  <span *ngIf="timeGroupsForm.get('timeFrom').errors.required">
+                    This Field is required
+                  </span>
+                 
+                  <span *ngIf="timeGroupsForm.get('timeFrom').errors?.isValidInput">
+                    Only english characters
+                  </span>
+                </div>
+                <!-- End Validation part -->
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <!-- *ngIf="(registerFormControl.name.touched ) && registerFormControl.name.errors?.required -->
+             
+              <!-- <div class="form-group">
+                  <label for="dateOfBirth">Date of Birth</label>
+                  <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth"
+                          type="text" bsDatepicker class="form-control" />
+                </div> -->
+             
+              <mat-form-field class="example-full-width">
+                  <input matInput id="timeTo" formControlName="timeTo"  
+                  type="text" bsDatepicker class="form-control" placeholder="time To"/>
+
+                <!-- <input matInput placeholder="time To" type="text" formControlName="timeTo" class="form-control"> -->
+                <div class="alert alert-danger"
+                  *ngIf="(timeGroupsForm.get('timeTo').touched ) && timeGroupsForm.get('timeTo').errors">
+                  <span *ngIf="timeGroupsForm.get('timeTo').errors?.required">
+                    This Field is required
+                  </span>
+                 
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="flexible Hours" type="text" formControlName="flexibleHours"
+                  class="form-control">
+                <!-- Start Validation part -->
+                <div class="alert alert-danger"
+                *ngIf="(timeGroupsForm.get('flexibleHours').touched || dirty) && timeGroupsForm.get('flexibleHours').invalid">
+                  <span *ngIf="timeGroupsForm.get('flexibleHours').errors?.required">
+                    This Field is required
+                  </span>
+                  <!-- angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched) -->
+                  <span *ngIf="timeGroupsForm.get('flexibleHours').errors?.isValidInput">
+                    Only english characters
+                  </span>
+                </div>
+                <!-- End Validation part -->
+    
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Central Admin Ar Name" type="text" formControlName="timeTo"
+                  class="form-control">
+                <!-- Start Validation part -->
+                <div class="alert alert-danger"
+                *ngIf="(timeGroupsForm.get('timeTo').touched ) && timeGroupsForm.get('timeTo').errors">
+                  <span *ngIf="timeGroupsForm.get('timeTo').errors.required">
+                    This Field is required
+                  </span>
+                  <!-- class="invalid-feedback" -->
+                  <span  *ngIf="timeGroupsForm.get('timeTo').errors?.isValidInput"> 
+                    مسموح بالحروف العربية فقط
+                  </span>
+                  <!-- <span *ngIf="timeGroupsForm.get('timeTo').errors.pattern">
+                    مسموح بالحروف العربية فقط
+                  </span> -->
+                </div>
+                <!-- End Validation part -->
+              </mat-form-field>
+            </div>
+          </div>
+    
+    
+          <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
+            <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
+              [disabled]="timeGroupsForm.invalid">save activity</button>
+    
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onReset()">cancel</button>
+          </div>
+    
+          <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">
+            <button type="submit" mat-raised-button class="btn btn-danger pull-left btn-sm"
+              [disabled]="timeGroupsForm.invalid">save</button>
+    
+            <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="onReset()">cancel</button>
+          </div>
+    
+        </form>
+      </div>
+    </div>

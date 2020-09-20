@@ -32,7 +32,7 @@ export class SitetypesComponent implements OnInit {
   }
 
   deleteSiteType(siteType: SiteType) {
-
+    this.siteTypesService.deleteSiteType(siteType.siteTypeId);
   }
-
+ 
 }

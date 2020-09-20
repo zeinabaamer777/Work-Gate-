@@ -30,10 +30,8 @@ export class DivisionsComponent implements OnInit {
     this.division = division;
   }
 
-  deleteDivision(division: Division): void{
-
+  deleteDivision(division: Division){
+    this.divisionsService.deleteDivision(division.divisionId);
   }
-  
- 
 
 }

@@ -29,7 +29,7 @@ import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
 import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
-import { TimegroupComponent } from 'app/timegroup/timegroup.component';
+import { TimegroupComponent } from 'app/all-time-groups/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
 import { PlacesComponent } from 'app/all-places/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
@@ -52,10 +52,10 @@ import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
 
-import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
-import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
-import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
-import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
+// import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
+// import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
+// import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
+// import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
 import { SiteResponsibiltiyCurdComponent } from 'app/siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
@@ -68,6 +68,8 @@ import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import {DialogService} from '../../../services/dialog.service';
 import { NotificationDialogService } from 'services/notificationDialog.service';
+import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timegroup-crud.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -86,6 +88,7 @@ import { NotificationDialogService } from 'services/notificationDialog.service';
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    // DatePipe,
     BsDatepickerModule.forRoot()
   ],
   declarations: [
@@ -124,16 +127,17 @@ import { NotificationDialogService } from 'services/notificationDialog.service';
     SearchPipe,
     DepartmentsCrudComponent,
     PositionsFormComponent,
-    CompanySelectorComponent,
-    DepartmentSelectorComponent,
-    DivisionSelectorComponent,
-    PositionSeleclorComponent,
+    // CompanySelectorComponent,
+    // DepartmentSelectorComponent,
+    // DivisionSelectorComponent,
+    // PositionSeleclorComponent,
     DivisionsCrudComponent,
     PlacesFormComponent,
     SearchPipe,
     SiteTypeFormComponent,
     SiteResponsibiltiyCurdComponent,
     ComapnyFormComponent,
+    TimegroupCrudComponent,
     MatConfirmDialogComponent
 
   ],

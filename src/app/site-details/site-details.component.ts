@@ -41,15 +41,10 @@ export class SiteDetailsComponent implements OnInit {
     private site_service: SitesService
     ) { }
   ngOnInit() {
-    // this.spinner.show();
-    // setTimeout(() => {
-    //   /** spinner ends after 3 seconds */
-    //   this.spinner.hide();
-    // }, 3000);
 
     this.getData();
     this.getCompany();
-    // this.getSites();
+    
   }
   ngAfterViewInit(){
     

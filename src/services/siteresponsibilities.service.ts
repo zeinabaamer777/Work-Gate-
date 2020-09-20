@@ -43,5 +43,24 @@ export class SiteResponsibilitiesService {
     });
   }
 
+  public deleteSiteResponsibility(siteResponsibilityId: number) {
+    this.http.delete<SiteResponsibility>(`${this.endpoint}/${siteResponsibilityId}`)
+        .subscribe(
+          (data: SiteResponsibility) => {
+            this.dataStoreSiteResponsibility.SiteResponsibility.forEach(e => {
+              if(e.siteResponsibilityId === siteResponsibilityId){
+                const index = this.dataStoreSiteResponsibility.SiteResponsibility.indexOf(e);
+                this.dataStoreSiteResponsibility.SiteResponsibility.splice(index, 1);
+                this.siteResponsibilityBehaviorSubject.next(Object.assign({}, this.dataStoreSiteResponsibility).SiteResponsibility);
+                return;
+              }
+            });
+          },
+          error => {
+            
+          }
+        );
+  }
+
   
 }

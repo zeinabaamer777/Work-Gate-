@@ -75,31 +75,7 @@ export class ActivitiesService {
 
   //#region 3 deleteActivities() to delete Activity
    deleteActivity(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
-      catchError(this.errorHandler)
-    )
-  }
-  //#endregion
-
-    //#region 3 deleteActivities() to delete Activity
-    getActivityById(activityId: number): Observable<void> {
-      return this.http.get<void>(`${this.endpoint}/activityId`).pipe(
-        catchError(this.errorHandler)
-      )
-    }
-
-  //#region 4 handle errors
-  errorHandler(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\n Message: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
+    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe()
   }
   //#endregion
 

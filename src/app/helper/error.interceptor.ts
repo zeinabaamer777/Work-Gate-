@@ -22,7 +22,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                 this.NotificationDialogService.warn(err.error.message);
 
-            } 
+            } else if(err.status === 403){
+                this.NotificationDialogService.warn("You Don't have permission Use This Funcation");
+            }
             const error = err.error.message || err.statusText;
             return throwError(error);
         }));

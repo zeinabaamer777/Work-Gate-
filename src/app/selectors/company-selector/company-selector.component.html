@@ -1,8 +1,0 @@
-<div class="row custom-no-gutters">
-    <div class="col-md-12">
-        <select #mySelect class="form-control" name="mySelect" [disabled]="isDisabled" [(ngModel)]="selectedObject"  (change)="selectCompany()">
-            <option disabled>Select Activity</option>
-            <option *ngFor="let company of companies | async" [ngValue]="company" >{{ company.enName }}</option>
-        </select>
-    </div>
-</div>

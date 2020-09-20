@@ -23,11 +23,9 @@ export class CrudComponent implements OnInit {
   isSave: boolean;
   active: Activities;
   isHiddenActivityId: boolean;
-  activityFormTwo: FormGroup;
 
   constructor(
     public fb: FormBuilder,
-    public fb2: FormBuilder,
     public ActivitiesService: ActivitiesService,
     private customValidator: CustomValidationService
 

@@ -53,7 +53,7 @@ export class SiteTypesService {
       });
   }
 
-   Delete(id: number): void{
+   deleteSiteType(id: number): void{
     this.http.delete(`${this.endpoint}/${id}`)
       .subscribe( (data: SiteType) => {
         this.dataStoreSiteType.siteType.forEach(e => {

@@ -59,7 +59,7 @@ export class DivisionsService {
            );
    }
  
-   public deleteDivision(divisionId: number): void {
+   public deleteDivision(divisionId: number) {
      this.http.delete<Division>(`${this.endpoint}/${divisionId}`)
          .subscribe(
            (data: Division) => {

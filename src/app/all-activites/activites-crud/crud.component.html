@@ -21,7 +21,7 @@
             <input matInput placeholder="En Name" type="text" formControlName="enName" class="form-control">
             <!-- Start Validation part -->
             <div class="alert alert-danger"
-              *ngIf="(activityForm.get('enName').touched || submitted) && activityForm.get('enName').errors">
+              *ngIf="(activityForm.get('enName').touched ) && activityForm.get('enName').errors">
               <span *ngIf="activityForm.get('enName').errors.required">
                 This Field is required
               </span>
@@ -37,11 +37,11 @@
 
       <div class="row custom-no-gutters">
         <div class="col-md-12">
-          <!-- *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required -->
+          <!-- *ngIf="(registerFormControl.name.touched ) && registerFormControl.name.errors?.required -->
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Ar Name" type="text" formControlName="arName" class="form-control">
             <div class="alert alert-danger"
-              *ngIf="(activityForm.get('arName').touched || submitted) && activityForm.get('arName').errors">
+              *ngIf="(activityForm.get('arName').touched ) && activityForm.get('arName').errors">
               <span *ngIf="activityForm.get('arName').errors?.required">
                 This Field is required
               </span>
@@ -83,7 +83,7 @@
               class="form-control">
             <!-- Start Validation part -->
             <div class="alert alert-danger"
-            *ngIf="(activityForm.get('centralAdminArName').touched || submitted) && activityForm.get('centralAdminArName').errors">
+            *ngIf="(activityForm.get('centralAdminArName').touched ) && activityForm.get('centralAdminArName').errors">
               <span *ngIf="activityForm.get('centralAdminArName').errors.required">
                 This Field is required
               </span>

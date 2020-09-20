@@ -23,9 +23,9 @@
                                 <!--  -->
                                 <tbody>
                                     <tr *ngFor="let division of divisions | async | searchPipe : searchText"
-                                    (click)="catchDivision(division)">
-                                        <td>{{ division.enName}}</td>
-                                        <td>{{ division.arName }}</td>
+                                    >
+                                        <td (click)="catchDivision(division)">{{ division.enName}}</td>
+                                        <td (click)="catchDivision(division)">{{ division.arName }}</td>
                                         <!--  -->
                                         <td><a (click)="deleteDivision(division)"><span class="material-icons">
                                                     delete

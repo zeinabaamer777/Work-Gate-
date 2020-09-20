@@ -31,9 +31,7 @@ export class SiteresponsibilitiesComponent implements OnInit {
   }
 
   deleteSiteResponsibility(siteResponsibility: SiteResponsibility) {
-    // console.log(siteResponsibility);
+    this.siteResponsibilitiesService.deleteSiteResponsibility(siteResponsibility.siteResponsibilityId);
   }
-
-
 
 }

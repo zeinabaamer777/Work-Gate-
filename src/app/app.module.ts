@@ -48,6 +48,7 @@ import { CustomValidationService } from './validators/CustomvalidationService.va
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
+  
     ToastrModule.forRoot()
   ],
   declarations: [
