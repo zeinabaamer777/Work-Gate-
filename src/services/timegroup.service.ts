@@ -46,8 +46,8 @@ export class TimeGroupsService {
   //#endregion
 
   //#region 2 updateActivity() method to update (put verb)
-  updateTimeGroup( id:number, timeGroup: timeGroups) {
-    this.http.put<MainResponse<timeGroups>>(`${this.endpoint}/${id}`, timeGroup)
+  updateTimeGroup(timeGroup: timeGroups) {
+    this.http.put<MainResponse<timeGroups>>(`${this.endpoint}/${timeGroup.id}`, timeGroup)
     .subscribe(
        (result: MainResponse<timeGroups>)=> {
           let i = 0;

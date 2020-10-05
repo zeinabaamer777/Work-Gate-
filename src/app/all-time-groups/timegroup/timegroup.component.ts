@@ -48,9 +48,10 @@ export class TimegroupComponent implements OnInit {
   //#region 1 catchTimeGroup() method to transfer data to form on click on it
   catchTimeGroup(timeGroup: timeGroups){
     // this.timeGroup = timeGroup;
-    console.log(this.timeGroup)
+    // console.log(this.timeGroup)
    
       this.timeGroupsService.setTimeSubject(timeGroup);
+      console.log(timeGroup);
     
   }
   //#region 

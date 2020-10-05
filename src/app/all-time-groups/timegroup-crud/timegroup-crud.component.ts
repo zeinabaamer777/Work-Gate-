@@ -1,8 +1,10 @@
 import { TimeGroupsService } from './../../../services/timegroup.service';
 import { timeGroups } from 'models/timeGroups.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidationService } from 'app/validators/CustomvalidationService.validator';
+import { moment } from 'ngx-bootstrap/chronos/test/chain';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'app-timegroup-crud',
@@ -24,7 +26,7 @@ export class TimegroupCrudComponent implements OnInit {
   active: timeGroups;
   isHiddenActivityId: boolean;
 
-
+  startDate;
   constructor(
     public fb: FormBuilder,
     public TimeGroupsService: TimeGroupsService,
@@ -45,6 +47,7 @@ export class TimegroupCrudComponent implements OnInit {
     this.isHiddenActivityId =  true;
     this.timeGroupsForm = this.fb.group({
       timeGroupId: [0],
+      timeGroupName: new FormControl ( { value: '' , disabled: true}, [Validators.required] ),
       timeFrom: new FormControl({ value: '', disabled: true }, [Validators.required]),
       timeTo: new FormControl({ value: '', disabled: true }, [Validators.required]),
       flexibleHours: new FormControl({ value: '', disabled: true },  [Validators.required]),
@@ -58,18 +61,20 @@ export class TimegroupCrudComponent implements OnInit {
       this.isHiddenEditActionBtn = false;
       this.timeGroupsObject = res;
       this.timeGroupId = res.id;
+      // this.startDate = new Date(res.timeFrom);
 
-      console.log(this.timeGroupId);
+      console.log("timeGroupId from print data to form method" , this.timeGroupId);
 
       this.timeGroupsForm = this.fb.group({
         timeGroupId: new FormControl({ value: res.id,disabled: true }),
-        timeFrom: new FormControl({ value: res.timeFrom, disabled: true }, [Validators.required]),
 
-        timeTo: new FormControl({ value: res.timeTo, disabled: true },
-           [Validators.required]),
+        timeGroupName: new FormControl ( { value: res.timeGroupName , disabled: true}, [Validators.required] ),
 
-           flexibleHours: new FormControl({ value: res.flexibleHours, disabled: true },
-           [Validators.required]),
+        timeFrom: new FormControl({ value: new Date(res.timeFrom), disabled: true }, [Validators.required]),
+
+        timeTo: new FormControl({ value: new Date(res.timeTo), disabled: true }, [Validators.required]),
+
+        flexibleHours: new FormControl({ value: res.flexibleHours, disabled: true }, [Validators.required]),
 
       });
 
@@ -96,24 +101,41 @@ export class TimegroupCrudComponent implements OnInit {
   }
   //#endregion
 //#region  update and create form in the same method
-  onSubmit(model: timeGroups){
+  createTime(model: any){
     debugger
     //create
-    if(model.id == 0){
+      console.log(model.id)
       console.log(model);
-      this.TimeGroupsService.createTimeGroup(model);
+
+      const timeGroupInstance = new timeGroups();
+
+      timeGroupInstance.timeGroupName = model.timeGroupName;
+      timeGroupInstance.flexibleHours  = model.flexibleHours;
+      timeGroupInstance.timeFrom = model.timeFrom;
+      timeGroupInstance.timeTo = model.timeTo;
+      timeGroupInstance.id = 0;
+
+      this.TimeGroupsService.createTimeGroup(timeGroupInstance);
       this.timeGroupsForm.reset();
       this.onReset();
       this.timeGroupsForm.controls['timeGroupId'].setValue(0);
-    }
-    //edit
-    else{
-      console.log(model);
-      this.TimeGroupsService.updateTimeGroup(model.id, this.timeGroupsForm.value);
-      this.timeGroupsForm.reset();
-      this.onReset();
-      this.timeGroupsForm.controls['timeGroupId'].setValue(0);
-    }
+    
+  }
+
+  updateTime(model: any){
+    const timeGroupInstance = new timeGroups();
+
+    timeGroupInstance.timeGroupName = model.timeGroupName;
+    timeGroupInstance.flexibleHours  = model.flexibleHours;
+    timeGroupInstance.timeFrom = model.timeFrom;
+    timeGroupInstance.timeTo = model.timeTo;
+    timeGroupInstance.id = this.timeGroupsObject.id;
+
+    console.log(model);
+    this.TimeGroupsService.updateTimeGroup(timeGroupInstance);
+    this.timeGroupsForm.reset();
+    this.onReset();
+    this.timeGroupsForm.controls['timeGroupId'].setValue(0);
   }
 
   //#region onReset() method - fires on cancel
@@ -123,8 +145,13 @@ export class TimegroupCrudComponent implements OnInit {
     this.isHiddenEditActionBtn = true;
     this.isHiddenCreateActionBtn = false;
     this.timeGroupsForm.controls['timeGroupId'].setValue('');
-    // this.timeGroupsForm.reset();
+    // 
     this.timeGroupsForm.disable();
+    this.timeGroupsForm.reset();
+    this.timeGroupsObject = null;
   }
 
+
+  
+ 
 }
