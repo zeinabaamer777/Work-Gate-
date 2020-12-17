@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SitesService } from '../../services/sites.service';
+import { SitesService } from 'core/services/sites.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sites',

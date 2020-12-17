@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActivitiesService } from '../../../services/activities.service';
-import { Activities } from '../../../models/activities.model';
-import { CustomValidationService } from 'app/validators/CustomvalidationService.validator';
+import { ActivitiesService } from 'core/services/activities.service';
+import { Activities } from 'core/models/activities.model';
+import { CustomValidationService } from 'core/validators/CustomvalidationService.validator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crud',
@@ -11,6 +12,20 @@ import { CustomValidationService } from 'app/validators/CustomvalidationService.
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
+  unSaved: boolean = true;
+  // @ViewChild('activityForm') activityForm: FormGroup;
+  //   canDeactivate(): Observable<boolean> | boolean {
+
+
+  //     if (this.activityForm.dirty)  {
+
+  //       const result = window.confirm('There are unsaved changes! Are you sure?');
+
+  //        return Observable.of(result);
+  //     }
+  //     return true;
+  // } 
+
   activityForm: FormGroup;
   activityObject: Activities;
   isHiddenSaveActionBtn: boolean;
@@ -46,8 +61,9 @@ export class CrudComponent implements OnInit {
       activityId: [0],
       enName: new FormControl({ value: '', disabled: true }, [Validators.required, this.customValidator.patternEnglishValidator()]),
       arName: new FormControl({ value: '', disabled: true }, [Validators.required, this.customValidator.patternArabicValidator()]),
-      centralAdminArName: new FormControl({ value: '', disabled: true },  [Validators.required, this.customValidator.patternArabicValidator()]),
       centeralAdminEnName: new FormControl({ value: '', disabled: true }, [Validators.required, this.customValidator.patternEnglishValidator()]),
+      centralAdminArName: new FormControl({ value: '', disabled: true },  [Validators.required, this.customValidator.patternArabicValidator()])
+      
     });
   }
   //#region 0 printDataToForm to print data on clcik on each td on the table
@@ -67,9 +83,10 @@ export class CrudComponent implements OnInit {
         arName: new FormControl({ value: res.arName, disabled: true },
            [Validators.required, this.customValidator.patternArabicValidator()]),
 
-        centralAdminArName: new FormControl({ value: res.centralAdminArName, disabled: true },
-           [Validators.required, this.customValidator.patternArabicValidator()]),
         centeralAdminEnName: new FormControl({ value: res.centeralAdminEnName, disabled: true }, [Validators.required,  this.customValidator.patternEnglishValidator()]),
+        
+        centralAdminArName: new FormControl({ value: res.centralAdminArName, disabled: true },
+          [Validators.required, this.customValidator.patternArabicValidator()])
 
       });
 

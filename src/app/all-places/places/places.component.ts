@@ -1,16 +1,16 @@
 import { NotificationService } from 'app/notification.service';
-import { DialogService } from 'services/dialog.service';
-import { MainResponse } from './../../../models/mainResponse.model';
+import { DialogService } from 'core/services/dialog.service';
+import { MainResponse } from './../../../core/models/mainResponse.model';
 import { Observable, of } from 'rxjs';
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { PlacesService } from '../../../services/places.service';
+import { PlacesService } from '../../../core/services/places.service';
 import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
 import { MatTableDataSource } from '@angular/material/table';
-import { Place } from 'models/Response/places.model';
+import { Place } from 'core/models/Response/places.model';
 import { DataSource } from '@angular/cdk/table';
 import { trigger, animate, state, transition, style } from '@angular/animations';
-import { NotificationDialogService } from 'services/notificationDialog.service';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
 
 
 @Component({

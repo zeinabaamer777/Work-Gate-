@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export const environment = {
   production: false,
-  url: 'http://41.38.155.188:15150/',
-  apiUrl: 'http://41.38.155.188:15150/api'
+  // url var used in QrSignalR in login.service.ts
+  url: 'http://192.168.6.20:15153/',
+  apiUrl: 'http://192.168.6.20:15153/api'
 };

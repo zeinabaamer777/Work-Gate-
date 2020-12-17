@@ -18,6 +18,7 @@
                                 <thead>
                                     <th>Site Responsibility Name</th>
                                     <th>المسؤلية</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <!--  -->
                                 <tbody *ngFor="let siteResponsibility of siteResponsibilities | async | searchPipe : searchText"
@@ -25,9 +26,13 @@
                                     <td>{{ siteResponsibility.siteResponsibilityNameAr }}</td>
                                     <td>{{ siteResponsibility.siteResponsibilityNameEn }}</td>
                                     <!--  -->
-                                    <td><a (click)="deleteSiteResponsibility(siteResponsibility)"><span class="material-icons">
-                                        delete
-                                        </span></a></td>
+                                    <td>
+                                        <a (click)="deleteSiteResponsibility(siteResponsibility)">
+                                            <span class="material-icons red-delete-icon">
+                                            delete_outline
+                                            </span>
+                                        </a>
+                                    </td>
                                 </tbody>
                             </table>
                         </div>

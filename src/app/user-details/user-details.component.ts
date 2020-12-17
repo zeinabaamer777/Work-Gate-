@@ -2,12 +2,12 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { GetLocationForUserInSpecificDateService } from '../../services/get-location-for-user-in-specific-date.service'
-import { UsersService } from 'services/users.service';
+import { GetLocationForUserInSpecificDateService } from '../../core/services/get-location-for-user-in-specific-date.service'
+import { UsersService } from 'core/services/users.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SiteAttandanceVM } from '../../models/siteAttandanceVM.model';
-import { LocationsList } from '../../models/locationsList.model';
+import { SiteAttandanceVM } from 'core/models/siteAttandanceVM.model';
+import { LocationsList } from 'core/models/locationsList.model';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',

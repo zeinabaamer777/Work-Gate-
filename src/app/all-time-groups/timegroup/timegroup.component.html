@@ -17,17 +17,23 @@
                     <th>time Group Name</th>
                     <th>time From</th>
                     <th>time To</th>
+                    <th>from Day Of Week</th>
+                    <th>to Day Of Week</th>
                     <th>flexible Hours</th>
                     <th>Actions</th>
                   </thead>
                   <tbody *ngFor="let timeGroup of timeGroupsData | async">
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeGroupName}}</td>
-                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeFrom |  date}}</td>
-                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeTo | date}}</td>
-                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.flexibleHours}}</td>
-                    <td><a (click)="deleteTimeGroup(timeGroup)"><span class="material-icons">
-                      delete
-                      </span></a></td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeFrom | date:"HH:mm a"}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeTo | date:"HH:mm a"}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.fromDayOfWeek}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.toDayOfWeek}}</td>
+                    <td (click)="catchTimeGroup">{{timeGroup.flexibleHours}}</td>
+                    <td>
+                      <a (click)="deleteTimeGroup(timeGroup)">
+                        <span class="material-icons red-delete-icon"> delete_outline </span>
+                      </a>
+                    </td>
                   </tbody>
                 </table>
               </div>

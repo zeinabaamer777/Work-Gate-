@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './helper/jwt.interceptor';
+import { JwtInterceptor } from 'core/helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { TestComponent } from './test/test.component';
 
@@ -22,13 +22,18 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { ErrorInterceptor } from './helper/error.interceptor';
+import { ErrorInterceptor } from 'core/helper/error.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import {DialogService} from 'services/dialog.service';
-import { NotificationDialogService } from 'services/notificationDialog.service';
-import { CustomValidationService } from './validators/CustomvalidationService.validator';
+import {DialogService} from 'core/services/dialog.service';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
+import { CustomValidationService } from 'core/validators/CustomvalidationService.validator';
+import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+// import { TimepickerModule } from 'ngx-bootstrap';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   imports: [
@@ -48,15 +53,17 @@ import { CustomValidationService } from './validators/CustomvalidationService.va
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
- 
-  
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule,
+    TimepickerModule,
+
     ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    TestComponent,
+    TestComponent
   ],
   providers: [
     {
@@ -69,9 +76,12 @@ import { CustomValidationService } from './validators/CustomvalidationService.va
       useClass: ErrorInterceptor,
       multi: true
     },
-    DialogService,
+    { provide: 'DialogService', useClass: DialogService },
+
+
     NotificationDialogService,
-    CustomValidationService
+    CustomValidationService,
+    CanDeactivateGuard
   ],
   bootstrap: [AppComponent],
   // entryComponents: [MatConfirmDialogComponent]

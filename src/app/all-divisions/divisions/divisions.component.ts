@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { DivisionsService } from '../../../services/divisions.service';
-import { Division } from 'models/division.model';
+import { DivisionsService } from 'core/services/divisions.service';
+import { Division } from 'core/models/division.model';
 import { Observable } from 'rxjs';
 
 @Component({

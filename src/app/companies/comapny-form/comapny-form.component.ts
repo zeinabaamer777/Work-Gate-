@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
-import { Company } from '../../../models/Response/company.model';
-import { CompaniesService } from 'services/companies.service';
-import { ActivitiesService } from 'services/activities.service';
-import { PlacesService } from 'services/places.service';
+import { Company } from '../../../core/models/Response/company.model';
+import { CompaniesService } from 'core/services/companies.service';
+import { ActivitiesService } from 'core/services/activities.service';
+import { PlacesService } from 'core/services/places.service';
 import { Observable } from 'rxjs';
-// import { Activities } from '../../../models/activities.model';
-// import { Place } from '../../../models/Response/place.model';
+// import { Activities } from '../../../core/models/activities.model';
+// import { Place } from '../../../core/models/Response/place.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Activities } from 'models/activities.model';
-import { Place } from 'models/Response/places.model';
+import { Activities } from 'core/models/activities.model';
+import { Place } from 'core/models/Response/places.model';
 
 // push to master
 @Component({

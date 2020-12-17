@@ -19,13 +19,12 @@
                                 <thead>
                                     <th>Position Name</th>
                                     <th>اسم المنصب</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <tbody *ngFor="let position of positions | async | searchPipe: searchText" (click)="catchPosition(position)">
                                     <td>{{ position.positionNameEn }}</td>
                                     <td>{{ position.positionNameAr }}</td>
-                                    <td><a (click)="deletePosition(position)"><span class="material-icons">
-                                        delete
-                                        </span></a></td>
+                                    <td><a (click)="deletePosition(position)"><span class="material-icons red-delete-icon"> delete_outline </span></a></td>
                                 </tbody>
                             </table>
                         </div>

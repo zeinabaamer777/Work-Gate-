@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subject, pipe } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { Activities } from '../models/activities.model';
-import { MainResponse } from '../models/mainResponse.model';
+import { environment } from '../../environments/environment';
+import { Activities } from 'core/models/activities.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 
 
 @Injectable({

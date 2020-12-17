@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
 import * as signalR from '@aspnet/signalr';
-import { Login } from '../../models/login.model';
+import { Login } from '../../core/models/login.model';
 import { environment } from 'environments/environment';
 import { error } from 'protractor';
 

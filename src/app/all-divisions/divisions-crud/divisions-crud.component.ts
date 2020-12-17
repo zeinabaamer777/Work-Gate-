@@ -1,15 +1,15 @@
 
-import { Division } from './../../../models/division.model';
+import { Division } from 'core/models/division.model';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { DivisionsService } from 'services/divisions.service';
-import { Departments } from 'models/departments.model';
-import { Company } from 'models/companies.model';
-import { Activities } from 'models/activities.model';
+import { DivisionsService } from 'core/services/divisions.service';
+import { Departments } from 'core/models/departments.model';
+import { Company } from 'core/models/companies.model';
+import { Activities } from 'core/models/activities.model';
 import { Observable } from 'rxjs';
-import { DepartmentsService } from 'services/departments.service';
-import { CompaniesService } from 'services/companies.service';
-import { ActivitiesService } from 'services/activities.service';
+import { DepartmentsService } from 'core/services/departments.service';
+import { CompaniesService } from 'core/services/companies.service';
+import { ActivitiesService } from 'core/services/activities.service';
 import { map } from 'rxjs/operators';
 
 @Component({

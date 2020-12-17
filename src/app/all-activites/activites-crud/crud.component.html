@@ -21,7 +21,7 @@
             <input matInput placeholder="En Name" type="text" formControlName="enName" class="form-control">
             <!-- Start Validation part -->
             <div class="alert alert-danger"
-              *ngIf="(activityForm.get('enName').touched ) && activityForm.get('enName').errors">
+             *ngIf="activityForm.controls['enName'].invalid && (activityForm.controls['enName'].dirty || activityForm.controls['enName'].touched)">
               <span *ngIf="activityForm.get('enName').errors.required">
                 This Field is required
               </span>
@@ -40,8 +40,12 @@
           <!-- *ngIf="(registerFormControl.name.touched ) && registerFormControl.name.errors?.required -->
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Ar Name" type="text" formControlName="arName" class="form-control">
+             <!-- (activityForm.get('arName').touched ) && activityForm.get('arName').errors -->
             <div class="alert alert-danger"
-              *ngIf="(activityForm.get('arName').touched ) && activityForm.get('arName').errors">
+            
+
+              *ngIf="activityForm.controls['arName'].invalid && (activityForm.controls['arName'].dirty || activityForm.controls['arName'].touched)
+              ">
               <span *ngIf="activityForm.get('arName').errors?.required">
                 This Field is required
               </span>
@@ -60,8 +64,9 @@
             <input matInput placeholder="Central Admin En Name" type="text" formControlName="centeralAdminEnName"
               class="form-control">
             <!-- Start Validation part -->
+            
             <div class="alert alert-danger"
-            *ngIf="(activityForm.get('centeralAdminEnName').touched || dirty) && activityForm.get('centeralAdminEnName').invalid">
+            *ngIf="activityForm.controls['centeralAdminEnName'].invalid && (activityForm.controls['centeralAdminEnName'].dirty || activityForm.controls['centeralAdminEnName'].touched)">
               <span *ngIf="activityForm.get('centeralAdminEnName').errors?.required">
                 This Field is required
               </span>
@@ -82,8 +87,10 @@
             <input matInput placeholder="Central Admin Ar Name" type="text" formControlName="centralAdminArName"
               class="form-control">
             <!-- Start Validation part -->
+
+            
             <div class="alert alert-danger"
-            *ngIf="(activityForm.get('centralAdminArName').touched ) && activityForm.get('centralAdminArName').errors">
+            *ngIf="activityForm.controls['centralAdminArName'].invalid && (activityForm.controls['centralAdminArName'].dirty || activityForm.controls['centralAdminArName'].touched)">
               <span *ngIf="activityForm.get('centralAdminArName').errors.required">
                 This Field is required
               </span>

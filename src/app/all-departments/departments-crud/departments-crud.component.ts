@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DepartmentsService } from '../../../services/departments.service';
-import { Departments } from '../../../models/departments.model';
-import { CompaniesService } from 'services/companies.service';
-import { Company } from '../../../models/companies.model';
+import { DepartmentsService } from '../../../core/services/departments.service';
+import { Departments } from '../../../core/models/departments.model';
+import { CompaniesService } from 'core/services/companies.service';
+import { Company } from '../../../core/models/companies.model';
 import { NotificationService } from '../../notification.service';
 
 

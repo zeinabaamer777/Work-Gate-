@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SiteResponsibility } from 'models/Response/siteResponsibility.model';
+import { SiteResponsibility } from 'core/models/Response/siteResponsibility.model';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
-import { SiteResponsibilitiesService } from 'services/siteresponsibilities.service';
+import { SiteResponsibilitiesService } from 'core/services/siteresponsibilities.service';
 
 @Component({
   selector: 'app-site-responsibiltiy-curd',

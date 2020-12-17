@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './helper/auth.guard';
+import { AuthGuard } from 'core/helper/auth.guard';
 
 const routes: Routes = [
   {

@@ -1,8 +1,8 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
-import { DepartmentsService } from '../../../services/departments.service';
-import { Departments } from '../../../models/departments.model';
+import { DepartmentsService } from '../../../core/services/departments.service';
+import { Departments } from '../../../core/models/departments.model';
 import { Observable } from 'rxjs';
-import { Company } from '../../../models/companies.model';
+import { Company } from '../../../core/models/companies.model';
 
 
 @Component({

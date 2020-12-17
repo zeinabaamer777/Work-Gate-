@@ -14,11 +14,9 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-import { UsersListDetailsComponent } from '../../users-list-details/users-list-details.component';
-import { SearchPipe } from '../../../pipes/search.pipe';
+import { SearchPipe } from '../../../core/pipes/search.pipe';
 import { DatePipe } from '@angular/common';
 
-import { UsersComponent } from '../../users/users.component';
 import { UserDetailsComponent } from '../../user-details/user-details.component';
 import { SitesListDetailsComponent } from '../../sites-list-details/sites-list-details.component';
 import { SitesComponent } from 'app/sites/sites.component';
@@ -33,7 +31,6 @@ import { TimegroupComponent } from 'app/all-time-groups/timegroup/timegroup.comp
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
 import { PlacesComponent } from 'app/all-places/places/places.component';
 import { ViewUserComponent } from 'app/view-user/view-user.component';
-import { UserMapComponent } from 'app/user-map/user-map.component';
 import { GoogleMapComponent } from 'app/google-map/google-map.component';
 // import { CrudComponent }
 
@@ -66,8 +63,8 @@ import { CompaniesComponent } from 'app/companies/companies.component';
 // import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import {DialogService} from '../../../services/dialog.service';
-import { NotificationDialogService } from 'services/notificationDialog.service';
+import {DialogService} from 'core/services/dialog.service';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
 import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timegroup-crud.component';
 
 @NgModule({
@@ -111,15 +108,12 @@ import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timeg
     DivisionsComponent,
     TimegroupComponent,
     PlacesComponent,
-    UsersListDetailsComponent,
-    UsersComponent,
     UserDetailsComponent,
     SitesListDetailsComponent,
     SitesComponent,
     SiteDetailsComponent,
     EntitiesComponent,
     ViewUserComponent,
-    UserMapComponent,
     GoogleMapComponent,
     ChatComponent,
     SettingsComponent,

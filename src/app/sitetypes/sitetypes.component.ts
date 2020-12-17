@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteTypesService } from '../../services/sitetypes.service';
-import { SiteType } from 'models/Response/siteType.model';
+import { SiteTypesService } from '../../core/services/sitetypes.service';
+import { SiteType } from 'core/models/Response/siteType.model';
 import { Observable } from 'rxjs';
 
 

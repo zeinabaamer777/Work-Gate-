@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SitesService } from '../../services/sites.service';
-import { CompaniesService } from '../../services/companies.service';
+import { SitesService } from 'core/services/sites.service';
+import { CompaniesService } from 'core/services/companies.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { SpinnerloadingService } from '../../services/spinnerloading.service';
+import { SpinnerloadingService } from 'core/services/spinnerloading.service';
 
 @Component({
   selector: 'app-site-details',

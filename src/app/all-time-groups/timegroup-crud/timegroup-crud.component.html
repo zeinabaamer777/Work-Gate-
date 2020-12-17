@@ -16,34 +16,175 @@
                 [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn()">create</button>
             </div>
           </div>
-    
+          <!-- timeGroupName form control -->
           <div class="row custom-no-gutters">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="time Group Name" type="text" formControlName="timeGroupName" class="form-control">
                 <!-- Start Validation part -->
-                <!-- <div class="alert alert-danger"
-                  *ngIf="(timeGroupsForm.get('timeGroupName').touched ) && timeGroupsForm.get('timeGroupName').errors">
-                  <span *ngIf="timeGroupsForm.get('timeFrom').errors.required">
-                    This Field is required
-                  </span>
-                 
-                  <span *ngIf="timeGroupsForm.get('timeGroupName').errors?.isValidInput">
-                    Only english characters
-                  </span>
-                </div> -->
+                <div class="alert alert-danger"
+                  *ngIf="timeGroupsForm.controls['timeGroupName'].invalid && (timeGroupsForm.controls['timeGroupName'].dirty || timeGroupsForm.controls['timeGroupName'].touched)">
+                    <span *ngIf="timeGroupsForm.get('timeGroupName').errors.required">
+                      This Field is required
+                    </span>
+                  </div>
                 <!-- End Validation part -->
               </mat-form-field>
             </div>
           </div>
-    
-         
-    
+        
+          <!-- timeFrom form control -->
+
+
+
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <timepicker [(ngModel)]="mytime"></timepicker>
+              <pre class="alert alert-info">Time is: {{mytime}}</pre>
+                <!-- <mat-form-field>
+                  <input
+                    [ngxTimepicker]="picker1"
+                    placeholder="Time From"
+                    matInput
+                    formControlName="timeFrom"
+                    #timeOpen1
+                  />
+                  <ngx-material-timepicker
+                    #picker1
+                    [confirmBtnTmpl]="confirmBtn1"
+                  ></ngx-material-timepicker>
+                  <ng-template #confirmBtn1>
+                    <button
+                      mat-button
+                      style="color:#00BFFF;font-weight: bold"
+                      type="button"
+                    >
+                      CONFIRM
+                    </button>
+                  </ng-template>
+                </mat-form-field> -->
+            </div>
+          </div>
+          
+
+
+
+
+          <!-- <div class="row custom-no-gutters">
+            <div class="col-md-12">
+                <mat-form-field  class="input2">
+                  <input matInput  
+                  class="form-control"
+                  
+                  formControlName="timeFrom" 
+                  placeholder="time from"
+                
+                  type="text" 
+                  autocomplete="off"
+                  name="timeFrom"
+                  >
+                  <div class="alert alert-danger"
+                  *ngIf="timeGroupsForm.controls['timeFrom'].invalid && (timeGroupsForm.controls['timeFrom'].dirty || timeGroupsForm.controls['timeFrom'].touched)">
+                    <span *ngIf="timeGroupsForm.get('timeFrom').errors.required">
+                      This Field is required
+                    </span>
+                  </div>
+                </mat-form-field>
+             
+            </div>
+          </div> -->
+          
+          
+          <!-- timeTo form control -->
           <div class="row custom-no-gutters">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="flexible Hours" type="text" formControlName="flexibleHours"
-                  class="form-control">
+                <input matInput placeholder="time To" type="text" formControlName="timeTo"
+                  class="form-control"   autocomplete="off">
+                  <div class="alert alert-danger"
+                  *ngIf="timeGroupsForm.controls['timeTo'].invalid && (timeGroupsForm.controls['timeTo'].dirty || timeGroupsForm.controls['timeTo'].touched)">
+                    <span *ngIf="timeGroupsForm.get('timeTo').errors.required">
+                      This Field is required
+                    </span>
+                  </div>
+              </mat-form-field>
+            </div>
+          </div>
+          
+          <!-- fromDayOfWeek form control -->
+          <!-- <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="from Day Of Week" type="text" formControlName="fromDayOfWeek"
+                  class="form-control" autocomplete="off">
+                  <div class="alert alert-danger"
+                  *ngIf="timeGroupsForm.controls['fromDayOfWeek'].invalid && (timeGroupsForm.controls['fromDayOfWeek'].dirty || timeGroupsForm.controls['fromDayOfWeek'].touched)">
+                    <span *ngIf="timeGroupsForm.get('fromDayOfWeek').errors.required">
+                      This Field is required
+                    </span>
+                  </div>
+              </mat-form-field>
+            </div>
+          </div> -->
+
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>from Day Of Week</mat-label>
+                <mat-select #selected name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectDay($event)" formControlName="fromDayOfWeek">
+                  <mat-option *ngFor="let day of weekDays"  [value]="day">
+                    {{day}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- toDayOfWeek form control -->
+          <div class="row custom-no-gutters">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>To Day Of Week</mat-label>
+                <mat-select #selected name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectDay($event)" formControlName="toDayOfWeek">
+                  <mat-option *ngFor="let day of weekDays"  [value]="day">
+                    {{day}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- hasFlexibleHours from control -->
+
+       
+
+          <!-- flexible hours form control -->
+          <div class="row custom-no-gutters">
+            <div class="col-md-5">
+              <div class="checkbox-container example-full-width">
+
+                <input  type='checkbox' id='switch' [checked]="isChecked" (click)="switch()" formControlName="hasFlexibleHours">
+                <label for='title_switch' class="ml-2">Has flexible Hours?</label>
+              </div>
+            </div>
+
+            <div class="col-md-7">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="flexible Hours" type="number" formControlName="flexibleHours"
+                  class="form-control" 
+                  [readonly]="isReadonly" appNumeric>
+<!-- 
+                  <div class="alert alert-danger"
+                  *ngIf="timeGroupsForm.controls['flexibleHours'].invalid && (timeGroupsForm.controls['flexibleHours'].dirty || timeGroupsForm.controls['flexibleHours'].touched)">
+                    <span *ngIf="timeGroupsForm.get('flexibleHours').errors.required">
+                      This Field is required
+                    </span>
+             
+                    <span class="text-capitalize"  *ngIf="timeGroupsForm.get('flexibleHours').errors?.pattern"> 
+                       only positive numbers are valid
+                    </span>
+                
+                  </div> -->
             
                 <!-- Start Validation part -->
                 <!-- <div class="alert alert-danger"
@@ -57,40 +198,6 @@
                 </div> -->
                 <!-- End Validation part -->
     
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row custom-no-gutters">
-            <div class="col-md-12">
-                <mat-form-field  class="input2">
-                  <input matInput  
-                  class="form-control"
-                  [matDatepicker]="picker" 
-                  formControlName="timeFrom" 
-                  placeholder="time from"
-                  type="text"
-                  bsDatepicker 
-                  autocomplete="off"
-                  name="timeFrom"
-                
-                  
-                  >
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-                  <mat-datepicker #picker></mat-datepicker>
-                 
-                </mat-form-field>
-             
-            </div>
-          </div>
-
-          <div class="row custom-no-gutters">
-            <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="time To" type="text" formControlName="timeTo"
-                  class="form-control" bsDatepicker  autocomplete="off">
-                 
               </mat-form-field>
             </div>
           </div>

@@ -9,7 +9,6 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
-import { UsersListDetailsComponent } from 'app/users-list-details/users-list-details.component';
 import { SitesListDetailsComponent } from '../../sites-list-details/sites-list-details.component';
 import { EntitiesComponent } from '../../entities/entities.component';
 import { ActivitiesComponent } from 'app/all-activites/activities/activities.component';
@@ -27,6 +26,7 @@ import { ChatComponent } from 'app/chat/chat.component';
 import { SettingsComponent } from 'app/settings/settings.component';
 // import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
+import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
 export const AdminLayoutRoutes: Routes = [
     
     { path: 'dashboard',            component: DashboardComponent },
@@ -37,10 +37,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',                 component: MapsComponent },
     { path: 'notifications',        component: NotificationsComponent },
     { path: 'upgrade',              component: UpgradeComponent },
-    { path: 'users-list',           component: UsersListDetailsComponent },
     { path: 'sites-list',           component: SitesListDetailsComponent},
     { path: 'entities',             component: EntitiesComponent},
-    { path: 'activities',           component: ActivitiesComponent},
+    { path: 'activities',           component: ActivitiesComponent, canDeactivate: [CanDeactivateGuard]},
     { path: 'positions',            component: PositionsComponent},
     { path: 'siteTypes',            component: SitetypesComponent},
     { path: 'siteResponsibilities', component: SiteresponsibilitiesComponent},

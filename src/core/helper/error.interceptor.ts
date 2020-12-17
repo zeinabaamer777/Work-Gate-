@@ -4,7 +4,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginService } from 'app/login/login.service';
-import { NotificationDialogService } from 'services/notificationDialog.service';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

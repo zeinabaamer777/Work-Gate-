@@ -1,14 +1,14 @@
-import { NotificationDialogService } from 'services/notificationDialog.service';
-import { createPlace } from './../../../models/Request/createPlcae.model';
-import { Places } from './../../../models/places.model';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
+import { createPlace } from './../../../core/models/Request/createPlcae.model';
+import { Places } from './../../../core/models/places.model';
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { PlacesService } from 'services/places.service';
+import { PlacesService } from 'core/services/places.service';
 import { NotificationService } from 'app/notification.service';
 import { ToastrService } from 'ngx-toastr';
-import { Place } from 'models/Response/places.model';
-import { MainResponse } from 'models/mainResponse.model';
+import { Place } from 'core/models/Response/places.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 
 @Component({
   selector: 'app-places-form',

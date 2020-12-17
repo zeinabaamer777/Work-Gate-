@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Company } from 'models/Response/company.model';
-import { SiteType } from 'models/Response/siteType.model';
+import { Company } from 'core/models/Response/company.model';
+import { SiteType } from 'core/models/Response/siteType.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { SiteTypesService } from 'services/sitetypes.service';
+import { SiteTypesService } from 'core/services/sitetypes.service';
 
 @Component({
   selector: 'app-site-type-curd',

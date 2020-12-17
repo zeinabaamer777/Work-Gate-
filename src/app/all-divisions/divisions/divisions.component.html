@@ -19,6 +19,7 @@
                                 <thead>
                                     <th>Division Name</th>
                                     <th>اسم القسم</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <!--  -->
                                 <tbody>
@@ -27,9 +28,13 @@
                                         <td (click)="catchDivision(division)">{{ division.enName}}</td>
                                         <td (click)="catchDivision(division)">{{ division.arName }}</td>
                                         <!--  -->
-                                        <td><a (click)="deleteDivision(division)"><span class="material-icons">
-                                                    delete
-                                                </span></a></td>
+                                        <td>
+                                            <a (click)="deleteDivision(division)">
+                                                <span class="material-icons red-delete-icon">
+                                                    delete_outline
+                                                </span>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

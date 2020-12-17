@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { environment } from '../environments/environment';
-import { Company } from '../models/companies.model';
-import { MainResponse } from 'models/mainResponse.model';
+import { environment } from '../../environments/environment';
+import { Company } from 'core/models/companies.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 
 @Injectable({
   providedIn: 'root'

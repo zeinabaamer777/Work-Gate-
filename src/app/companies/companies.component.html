@@ -18,15 +18,18 @@
                                 <thead>
                                     <th>Comany Name</th>
                                     <th>اسم الشركة</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <!--  -->
-                                <tbody *ngFor="let company of companies | async | searchPipe : searchText" (click)="catchCompany(company)">
-                                    <td>{{ company.enName }}</td>
-                                    <td>{{ company.arName }}</td>
+                                <tbody *ngFor="let company of companies | async | searchPipe : searchText">
+                                    <td  (click)="catchCompany(company)">{{ company.enName }}</td>
+                                    <td  (click)="catchCompany(company)">{{ company.arName }}</td>
                                     <!--  -->
-                                    <td><a (click)="deleteCompany(company)"><span class="material-icons">
-                                        delete
-                                        </span></a></td>
+                                    <td>
+                                        <a (click)="deleteCompany(company)">
+                                            <span class="material-icons red-delete-icon"> delete_outline </span>
+                                        </a>
+                                    </td>
                                 </tbody>
                             </table>
                         </div>

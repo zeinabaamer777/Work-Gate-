@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { SiteType } from 'models/Response/siteType.model';
-import { MainResponse } from 'models/mainResponse.model';
+import { environment } from '../../environments/environment';
+import { SiteType } from 'core/models/Response/siteType.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 
 
 @Injectable({

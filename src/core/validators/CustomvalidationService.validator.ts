@@ -23,6 +23,7 @@ export class CustomValidationService {
   }
   //#endregion
 
+
   //#region 2 patternEnglishValidator() method to valide only arabic characters
   patternEnglishValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
@@ -35,6 +36,14 @@ export class CustomValidationService {
     };
   }
   //#endregion
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
  
 }
 

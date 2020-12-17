@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CompaniesService } from '../../services/companies.service';
+import { CompaniesService } from '../../core/services/companies.service';
 import { Observable, from } from 'rxjs';
-import { Company } from '../../models/companies.model';
+import { Company } from 'core/models/companies.model';
 
-// ../../../models/companies.model
+// ../../../core/models/companies.model
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',

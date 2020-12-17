@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { TimeGroupsService } from '../../../services/timegroup.service';
+import { TimeGroupsService } from '../../../core/services/timegroup.service';
 import { DatePipe } from '@angular/common'
-import { timeGroups } from 'models/timeGroups.model';
-import { DialogService } from 'services/dialog.service';
-import { NotificationDialogService } from 'services/notificationDialog.service';
+import { timeGroups } from 'core/models/timeGroups.model';
+import { DialogService } from 'core/services/dialog.service';
+import { NotificationDialogService } from 'core/services/notificationDialog.service';
 
 @Component({
   selector: 'app-timegroup',

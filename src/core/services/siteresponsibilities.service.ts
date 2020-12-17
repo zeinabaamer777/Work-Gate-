@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { SiteResponsibility } from 'models/Response/siteResponsibility.model';
+import { environment } from '../../environments/environment';
+import { SiteResponsibility } from 'core/models/Response/siteResponsibility.model';
 
 
 @Injectable({

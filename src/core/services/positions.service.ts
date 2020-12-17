@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { MainResponse } from '../models/mainResponse.model';
-import { Position } from '../models/Response/position.model'
-import { CreatePositionModel } from '../models/Request/Position/createPosition.model';
+import { environment } from '../../environments/environment';
+import { MainResponse } from 'core/models/mainResponse.model';
+import { Position } from 'core/models/Response/position.model'
+import { CreatePositionModel } from 'core/models/Request/Position/createPosition.model';
 
 
 @Injectable({

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { Departments } from '../models/departments.model';
-import { MainResponse } from '../models/mainResponse.model';
+import { environment } from '../../environments/environment';
+import { Departments } from 'core/models/departments.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 
 
 @Injectable({

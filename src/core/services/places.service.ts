@@ -1,15 +1,15 @@
-import { NotificationService } from './../app/notification.service';
+import { NotificationService } from '../../app/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 // response model
-import { Place } from '../models/Response/places.model';
+import { Place } from 'core/models/Response/places.model';
 // request model
-import { createPlace } from '../models/Request/createPlcae.model';
-import { MainResponse } from '../models/mainResponse.model';
+import { createPlace } from 'core/models/Request/createPlcae.model';
+import { MainResponse } from 'core/models/mainResponse.model';
 import { data } from 'jquery';
 
 

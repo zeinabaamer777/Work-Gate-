@@ -19,6 +19,7 @@
                                 <thead>
                                     <th>Site Type</th>
                                     <th>نوع الموقع</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <!--  -->
                                 <tbody *ngFor="let siteType of siteTypes | async | searchPipe : searchText"
@@ -26,9 +27,13 @@
                                     <td>{{ siteType.siteTypeEn }}</td>
                                     <td>{{ siteType.siteTypeAr }}</td>
                                     <!--  -->
-                                    <td><a (click)="deleteSiteType(siteType)"><span class="material-icons">
-                                                delete
-                                            </span></a></td>
+                                    <td>
+                                        <a (click)="deleteSiteType(siteType)">
+                                            <span class="material-icons red-delete-icon">
+                                                    delete_outline
+                                            </span>
+                                        </a>
+                                    </td>
                                 </tbody>
                             </table>
                         </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteResponsibilitiesService } from '../../services/siteresponsibilities.service';
+import { SiteResponsibilitiesService } from '../../core/services/siteresponsibilities.service';
 import { Observable } from 'rxjs';
-import { SiteResponsibility } from 'models/Response/siteResponsibility.model';
+import { SiteResponsibility } from 'core/models/Response/siteResponsibility.model';
 
 @Component({
   selector: 'app-siteresponsibilities',
