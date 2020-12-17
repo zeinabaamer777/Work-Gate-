@@ -29,7 +29,7 @@ export class TimegroupCrudComponent implements OnInit {
   isSave: boolean;
   active: timeGroups;
   isHiddenActivityId: boolean;
-
+  flexibleHours: number;
   public weekDays = ['Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   constructor(
@@ -71,16 +71,18 @@ export class TimegroupCrudComponent implements OnInit {
       this.isHiddenEditActionBtn = false;
       this.timeGroupsObject = res;
       this.timeGroupId = res.id;
+      this.flexibleHours = res.flexibleHours;
       // this.startDate = new Date(res.timeFrom);
-     
       console.log("timeGroupId from print data to form method" , this.timeGroupId);
+      // console.log("timeGroup flexible from print data to form method" , this.flexibleHours);
 
+// this.switch(this.flexibleHours);
       this.timeGroupsForm = this.fb.group({
         timeGroupId: new FormControl({ value: res.id,disabled: true }),
 
         timeGroupName: new FormControl ( { value: res.timeGroupName , disabled: true}, [Validators.required] ),
 
-        timeFrom: new FormControl({ value: new Date(res.timeFrom).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) , disabled: true }, [Validators.required]),
+        timeFrom: new FormControl({ value: new Date(res.timeFrom).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }) , disabled: true }, [Validators.required]),
 
         timeTo: new FormControl({ value: new Date(res.timeTo).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) , disabled: true }, [Validators.required]),
 
@@ -195,13 +197,19 @@ export class TimegroupCrudComponent implements OnInit {
   //#region 
 
   //#region checkbox
-isReadonly = true;
-  // isChecked = true;
+isReadonly = false;
 
-switch() {
+switch(flexibleHoursValue: number) {
   // this.isChecked = this.isChecked;
-  this.isReadonly = !this.isReadonly;
-  
+  if(flexibleHoursValue != null) {
+    this.isReadonly = this.isReadonly;
+    console.log("not null");
+  }
+ 
+  else {
+    this.isReadonly = !this.isReadonly;
+  }
+  return;
 }
 
 }

@@ -31,9 +31,16 @@ import { NotificationDialogService } from 'core/services/notificationDialog.serv
 import { CustomValidationService } from 'core/validators/CustomvalidationService.validator';
 import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 // import { TimepickerModule } from 'ngx-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+// import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import {
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule, 
+  NgxMatTimepickerModule 
+} from '@angular-material-components/datetime-picker';
+
 
 @NgModule({
   imports: [
@@ -54,9 +61,10 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     MatDialogModule,
     MatSnackBarModule,
     MatCheckboxModule,
-    NgxMaterialTimepickerModule,
+    NgxMatTimepickerModule,
     TimepickerModule,
-
+    NgxMatDatetimePickerModule, 
+    NgxMatNativeDateModule,
     ToastrModule.forRoot()
   ],
   declarations: [

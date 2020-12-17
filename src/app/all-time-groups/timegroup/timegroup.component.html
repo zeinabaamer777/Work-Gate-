@@ -24,8 +24,8 @@
                   </thead>
                   <tbody *ngFor="let timeGroup of timeGroupsData | async">
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeGroupName}}</td>
-                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeFrom | date:"HH:mm a"}}</td>
-                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeTo | date:"HH:mm a"}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeFrom | date:"hh:mm a"}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeTo | date:"hh:mm a"}}</td>
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.fromDayOfWeek}}</td>
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.toDayOfWeek}}</td>
                     <td (click)="catchTimeGroup">{{timeGroup.flexibleHours}}</td>
