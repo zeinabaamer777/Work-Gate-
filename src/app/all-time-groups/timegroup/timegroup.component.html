@@ -28,7 +28,7 @@
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.timeTo | date:"hh:mm a"}}</td>
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.fromDayOfWeek}}</td>
                     <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.toDayOfWeek}}</td>
-                    <td (click)="catchTimeGroup">{{timeGroup.flexibleHours}}</td>
+                    <td (click)="catchTimeGroup(timeGroup)">{{timeGroup.flexibleHours}}</td>
                     <td>
                       <a (click)="deleteTimeGroup(timeGroup)">
                         <span class="material-icons red-delete-icon"> delete_outline </span>

@@ -1,14 +1,14 @@
+import { DatePipe } from '@angular/common';
 import { NotificationDialogService } from './../../../core/services/notificationDialog.service';
 import { DialogService } from './../../../core/services/dialog.service';
 import { TimeGroupsService } from '../../../core/services/timegroup.service';
 import { timeGroups } from 'core/models/timeGroups.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidationService } from 'core/validators/CustomvalidationService.validator';
-import { moment } from 'ngx-bootstrap/chronos/test/chain';
-import { Moment } from 'moment';
-import { WeekDay } from '@angular/common';
-import { time } from 'console';
+import { TimePickerComponent } from '@syncfusion/ej2-angular-calendars';
+import { FormValidator, FormValidatorModel } from '@syncfusion/ej2-inputs';;
+import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
 
 @Component({
   selector: 'app-timegroup-crud',
@@ -16,6 +16,7 @@ import { time } from 'console';
   styleUrls: ['./timegroup-crud.component.scss']
 })
 export class TimegroupCrudComponent implements OnInit {
+  @ViewChild('input') private checkInput;
 
   timeGroupsForm: FormGroup;
   timeGroupsObject: timeGroups;
@@ -30,6 +31,9 @@ export class TimegroupCrudComponent implements OnInit {
   active: timeGroups;
   isHiddenActivityId: boolean;
   flexibleHours: number;
+
+  datatime: string;
+  timeFromFormatter: any;
   public weekDays = ['Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   constructor(
@@ -37,11 +41,13 @@ export class TimegroupCrudComponent implements OnInit {
     public TimeGroupsService: TimeGroupsService,
     private customValidator: CustomValidationService,
     private dialogService: DialogService,
-    private notificationDialogService: NotificationDialogService
+    private notificationDialogService: NotificationDialogService,
+    private datePipe: DatePipe
 
   ) { }
 
   ngOnInit(): void {
+    this.isReadonly = true;
     this.initForm();
     this.printDataToForm();
   }
@@ -66,6 +72,8 @@ export class TimegroupCrudComponent implements OnInit {
   
   //#region 0 printDataToForm to print data on clcik on each td on the table
   printDataToForm() {
+    
+    
     this.TimeGroupsService.getTimeSubject().subscribe(res => {
       this.isHiddenCreateActionBtn = true;
       this.isHiddenEditActionBtn = false;
@@ -76,15 +84,18 @@ export class TimegroupCrudComponent implements OnInit {
       console.log("timeGroupId from print data to form method" , this.timeGroupId);
       // console.log("timeGroup flexible from print data to form method" , this.flexibleHours);
 
-// this.switch(this.flexibleHours);
-      this.timeGroupsForm = this.fb.group({
+
+// res.timeFrom.split('T')[1]
+// this.datePipe.transform(res.timeFrom, 'h:mm a')
+
+        this.timeGroupsForm = this.fb.group({
         timeGroupId: new FormControl({ value: res.id,disabled: true }),
 
         timeGroupName: new FormControl ( { value: res.timeGroupName , disabled: true}, [Validators.required] ),
 
-        timeFrom: new FormControl({ value: new Date(res.timeFrom).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }) , disabled: true }, [Validators.required]),
+        timeFrom: new FormControl({ value: this.datePipe.transform(res.timeFrom, 'HH:mm') , disabled: true }, [Validators.required]),
 
-        timeTo: new FormControl({ value: new Date(res.timeTo).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) , disabled: true }, [Validators.required]),
+        timeTo: new FormControl({ value: this.datePipe.transform(res.timeTo.toString(), 'HH:mm'), disabled: true }, [Validators.required]),
 
         fromDayOfWeek: new FormControl( {value: res.fromDayOfWeek, disabled: true }, [Validators.required]),
 
@@ -96,8 +107,26 @@ export class TimegroupCrudComponent implements OnInit {
 
       });
 
+      // this.datatime = res.timeFrom.split('T')[1];
+      debugger
+
+      //#region check If flexibleHours has value or not,
+      // if has Value? readonly will disabled
+      // if not has a value? readonly will enabled untill change the checkbox input using switch() method
+   
+      if(this.timeGroupsForm.get('flexibleHours').value != null) {
+        this.isReadonly = false;
+        
+      }
+      if(this.timeGroupsForm.get('flexibleHours').value == null) {
+        this.isReadonly = true;
+        alert("readonly true")
+      }
+      //#endregion
+
     });
   }
+
   //#endregion
   //#region showBtns() method to show save and cancel btns on click on update btn
   showBtns() {
@@ -115,6 +144,7 @@ export class TimegroupCrudComponent implements OnInit {
     this.isHiddenSaveCreateBtn = false;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenEditActionBtn = true;
+    this.isHiddenCreateActionBtn = true;
     this.timeGroupsForm.enable();
   }
   //#endregion
@@ -124,9 +154,9 @@ export class TimegroupCrudComponent implements OnInit {
     //create
       console.log(model.id)
       console.log(model);
-
+      
       const timeGroupInstance = new timeGroups();
-
+     
       timeGroupInstance.timeGroupName = model.timeGroupName;
       timeGroupInstance.hasFlexibleHours = model.hasFlexibleHours;
       timeGroupInstance.flexibleHours  = model.flexibleHours;
@@ -142,7 +172,7 @@ export class TimegroupCrudComponent implements OnInit {
       this.timeGroupsForm.controls['timeGroupId'].setValue(0);
       this.notificationDialogService.success('Created successfully!');
 
-    
+      
   }
   //#endregion
 
@@ -168,13 +198,6 @@ export class TimegroupCrudComponent implements OnInit {
         
  }
  //#endregion
-
-
-    
-
-
-   
-
   //#region onReset() method - fires on cancel
   onReset() {
     this.isHiddenSaveActionBtn = true;
@@ -187,7 +210,6 @@ export class TimegroupCrudComponent implements OnInit {
     this.timeGroupsForm.reset();
     this.timeGroupsObject = null;
   }
-
   //#endregion
 
   //#region  selectDay() method to fire select_option with week day options
@@ -196,20 +218,29 @@ export class TimegroupCrudComponent implements OnInit {
   }
   //#region 
 
-  //#region checkbox
-isReadonly = false;
+//#region checkbox
+  // if checked and has a value, the value will gone and readonly will be enabled
+  // if checked and has no value, the readonly will be disabled and the admin will be able to add a value
 
-switch(flexibleHoursValue: number) {
-  // this.isChecked = this.isChecked;
-  if(flexibleHoursValue != null) {
-    this.isReadonly = this.isReadonly;
-    console.log("not null");
+// isReadonly = true;
+isReadonly: boolean;
+switchFlexibleHours(event){
+  debugger
+  
+  if ( event.target.checked && this.timeGroupsForm.get('flexibleHours').value != null) {
+    alert("checked");
+    this.isReadonly = false
   }
- 
+  else if(event.target.checked && this.timeGroupsForm.get('flexibleHours').value == null) {
+    this.isReadonly = false;
+  }
   else {
-    this.isReadonly = !this.isReadonly;
+    alert("unchecked");
+    this.timeGroupsForm.get('flexibleHours').setValue("");
+    this.isReadonly = true;
   }
-  return;
 }
+
+//#endregion
 
 }

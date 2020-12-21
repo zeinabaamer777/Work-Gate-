@@ -32,9 +32,13 @@ import { CustomValidationService } from 'core/validators/CustomvalidationService
 import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-// import { TimepickerModule } from 'ngx-bootstrap';
+
+import { TimePickerComponent } from '@syncfusion/ej2-angular-calendars';
+import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-// import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+
 import {
   NgxMatDatetimePickerModule, 
   NgxMatNativeDateModule, 
@@ -65,6 +69,10 @@ import {
     TimepickerModule,
     NgxMatDatetimePickerModule, 
     NgxMatNativeDateModule,
+    // TimePickerComponent,
+    // ButtonComponent,
+
+    // CalendarModule,
     ToastrModule.forRoot()
   ],
   declarations: [

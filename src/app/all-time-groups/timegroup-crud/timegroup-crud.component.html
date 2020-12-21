@@ -39,21 +39,19 @@
 
           <div class="row custom-no-gutters">
             <div class="col-md-12">
+            
+            <!-- <div *ngIf="timeFrom.invalid && (timeFrom.dirty||timeFrom.touched)" class="alert alert-danger">
+              Enter time in "hh:mm a" format.
+            </div> -->
+<!-- {{datatime}} -->
               <mat-form-field>
-                <div class="toggle-custom-icon-example">
-                  <input matInput [ngxTimepicker]="toggleIcon" [disableClick]="false" formControlName="timeFrom">
-                  <ngx-material-timepicker-toggle [for]="toggleIcon">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" ngxMaterialTimepickerToggleIcon>
-                          <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
-                      </svg>
-                  </ngx-material-timepicker-toggle>
-                  <ngx-material-timepicker #toggleIcon></ngx-material-timepicker>
-              </div>
+                <input formControlName="timeFrom" matInput placeholder="timeFrom" type="time" class="form-control"
+          
+                />
+               
+                <!-- <input matInput class="form-control"   type="time" placeholder="start date" formControlName="timeFrom"> -->
               </mat-form-field>
-      
-              <!-- <mat-form-field>
-                <input matInput class="form-control"   type="time" placeholder="start date" formControlName="timeFrom">
-              </mat-form-field> -->
+              <!-- <p>{{timeGroupsForm.get('timeFrom').value}}</p> -->
             </div>
           </div>
           
@@ -90,7 +88,7 @@
           <div class="row custom-no-gutters">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="time To" type="text" formControlName="timeTo"
+                <input matInput placeholder="time To" type="time" formControlName="timeTo"
                   class="form-control"   autocomplete="off">
                   <div class="alert alert-danger"
                   *ngIf="timeGroupsForm.controls['timeTo'].invalid && (timeGroupsForm.controls['timeTo'].dirty || timeGroupsForm.controls['timeTo'].touched)">
@@ -154,7 +152,7 @@
             <div class="col-md-5">
               <div class="checkbox-container example-full-width">
 
-                <input  type='checkbox' id='switch' [checked]="isChecked" (change)="switch(flexibleHoursValue)" formControlName="hasFlexibleHours">
+                <input  type='checkbox' id='switch'  (change)="switchFlexibleHours($event)" formControlName="hasFlexibleHours">
                 <label for='title_switch' class="ml-2">Has flexible Hours?</label>
               </div>
             </div>
