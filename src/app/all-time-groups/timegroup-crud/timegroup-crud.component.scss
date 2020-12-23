@@ -7,3 +7,27 @@
       }
      
 }
+input[type="time"]{
+      
+      position: relative;
+      height: 32px;
+          
+            
+}
+input[type="time"]::-webkit-calendar-picker-indicator{
+
+
+      color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url('https://img.icons8.com/color/16/000000/coming-soon.png') no-repeat;
+    width: 32px;
+    height: 32px;
+    border-width: thin;
+   
+
+}
+::ng-deep .mat-select-arrow{
+    background: url('https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-08-512.png');
+    content: background;
+}

@@ -34,10 +34,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 import { TimePickerComponent } from '@syncfusion/ej2-angular-calendars';
-import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-
-import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 import {
   NgxMatDatetimePickerModule, 
@@ -45,6 +44,8 @@ import {
   NgxMatTimepickerModule 
 } from '@angular-material-components/datetime-picker';
 
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   imports: [
@@ -69,17 +70,18 @@ import {
     TimepickerModule,
     NgxMatDatetimePickerModule, 
     NgxMatNativeDateModule,
-    // TimePickerComponent,
-    // ButtonComponent,
-
-    // CalendarModule,
+    TimePickerModule,
+    ButtonModule,
+    NgxMaterialTimepickerModule,
     ToastrModule.forRoot()
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    TestComponent
+    TestComponent,
+    UsersComponent
   ],
   providers: [
     {

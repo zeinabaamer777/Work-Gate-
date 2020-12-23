@@ -16,7 +16,6 @@ import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
   styleUrls: ['./timegroup-crud.component.scss']
 })
 export class TimegroupCrudComponent implements OnInit {
-  @ViewChild('input') private checkInput;
 
   timeGroupsForm: FormGroup;
   timeGroupsObject: timeGroups;
@@ -39,8 +38,6 @@ export class TimegroupCrudComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public TimeGroupsService: TimeGroupsService,
-    private customValidator: CustomValidationService,
-    private dialogService: DialogService,
     private notificationDialogService: NotificationDialogService,
     private datePipe: DatePipe
 

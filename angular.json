@@ -32,6 +32,7 @@
               "src/styles.scss",
               "src/assets/custom-shared-styles/custom-style.scss",
               "src/assets/css/custom-public-style.scss"
+         
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
