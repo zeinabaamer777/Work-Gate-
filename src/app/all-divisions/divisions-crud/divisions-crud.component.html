@@ -26,6 +26,14 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+
+            <div class="alert alert-danger"
+                *ngIf="divisionForm.controls['activity'].invalid && (divisionForm.controls['activity'].dirty || divisionForm.controls['activity'].touched)">
+                <span *ngIf="divisionForm.get('activity').errors.required">
+                  This Field is required
+                </span>
+          </div>
+
           </div>
         </div>
 
@@ -43,6 +51,12 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            <div class="alert alert-danger"
+                *ngIf="divisionForm.controls['company'].invalid && (divisionForm.controls['company'].dirty || divisionForm.controls['company'].touched)">
+                <span *ngIf="divisionForm.get('company').errors.required">
+                  This Field is required
+                </span>
+            </div>
           </div>
         </div>
 
@@ -60,6 +74,13 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+
+            <div class="alert alert-danger"
+                *ngIf="divisionForm.controls['department'].invalid && (divisionForm.controls['department'].dirty || divisionForm.controls['department'].touched)">
+                <span *ngIf="divisionForm.get('department').errors.required">
+                  This Field is required
+                </span>
+            </div>
           </div>
         </div>
         
@@ -69,6 +90,12 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="اسم القسم" type="text" formControlName="arName" class="form-control">
             </mat-form-field>
+            <div class="alert alert-danger"
+            *ngIf="divisionForm.controls['arName'].invalid && (divisionForm.controls['arName'].dirty || divisionForm.controls['arName'].touched)">
+            <span *ngIf="divisionForm.get('arName').errors.required">
+              This Field is required
+            </span>
+        </div>
           </div>
         </div>
   
@@ -77,6 +104,13 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Division Name" type="text" formControlName="enName" class="form-control">
             </mat-form-field>
+
+            <div class="alert alert-danger"
+            *ngIf="divisionForm.controls['enName'].invalid && (divisionForm.controls['enName'].dirty || divisionForm.controls['enName'].touched)">
+            <span *ngIf="divisionForm.get('enName').errors.required">
+              This Field is required
+            </span>
+        </div>
           </div>
         </div>
           <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">

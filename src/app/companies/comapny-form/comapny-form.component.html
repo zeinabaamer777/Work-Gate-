@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header card-header-danger">
-    <h4 class="card-title">Edit Position List</h4>
+    <h4 class="card-title">Edit companies List</h4>
   </div>
   <div class="card-body">
     <form [formGroup]="companyForm" #form="ngForm" id="companyForm" >
@@ -26,6 +26,13 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <div class="alert alert-danger"
+          *ngIf="companyForm.controls['activity'].invalid && (companyForm.controls['activity'].dirty || companyForm.controls['activity'].touched)">
+           <span *ngIf="companyForm.get('activity').errors.required">
+             This Field is required
+           </span>
+         </div>
+         
         </div>
       </div>
       
@@ -43,6 +50,16 @@
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Company Name" type="text" formControlName="CompanyNameEn" class="form-control">
           </mat-form-field>
+          <div class="alert alert-danger"
+             *ngIf="companyForm.controls['CompanyNameEn'].invalid && (companyForm.controls['CompanyNameEn'].dirty || companyForm.controls['CompanyNameEn'].touched)">
+              <span *ngIf="companyForm.get('CompanyNameEn').errors.required">
+                This Field is required
+              </span>
+             
+              <span *ngIf="companyForm.get('enName').errors?.isValidInput">
+                Only english characters
+              </span>
+            </div>
         </div>
       </div>
 

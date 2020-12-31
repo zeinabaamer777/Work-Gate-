@@ -56,13 +56,14 @@ export class ComapnyFormComponent implements OnInit {
     this.isHiddenEditActionBtn = true;
     this.isHiddenSaveActionBtn = true;
     this.isHiddenSaveCreateBtn = true;
+  
   }
 
   initForm(){
     this.companyForm = this.fb.group({
-      country: new FormControl({value: '0', disabled: true}),
-      goverment: new FormControl({value: '0', disabled: true}),
-      activity: new FormControl({value: '0', disabled: true}),
+      country: new FormControl({value: '', disabled: true}, [Validators.required]),
+      goverment: new FormControl({value: '', disabled: true}, [Validators.required]),
+      activity: new FormControl({value: '', disabled: true}, [Validators.required]),
       ComapnyNameAr: new FormControl({ value: '', disabled: true }, [Validators.required]),
       CompanyNameEn: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
@@ -82,6 +83,7 @@ export class ComapnyFormComponent implements OnInit {
   set companyObject(company: Company) {
 
     this.isHiddenEditActionBtn = false;
+    this.isHiddenCreateActionBtn = false
     // this.companyForm.disable();
     // this.companyForm.disable();
 
@@ -90,9 +92,9 @@ export class ComapnyFormComponent implements OnInit {
       console.log(this.company);
 
       this.companyForm = this.fb.group({
-        country: new FormControl({value: '', disabled: true }),
-        goverment: new FormControl({value: '', disabled: true }),
-        activity: new FormControl({value: '', disabled: true }),
+        country: new FormControl({value: '', disabled: true }, [Validators.required]),
+        goverment: new FormControl({value: '', disabled: true }, [Validators.required]),
+        activity: new FormControl({value: '', disabled: true }, [Validators.required]),
         ComapnyNameAr: new FormControl({ value: this.company.arName, disabled: true }, [Validators.required]),
         CompanyNameEn: new FormControl({ value: this.company.enName, disabled: true }, [Validators.required]),
       });
@@ -135,14 +137,23 @@ export class ComapnyFormComponent implements OnInit {
   showBtns(): void {
     this.companyForm.enable();
     this.isHiddenSaveActionBtn = false;
+    this.isHiddenCreateActionBtn = true;
+    this.isHiddenEditActionBtn = true;
+    this.isHiddenSaveCreateBtn = true;
+   
+
+    
   }
 
   showCreateSaveBtn(): void{
-    this.companyForm.enable();
-    this.companyForm.reset();
+    // this.companyForm.reset();
 
     this.isHiddenSaveCreateBtn = false;
     this.isHiddenCreateActionBtn = true;
+    this.isHiddenEditActionBtn = true;
+    this.companyForm.reset();
+    this.companyForm.enable();
+
     
   }
 
@@ -155,9 +166,8 @@ export class ComapnyFormComponent implements OnInit {
     company.arName = model.ComapnyNameAr;
     company.enName = model.CompanyNameEn;
     company.id = 0;
-
     this.companyService.CreateCompanies(company);
-
+    // this.companyForm.reset();
     this.Cancel();
 
   }
@@ -165,6 +175,7 @@ export class ComapnyFormComponent implements OnInit {
   Cancel(): void{
     this.isHiddenSaveCreateBtn = true;
     this.isHiddenCreateActionBtn = false;
+    this.isHiddenEditActionBtn = true;
     this.companyForm.disable();
     this.companyForm.reset();
     this.isHiddenSaveActionBtn = true;

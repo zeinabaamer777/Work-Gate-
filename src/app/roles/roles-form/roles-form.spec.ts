@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteResponsibiltiyCurdComponent } from './site-responsibiltiy-curd.component';
+import { SiteResponsibiltiyCurdComponent } from './roles-form.component';
 
 describe('SiteResponsibiltiyCurdComponent', () => {
   let component: SiteResponsibiltiyCurdComponent;

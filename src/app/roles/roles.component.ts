@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { SiteResponsibility } from 'core/models/Response/siteResponsibility.model';
 
 @Component({
-  selector: 'app-siteresponsibilities',
-  templateUrl: './siteresponsibilities.component.html',
-  styleUrls: ['./siteresponsibilities.component.scss']
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.scss']
 })
-export class SiteresponsibilitiesComponent implements OnInit {
+export class RolesComponent implements OnInit {
 
   searchText:string;
   siteResponsibility: SiteResponsibility;

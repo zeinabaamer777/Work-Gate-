@@ -48,9 +48,9 @@ export class EntitiesComponent implements OnInit {
     },
     { 
       avatar : '../assets/images/Images/Entities_6.png',
-      name : "siteResponsibilities",
+      name : "roles",
       company : "Bip soft" ,
-      router: 'siteResponsibilities'
+      router: 'roles'
     },
     { 
       avatar : '../assets/images/Images/Entities_7.png',

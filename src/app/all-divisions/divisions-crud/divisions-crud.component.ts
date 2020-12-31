@@ -65,9 +65,9 @@ export class DivisionsCrudComponent implements OnInit {
 
   initForm() {
     this.divisionForm = this.fb.group({
-      activity: new FormControl({ value: '0', disabled: true }),
-      company: new FormControl({ value: '0', disabled: true }),
-      department: new FormControl({ value: '0', disabled: true }),
+      activity: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      company: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      department: new FormControl({ value: '', disabled: true }, [Validators.required]),
       enName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       arName: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });

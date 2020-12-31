@@ -25,7 +25,7 @@ import { EntitiesComponent } from 'app/entities/entities.component';
 import { ActivitiesComponent } from 'app/all-activites/activities/activities.component';
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
-import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
+import { RolesComponent } from 'app/roles/roles.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { TimegroupComponent } from 'app/all-time-groups/timegroup/timegroup.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
@@ -55,7 +55,7 @@ import { PositionsFormComponent } from 'app/positions/positions-form/positions-f
 // import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
-import { SiteResponsibiltiyCurdComponent } from 'app/siteresponsibilities/site-responsibiltiy-curd/site-responsibiltiy-curd.component';
+import { RolesFormComponent } from 'app/roles/roles-form/roles-form.component';
 import { MatTableModule } from '@angular/material/table';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
@@ -101,8 +101,8 @@ import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timeg
     PositionsComponent,
     SitetypesComponent,
     SiteTypeFormComponent,
-    SiteresponsibilitiesComponent,
-    SiteResponsibiltiyCurdComponent,
+    RolesComponent,
+    RolesFormComponent,
     CompaniesComponent,
     DepartmentsComponent ,
     DivisionsComponent,
@@ -129,7 +129,7 @@ import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timeg
     PlacesFormComponent,
     SearchPipe,
     SiteTypeFormComponent,
-    SiteResponsibiltiyCurdComponent,
+    RolesFormComponent,
     ComapnyFormComponent,
     TimegroupCrudComponent,
     MatConfirmDialogComponent

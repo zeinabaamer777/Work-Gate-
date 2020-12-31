@@ -16,7 +16,7 @@
                 [hidden]="isHiddenCreateActionBtn" (click)="showCreateSaveBtn(false)">create Country</button>
 
                 <button type="button" mat-raised-button class="btn btn-danger pull-right btn-sm ml-auto"
-                [hidden]="isHiddenCreateGovernmentBtn" (click)="showCreateSaveBtn(true)">create Goverment</button> 
+                [hidden]="isHiddenCreateGovernmentBtn" (click)="showCreateSaveBtn(true)">create government</button> 
             </div>
           </div>
 
@@ -28,6 +28,13 @@
                 <input matInput [placeholder]="createGoverment? 'Govertment Name':'Country Name' " type="text" formControlName="placeEnName"
                   class="form-control">
               </mat-form-field>
+              <div class="alert alert-danger"
+                *ngIf="placesForm.controls['placeEnName'].invalid && (placesForm.controls['placeEnName'].dirty || placesForm.controls['placeEnName'].touched)">
+                <span *ngIf="placesForm.get('placeEnName').errors.required">
+                  This Field is required
+                </span>
+              </div>
+
             </div>
           </div>
           
@@ -37,6 +44,13 @@
                 <input matInput [placeholder]="createGoverment? 'اسم المحافظة' : 'اسم الدولة'" type="text" formControlName="placeArName"
                   class="form-control">
               </mat-form-field>
+
+              <div class="alert alert-danger"
+                *ngIf="placesForm.controls['placeArName'].invalid && (placesForm.controls['placeArName'].dirty || placesForm.controls['placeArName'].touched)">
+                <span *ngIf="placesForm.get('placeArName').errors.required">
+                  This Field is required
+                </span>
+              </div>
             </div>
           </div>
 
@@ -46,6 +60,14 @@
                 <input matInput placeholder="country code / كود الدولة" type="text" formControlName="placeCode"
                   class="form-control">
               </mat-form-field>
+
+              <div class="alert alert-danger"
+                *ngIf="placesForm.controls['placeCode'].invalid && (placesForm.controls['placeCode'].dirty || placesForm.controls['placeCode'].touched)">
+                <span *ngIf="placesForm.get('placeCode').errors.required">
+                  This Field is required
+                </span>
+              </div>
+
             </div>
           </div>
 

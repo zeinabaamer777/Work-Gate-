@@ -4,11 +4,11 @@ import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms'
 import { SiteResponsibilitiesService } from 'core/services/siteresponsibilities.service';
 
 @Component({
-  selector: 'app-site-responsibiltiy-curd',
-  templateUrl: './site-responsibiltiy-curd.component.html',
-  styleUrls: ['./site-responsibiltiy-curd.component.scss']
+  selector: 'app-roles-form',
+  templateUrl: './roles-form.component.html',
+  styleUrls: ['./roles-form.component.scss']
 })
-export class SiteResponsibiltiyCurdComponent implements OnInit {
+export class RolesFormComponent implements OnInit {
 
 
   siteResponsibility: SiteResponsibility;

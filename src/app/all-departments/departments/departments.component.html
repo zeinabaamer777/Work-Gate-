@@ -11,16 +11,19 @@
               </div>
               <div class="card-body">
 
-                <table class="table">
+                <table class="table table-striped table-hover">
                   <thead>
                     <th>Department Name</th>
                     <th>اسم القسم</th>
+                    <!-- <th>company Name</th> -->
                     <th>Actions</th>
                   </thead>
                   <tbody *ngFor="let department of departments | async" >
                     <td (click)="onSelect(department)">{{department.enName}}</td>
                     <td (click)="onSelect(department)">{{department.arName}}</td>
                     <td><a (click)="deleteDepartment(department.departmentId)"><span class="material-icons red-delete-icon"> delete_outline </span></a></td>
+                    <!-- <td *ngFor="let company of companies | async"></td> -->
+                  
                   </tbody>
                 </table>
               </div>

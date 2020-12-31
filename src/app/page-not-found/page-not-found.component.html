@@ -1,19 +1,25 @@
 <div class="custom-class-for-style">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-4">
+            <div class="col-lg-8 offset-lg-4 mx-auto">
                 <div class="error-template mt-5">
                     <h1>
                         Oops!</h1>
-                    <h2>
-                        404 Not Found</h2>
+                    <h2>Page Not Found</h2>
                     <div class="error-details">
-                        Sorry, an error has occured, Requested page not found!
+                        <p class="lead">
+                            Looks like you’ve followed a broken link or entered a URL that doesn’t exist on this site.
+                        </p>
                     </div>
                     <div class="error-actions">
-                        <a routerLink="" class="btn btn-primary btn-lg"><span class="fa fa-home"></span>
-                            Take Me Home </a>
+                        <a (click)="functionOnWhichRedirectShouldHappen()" class="btn btn-danger btn-lg text-capitalize">
+                            <!-- <span class="fa  fa-hand-peace-o"></span> -->
+                            <i class="mr-2 fa fa-angle-double-left"></i>Back to our site </a>
+                       
                     </div>
+                    <!-- <div class="img-not-found">
+                        <img src="../../assets/images/save-place.jpg">
+                    </div> -->
                 </div>
             </div>
           </div>

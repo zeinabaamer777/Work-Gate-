@@ -117,7 +117,7 @@ export class TimegroupCrudComponent implements OnInit {
       }
       if(this.timeGroupsForm.get('flexibleHours').value == null) {
         this.isReadonly = true;
-        alert("readonly true")
+        // alert("readonly true")
       }
       //#endregion
 
@@ -225,14 +225,14 @@ switchFlexibleHours(event){
   debugger
   
   if ( event.target.checked && this.timeGroupsForm.get('flexibleHours').value != null) {
-    alert("checked");
+    // alert("checked");
     this.isReadonly = false
   }
   else if(event.target.checked && this.timeGroupsForm.get('flexibleHours').value == null) {
     this.isReadonly = false;
   }
   else {
-    alert("unchecked");
+    // alert("unchecked");
     this.timeGroupsForm.get('flexibleHours').setValue("");
     this.isReadonly = true;
   }

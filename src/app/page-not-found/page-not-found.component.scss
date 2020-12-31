@@ -1,0 +1,19 @@
+.error-template{
+      text-align: left;
+      margin: auto;
+      padding: 40px 0;
+}
+.error-actions a{
+      color: white;
+}
+.img-not-found{
+      position: relative;
+      display: block;
+      overflow: hidden;
+      img{
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+      }
+}

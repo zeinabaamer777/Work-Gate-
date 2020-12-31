@@ -19,14 +19,14 @@ export const SEPARATEDROUTES: RouteInfo[] = [
 
 export const ENTITES: RouteInfo[] = [
   { path: '/places',               title: 'places',                icon: 'place',       class: '' },
-  { path: '/positions',            title: 'positions',             icon: 'shop_two', class: '' },
+  { path: '/activities',           title: 'activities',            icon: 'support', class: '' },
   { path: '/companies',            title: 'companies',             icon: 'integration_instructions', class: '' },
   { path: '/departments',          title: 'departments',           icon: 'subject', class: '' },
-  { path: '/activities',           title: 'activities',            icon: 'support', class: '' },
-  { path: '/siteTypes',            title: 'site Types',            icon: 'sync_alt', class: '' },
-  { path: '/siteResponsibilities', title: 'site Responsibilities', icon: 'gps_fixed', class: '' },
   { path: '/divisions',            title: 'divisions',             icon: 'table_rows', class: '' },
-  { path: '/timeGroups',           title: 'time Groups',           icon: 'av_timer', class: '' },
+  { path: '/positions',            title: 'titles',                icon: 'shop_two', class: '' },
+  { path: '/roles', title: 'roles',                 icon: 'gps_fixed', class: '' },
+  { path: '/siteTypes',            title: 'site Types',            icon: 'sync_alt', class: '' },
+  { path: '/timeGroups',           title: 'time Groups',           icon: 'av_timer', class: '' }
 ];
 
 @Component({

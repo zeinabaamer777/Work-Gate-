@@ -14,7 +14,7 @@ import { EntitiesComponent } from '../../entities/entities.component';
 import { ActivitiesComponent } from 'app/all-activites/activities/activities.component';
 import { PositionsComponent } from 'app/positions/positions.component';
 import { SitetypesComponent } from 'app/sitetypes/sitetypes.component';
-import { SiteresponsibilitiesComponent } from 'app/siteresponsibilities/siteresponsibilities.component';
+import { RolesComponent } from 'app/roles/roles.component';
 // import { CompaniesComponent } from 'app/companies/companies.component';
 import { DepartmentsComponent } from 'app/all-departments/departments/departments.component';
 import { DivisionsComponent } from 'app/all-divisions/divisions/divisions.component';
@@ -27,30 +27,31 @@ import { SettingsComponent } from 'app/settings/settings.component';
 // import { ActivitySelectorComponent } from 'app/selectors/activity-selector/activity-selector.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
 import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
+
 export const AdminLayoutRoutes: Routes = [
     
     { path: 'dashboard',            component: DashboardComponent },
-    { path: 'user-profile',         component: UserProfileComponent },
     { path: 'table-list',           component: TableListComponent },
     { path: 'typography',           component: TypographyComponent },
     { path: 'icons',                component: IconsComponent },
     { path: 'maps',                 component: MapsComponent },
     { path: 'notifications',        component: NotificationsComponent },
     { path: 'upgrade',              component: UpgradeComponent },
+    { path: 'user-profile',         component: UserProfileComponent },
     { path: 'sites-list',           component: SitesListDetailsComponent},
     { path: 'entities',             component: EntitiesComponent},
     { path: 'activities',           component: ActivitiesComponent, canDeactivate: [CanDeactivateGuard]},
     { path: 'positions',            component: PositionsComponent},
     { path: 'siteTypes',            component: SitetypesComponent},
-    { path: 'siteResponsibilities', component: SiteresponsibilitiesComponent},
+    { path: 'roles',                component: RolesComponent},
     { path: 'companies',            component: CompaniesComponent } ,
     { path: 'departments',          component: DepartmentsComponent},
     { path: 'divisions',            component: DivisionsComponent}, 
     { path: 'timeGroups',           component: TimegroupComponent},
     { path: 'places',               component: PlacesComponent},
-    { path: 'chat',                 component: ChatComponent},
     { path: 'settings',             component: SettingsComponent},
     { path: 'users/:id',            component: ViewUserComponent},
-    // { path: 'test',                 component: ActivitySelectorComponent},  
+    // { path: 'test',                 component: ActivitySelectorComponent},
+    { path: 'chat',                 component: ChatComponent},
     { path: '**',                   component: PageNotFoundComponent }
 ];
