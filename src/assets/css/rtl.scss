@@ -1,0 +1,49 @@
+body{
+      direction: rtl;
+}
+.sidebar {
+      right: 0;
+      left: auto;
+  }
+  .navbar.fixed-top{
+        left: 0;
+        right: auto;
+  }
+  .sidebar .logo .simple-text{
+        text-align: center;
+  }
+  .sidebar .nav i{
+        float: right;
+  }
+  .sidebar .nav {
+      margin-top: 20px;
+      display: block;
+      /* float: right; */
+      text-align: right;
+      width: 100%;
+  }
+  .sidebar .nav .caret{
+        left: 6px;
+        right: auto
+  }
+  .main-panel {
+      text-align: right;
+      float: left;
+  }
+  #collapseEntity .nav {
+      padding-right: 20px;
+  }
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type{
+        padding-right: 24px;
+        
+  }
+  th.mat-header-cell {
+      text-align: right !important;
+  }
+  .mat-form-field{
+        text-align: right !important;
+  }
+  .custom-class-for-style 
+  .mat-button.btn.btn-sm, .btn-group-sm .mat-button.btn, .mat-raised-button.btn.btn-sm, .btn-group-sm .mat-raised-button.btn, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-sm, .btn-group-sm .mat-raised-button.btn:not([class*=mat-elevation-z]), .btn.btn-sm, .btn-group-sm .btn{
+      float: left;
+  }

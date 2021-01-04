@@ -22,7 +22,8 @@
             <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectGoverment($event)"
              formControlName="activity" >
               <mat-option *ngFor="let activity of activities | async" [value]="activity">
-                {{activity.arName + " / " + activity.enName}}
+                <!-- {{activity.arName + " / " + activity.enName}} -->
+                {{activity.enName}}
               </mat-option>
             </mat-select>
           </mat-form-field>
