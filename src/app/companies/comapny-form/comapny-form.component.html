@@ -38,13 +38,13 @@
       </div>
       
 
-      <div class="row custom-no-gutters">
+      <!-- <div class="row custom-no-gutters">
         <div class="col-md-12">
           <mat-form-field class="example-full-width">
             <input matInput placeholder="اسم الشركة" type="text" formControlName="ComapnyNameAr" class="form-control">
           </mat-form-field>
         </div>
-      </div>
+      </div> -->
 
       <div class="row custom-no-gutters">
         <div class="col-md-12">
@@ -85,7 +85,7 @@
             <mat-label>Country</mat-label>
             <mat-select #selected name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectPlace($event)" formControlName="country">
               <mat-option *ngFor="let place of places | async" [value]="place">
-                {{place.placeNameAr}}
+                {{place.placeNameEn}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -95,10 +95,10 @@
       <div class="row custom-no-gutters">
         <div class="col-md-12">
           <mat-form-field>
-            <mat-label>Goverment</mat-label>
+            <mat-label>Governorates</mat-label>
             <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectGoverment($event)" formControlName="goverment">
               <mat-option *ngFor="let place of goverments" [value]="place">
-                {{place.placeNameAr}}
+                {{place.placeNameEn}}
               </mat-option>
             </mat-select>
           </mat-form-field>
