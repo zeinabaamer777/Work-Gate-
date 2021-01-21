@@ -1,0 +1,23 @@
+.navbar{
+      padding: 10px 0 0 0;
+      background-color: #c31432 !important;
+  }
+  .navbar .navbar-brand, .nav-item{
+      color: #ffffff
+  }
+  .navbar.fixed-top{
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1030;
+      width: calc(100% - 260px);
+      left: auto
+  }
+  button[name='translatebtn'] {
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0;
+    &:hover, &:focus{
+        background-color: transparent;
+        border-color: #ffffff;
+    }
+  }

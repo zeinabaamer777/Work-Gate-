@@ -1,5 +1,5 @@
 body{
-      direction: rtl;
+      // direction: rtl;
 }
 .sidebar {
       right: 0;
@@ -47,3 +47,14 @@ body{
   .mat-button.btn.btn-sm, .btn-group-sm .mat-button.btn, .mat-raised-button.btn.btn-sm, .btn-group-sm .mat-raised-button.btn, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-sm, .btn-group-sm .mat-raised-button.btn:not([class*=mat-elevation-z]), .btn.btn-sm, .btn-group-sm .btn{
       float: left;
   }
+
+.ps__rail-y {right : auto !important;left : 0;}
+
+.navbar.fixed-top{
+      position: fixed;
+      top: 0;
+      right: auto !important;
+      z-index: 1030;
+      width: calc(100% - 260px);
+      left: 0 !important;
+}

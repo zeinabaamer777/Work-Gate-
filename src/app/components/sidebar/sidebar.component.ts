@@ -1,4 +1,6 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -38,13 +40,40 @@ export class SidebarComponent implements OnInit {
   menuItems: any[];
   entitesItems: any[];
   speratedItems: any [];
-  constructor() { }
+
+  singleItems: any[];
+  // singleItems: any [];
+  sideMenuItems : any[];
+  navItems: string[];
+  itemTitle: string;
+  constructor(public ts: TranslateService) { 
+   
+  //  this.singleItems = this.translation('sideBar.singleItems');
+  // this.ts.get('sideBar.menuItems').subscribe((res) => {this.sideMenuItems = res; console.log(this.sideMenuItems)});
+  // ;
+
+  this.ts.get('sideBar.menuItems').pipe(map((response) => response)) // <------
+    .subscribe(
+      (data) => {
+        this.sideMenuItems = [data]
+      },
+      error => console.log(error)
+      
+    );
+    console.log("data", this.sideMenuItems)
+  }
+ 
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.entitesItems = ENTITES.filter(entityItem => entityItem);
     this.speratedItems = SEPARATEDROUTES.filter(speratedItem => speratedItem);
+
+    
+      
   }
+
+  
   isMobileMenu() {
     if ($(window).width() > 991) {
       return false;

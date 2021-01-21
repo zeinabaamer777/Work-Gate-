@@ -1,25 +1,35 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { ROUTES, ENTITES,SEPARATEDROUTES } from '../sidebar/sidebar.component';
 import {  } from '../sidebar/sidebar.component';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DOCUMENT, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from 'app/login/login.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css']
+    styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+    
     private listTitles: any[];
     location: Location;
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(location: Location, private element: ElementRef, private authService: LoginService, private router: Router) {
+   
+    constructor(@Inject(DOCUMENT) private document: Document,location: Location, private element: ElementRef, private authService: LoginService,
+         private router: Router,public translate: TranslateService) {
         this.location = location;
         this.sidebarVisible = false;
+    }
+    loadStyle(){
+        var newlink = this.document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", './assets/css/rtl.css');
+        this.document.body.appendChild(newlink);
     }
 
     ngOnInit() {
@@ -36,7 +46,64 @@ export class NavbarComponent implements OnInit {
                 this.mobile_menu_visible = 0;
             }
         });
+
+        //#region // language
+        var lang = 'en';
+        this.translate.addLangs(['en', 'ar']);
+        this.translate.setDefaultLang(lang);  
+        // $("#arabic").hide();
+        // $("#english").show();
+     
+        if(localStorage.getItem('lang') == 'ar'){
+            localStorage.setItem('lang','ar')
+            this.translate.use('ar');
+            // $("#arabic").hide();
+            // $("#english").show();
+        }
+        else if(localStorage.getItem('lang') == 'en'){
+            localStorage.setItem('lang','en');
+            this.translate.use('en');
+            // $("#arabic").show();
+            // $("#english").hide();
+
+        }
+        else{
+            localStorage.setItem('lang','en');
+        }
+       
+        this.document.getElementById('rtlStyle').setAttribute('href',localStorage.getItem('lang') =='ar' ? './assets/css/rtl.css' : '');
+        this.document.body.setAttribute('dir', localStorage.getItem('lang') =='ar' ? 'rtl' : 'ltr');
     }
+
+    changeLang(){
+        if(localStorage.getItem('lang') == 'ar'){
+            // $("#english").hide();
+            // $("#arabic").show();
+            localStorage.setItem('lang','en');
+            this.translate.use('en');
+            this.document.body.setAttribute('dir','ltr');
+            this.document.getElementById('rtlStyle').removeAttribute('href');
+          
+            
+           
+        }
+        else if(localStorage.getItem('lang') == 'en'){
+            // $("#arabic").hide();
+            // $("#english").show();
+            localStorage.setItem('lang', 'ar');
+            this.translate.use('ar');
+            this.document.body.setAttribute('dir','rtl');
+            this.document.getElementById('rtlStyle').setAttribute('href','./assets/css/rtl.css');
+           
+        }
+
+    }
+
+
+
+    // not workink ??
+
+    //#endregion
 
     logout() {
         this.authService.logout();
@@ -131,4 +198,6 @@ export class NavbarComponent implements OnInit {
         }
         return 'Not Found';
     }
+  
+  
 }

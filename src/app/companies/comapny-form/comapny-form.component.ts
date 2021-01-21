@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { Company } from '../../../core/models/Response/company.model';
@@ -39,7 +40,8 @@ export class ComapnyFormComponent implements OnInit {
     private fb: FormBuilder,
     private companyService: CompaniesService,
     private activityService: ActivitiesService,
-    private placeService: PlacesService
+    private placeService: PlacesService,
+    public translate: TranslateService
     ) { }
 
   ngOnInit(): void {
@@ -128,7 +130,7 @@ export class ComapnyFormComponent implements OnInit {
 
       });
     }else{
-      this.companyForm.reset();
+      // this.companyForm.reset();
     }
   }
 

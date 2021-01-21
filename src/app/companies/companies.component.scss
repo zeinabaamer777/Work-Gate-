@@ -1,3 +1,8 @@
+.card-title,.card-print-btn{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
 .ss-container{
      
       height: 100vh;
@@ -131,4 +136,19 @@
     .card .card-body {
       padding: 0;
       border-top: 1px solid #e2e2e2;
+  }
+  td{
+    word-wrap: normal;
+    
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    // max-height: 500px;
+    min-width: 300px;
+    // overflow: auto;
+  }
+  th.mat-sort-header-sorted {
+    color: black;
   }

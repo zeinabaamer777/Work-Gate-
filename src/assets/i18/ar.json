@@ -1,0 +1,25 @@
+{ 
+      "lang": "en",
+      "sideBar" : {
+            "Dashboard": "الصفحة الرئيسية",
+            "Entities" : "الأجزاء الرئيسية",
+            "singleItems" : [{
+                  "Users"    : "المستخدمين",
+                  "Sites"    : "المواقع"
+            }],
+            "menuItems": [{
+                  "Places": "الأماكن",
+                  "Activities":"النشاطات",
+                  "Companies":"الشركات",
+                  "Departments":"الأقسام",
+                  "Divisions":"الفروع",
+                  "Titles":"الوظيفة",
+                  "Roles":"الدور",
+                  "SiteTypes":"نوع الموقع",
+                  "TimeGroups":"التايم جروب"
+            }]
+      },
+      "CreateCompany": "إنشاء شركة جديدة",
+      "Language":"العربية",
+      "EditCompaniesList": "تعديل"
+}

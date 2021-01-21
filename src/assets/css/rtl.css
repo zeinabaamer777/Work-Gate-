@@ -1,0 +1,72 @@
+
+/* direction: rtl;
+ */
+ @import "https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css";
+ @font-face{
+       font-family: droid-arabic;
+       src: url('../fonts/Droid-Sans-Arabic-Regular.ttf');
+       
+ }
+ body[dir="rtl"]{
+       font-family: droid-arabic, sans-serif;
+ }
+ body[dir="rtl"] .sidebar {
+      right: 0;
+      left: auto;
+}
+body[dir="rtl"] .navbar.fixed-top {
+      left: 0;
+      right: auto;
+}
+body[dir="rtl"] .sidebar .logo .simple-text {
+      text-align: center;
+}
+body[dir="rtl"] .sidebar .nav i {
+      float: right;
+}
+body[dir="rtl"] .sidebar .nav {
+      margin-top: 20px;
+      display: block;
+     /* float: right;
+      */
+      text-align: right;
+      width: 100%;
+}
+body[dir="rtl"] .sidebar .nav .caret {
+      left: 6px;
+      right: auto;
+}
+body[dir="rtl"] .main-panel {
+      text-align: right;
+      float: left;
+}
+body[dir="rtl"] #collapseEntity .nav {
+      padding-right: 20px;
+}
+body[dir="rtl"] th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+      padding-right: 24px;
+}
+body[dir="rtl"] th.mat-header-cell {
+      text-align: right !important;
+}
+body[dir="rtl"] .mat-form-field {
+      text-align: right !important;
+}
+body[dir="rtl"] .custom-class-for-style .mat-button.btn.btn-sm, .btn-group-sm .mat-button.btn, .mat-raised-button.btn.btn-sm, .btn-group-sm .mat-raised-button.btn, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-sm, .btn-group-sm .mat-raised-button.btn:not([class*=mat-elevation-z]), .btn.btn-sm, .btn-group-sm .btn {
+      float: left;
+}
+body[dir="rtl"] .ps__rail-y {
+      right: auto !important;
+      left: 0;
+}
+body[dir="rtl"] .navbar.fixed-top {
+      position: fixed;
+      top: 0;
+      right: auto !important;
+      z-index: 1030;
+      width: calc(100% - 260px);
+      left: 0 !important;
+}
+body[dir="rtl"] .card-print-btn{
+      float: left
+}

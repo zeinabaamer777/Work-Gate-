@@ -6,10 +6,16 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header card-header-danger">
-                            <h4 class="card-title">Position List</h4>
-                            
+                            <h4 class="card-title">Companies List</h4>
+                            <!-- <button class="card-print-btn btn btn-primary pull-right" (click)="captureScreen()">Capture Screen</button>                     -->
+                            <button class="card-print-btn pull-right ml-3"  mat-raised-button color="primary"  (click)="downloadAsPDF()"><i class="mr-1 fa  fa-file-pdf-o">
+                             </i>Export as pdf</button>                    
+                            <!-- <button class="card-print-btn btn btn-success pull-right"  (click)="exportToExcel()">Export as Excel</button> -->
+                            <button class="card-print-btn pull-right ml-3"  mat-raised-button color="primary" (click)="exportToExcel()"><i class="mr-1 fa fa-file-excel-o"></i> Export as Excel</button>
+
                         </div>
                         <div class="col-md-12 ss-container">
+
                             <div class="search">
                                 <input type="text" class="form-control"  placeholder="Search companies" [(ngModel)]="searchText">
 
@@ -44,30 +50,54 @@
                             </div> -->
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <th>Comany Name</th>
-                                    <th>اسم الشركة</th>
-                                    <th>Actions</th>
-                                </thead>
-                                <!--  -->
-                                <tbody *ngFor="let company of companies | async | searchPipe : searchText">
-                                    <td  (click)="catchCompany(company)">{{ company.enName }}</td>
-                                    <td  (click)="catchCompany(company)">{{ company.arName }}</td>
-                                    <!--  -->
-                                    <td>
-                                        <a (click)="deleteCompany(company)">
-                                            <span class="material-icons red-delete-icon"> delete_outline </span>
-                                        </a>
-                                    </td>
-                                </tbody>
-                            </table>
+
+                            <div class="container" id="pdfTable"  #TABLE>  
+                            <h1 class="printable">{{reportTitle}}</h1>
+                            
+                            <div class="example-container" #TABLE>
+                                <table mat-table #table [dataSource]="dataSource" matSort>
+                                        <!-- ID -->
+                                         <ng-container matColumnDef="ID">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>  # </th>
+                                            <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.id}} </td>
+                                        </ng-container>
+                                        <!-- companyNameAr Column -->
+                                        <ng-container matColumnDef="NameAr">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> إسم الشركة </th>
+                                        <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.arName}} </td>
+                                        </ng-container>
+
+                                        <!-- companyNameEn Column -->
+                                        <ng-container matColumnDef="NameEn">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+                                        <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.enName}} </td>
+                                        </ng-container>
+
+                                        <!-- Actions -->
+                                        <ng-container matColumnDef="actions">
+                                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                        <td mat-cell *matCellDef="let company">
+                                            <a (click)="deleteCompany(company, $event)"><span
+                                                class="material-icons  red-delete-icon">
+                                                delete_outline
+                                              </span></a>
+                                            </td>
+                                        </ng-container>
+                            
+                            
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 15]" ></mat-paginator>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
+                </div>
                 <div class="col-md-4">
-                    <!-- <app-positions-form [PositionObject]="company"></app-positions-form> -->
                     <app-comapny-form [companyObject]="company"></app-comapny-form>
                 </div>
             </div>

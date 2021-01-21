@@ -1,0 +1,26 @@
+{
+      "lang": "ar",
+      "sideBar" : [{
+            "Dashboard": "dashboard",
+            "Entities" : "entities",
+            "singleItems" : [{
+                  "Users"    : "المستخدمين",
+                  "Sites"    : "المواقع"
+            }],
+            "menuItems": [{
+                  "Places": "places",
+                  "Activities":"activities",
+                  "Companies":"companies",
+                  "Departments":"departments",
+                  "Divisions":"divisions",
+                  "Titles":"titles",
+                  "Roles":"roles",
+                  "SiteTypes":"site Types",
+                  "TimeGroups":"time Groups"
+            }]
+      }],
+      "CreateCompany": "Create company",
+      "Language":"English",
+      "EditCompaniesList": "edit companies"
+      
+}

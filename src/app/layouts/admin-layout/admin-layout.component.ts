@@ -6,6 +6,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-layout',
@@ -16,8 +17,15 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-
-  constructor( public location: Location, private router: Router) {}
+  
+  constructor( public location: Location, private router: Router,public translateService: TranslateService) {
+    if (localStorage.getItem('lang')) {
+        translateService.setDefaultLang(localStorage.getItem('lang'));
+    } else {
+        localStorage.setItem('lang', 'ar')
+        document.querySelector('body').setAttribute('dir', 'rtl');
+    }
+  }
 
   ngOnInit() {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -53,6 +61,7 @@ export class AdminLayoutComponent implements OnInit {
       });
       if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
           let ps = new PerfectScrollbar(elemMainPanel);
+          
           ps = new PerfectScrollbar(elemSidebar);
       }
 
@@ -128,6 +137,7 @@ export class AdminLayoutComponent implements OnInit {
           }
       });
   }
+  
   ngAfterViewInit() {
       this.runOnRouteChange();
   }
@@ -141,10 +151,25 @@ export class AdminLayoutComponent implements OnInit {
           return true;
       }
   }
+
+
+
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
       const ps = new PerfectScrollbar(elemMainPanel);
+
+    //   const ps = new PerfectScrollbar(elemMainPanel,{
+    //     wheelSpeed: 0.5,
+    //     swipeEasing: true,
+    //     wheelPropagation: false,
+    //     minScrollbarLength: 40,
+    //     suppressScrollX: true,
+    //     useBothWheelAxes: false
+
+    //   } );
+      
+    //   ps.isRtl = false;
       ps.update();
     }
   }
@@ -155,5 +180,9 @@ export class AdminLayoutComponent implements OnInit {
       }
       return bool;
   }
+
+
+//#region translation method()
+ 
 
 }

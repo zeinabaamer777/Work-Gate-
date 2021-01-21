@@ -2,7 +2,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { QRCodeModule } from 'angular2-qrcode';
@@ -13,7 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from 'core/helper/jwt.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { TestComponent } from './test/test.component';
@@ -37,6 +37,9 @@ import { TimePickerComponent } from '@syncfusion/ej2-angular-calendars';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 import {
   NgxMatDatetimePickerModule, 
@@ -46,7 +49,25 @@ import {
 
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { UsersComponent } from './users/users.component';
+import {TranslateModule, TranslateLoader,TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+
+
+
+//#region translation
+// AoT requires an exported function for factories  
+
+// export  function  HttpLoaderFactory(http:  HttpClient) {
+//   return  new  TranslateHttpLoader(http, './assets/i18n/', '.json');
+// }  
+
+// export function HttpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+// }
+export function I18nHttpLoaderFactory(http: HttpClient) {   return new TranslateHttpLoader(http,   './assets/i18/', '.json'); }
+
+//#endregion
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -73,9 +94,20 @@ import { UsersComponent } from './users/users.component';
     TimePickerModule,
     ButtonModule,
     NgxMaterialTimepickerModule,
-    ToastrModule.forRoot()
+    MatSortModule,
+    MatPaginatorModule,
+    MatChipsModule,
 
+    ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (I18nHttpLoaderFactory),
+        deps: [HttpClient]
+      }
+    })
   ],
+  
   declarations: [
     AppComponent,
     AdminLayoutComponent,
@@ -84,6 +116,7 @@ import { UsersComponent } from './users/users.component';
     UsersComponent
   ],
   providers: [
+   
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
@@ -99,7 +132,8 @@ import { UsersComponent } from './users/users.component';
 
     NotificationDialogService,
     CustomValidationService,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    TranslateService
   ],
   bootstrap: [AppComponent],
   // entryComponents: [MatConfirmDialogComponent]

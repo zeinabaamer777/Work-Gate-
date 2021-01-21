@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
@@ -48,11 +48,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CrudComponent } from 'app/all-activites/activites-crud/crud.component';
 import { DepartmentsCrudComponent } from 'app/all-departments/departments-crud/departments-crud.component';
 import { PositionsFormComponent } from 'app/positions/positions-form/positions-form.component';
-
-// import { CompanySelectorComponent } from 'app/selectors/company-selector/company-selector.component';
-// import { DepartmentSelectorComponent } from 'app/selectors/department-selector/department-selector.component';
-// import { DivisionSelectorComponent } from 'app/selectors/division-selector/division-selector.component';
-// import { PositionSeleclorComponent } from 'app/selectors/position-seleclor/position-seleclor.component';
 import { ComapnyFormComponent } from 'app/companies/comapny-form/comapny-form.component';
 import { SiteTypeFormComponent } from 'app/sitetypes/site-type-form/site-type-form.component';
 import { RolesFormComponent } from 'app/roles/roles-form/roles-form.component';
@@ -60,12 +55,19 @@ import { MatTableModule } from '@angular/material/table';
 import { DivisionsCrudComponent } from 'app/all-divisions/divisions-crud/divisions-crud.component';
 import { PlacesFormComponent } from 'app/all-places/places-form/places-form.component';
 import { CompaniesComponent } from 'app/companies/companies.component';
-// import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import {DialogService} from 'core/services/dialog.service';
 import { NotificationDialogService } from 'core/services/notificationDialog.service';
 import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timegroup-crud.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+
+
+// loader module
+
 
 @NgModule({
   imports: [
@@ -85,8 +87,11 @@ import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timeg
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSortModule,
+    MatPaginatorModule,
     // DatePipe,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TranslateModule
   ],
   declarations: [
     DashboardComponent,
@@ -135,8 +140,10 @@ import { TimegroupCrudComponent } from 'app/all-time-groups/timegroup-crud/timeg
     MatConfirmDialogComponent
 
   ],
-  providers:[DatePipe,DialogService,NotificationDialogService ] ,
+  exports: [],
+  providers:[DatePipe,DialogService,NotificationDialogService] ,
   entryComponents: [MatConfirmDialogComponent]
 })
+
 
 export class AdminLayoutModule {}

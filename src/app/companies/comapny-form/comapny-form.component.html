@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header card-header-danger">
-    <h4 class="card-title">Edit companies List</h4>
+    <h4 class="card-title">{{ "EditCompaniesList" | translate}}</h4>
   </div>
   <div class="card-body">
     <form [formGroup]="companyForm" #form="ngForm" id="companyForm" >
@@ -97,8 +97,8 @@
           <mat-form-field>
             <mat-label>Governorate</mat-label>
             <mat-select name="FD_Financials_year_end_date" class="form-control" (selectionChange)="selectGoverment($event)" formControlName="goverment">
-              <mat-option *ngFor="let place of goverments" [value]="place">
-                {{place.placeNameEn}}
+              <mat-option *ngFor="let governorate of goverments" [value]="governorate">
+                {{governorate.placeNameEn}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -106,7 +106,7 @@
       </div>
         <div class="row custom-no-gutters" [hidden]="isHiddenSaveCreateBtn">
           <button type="submit" mat-raised-button  class="btn btn-danger pull-left btn-sm" 
-            [disabled]="companyForm.invalid" (click)="onSubmit(companyForm.value)">create new company</button>
+            [disabled]="companyForm.invalid" (click)="onSubmit(companyForm.value)">{{'CreateCompany' | translate}}</button>
           <button mat-raised-button class="btn btn-danger pull-right btn-sm" (click)="Cancel()">cancel</button>
         </div>
         <div class="row custom-no-gutters" [hidden]="isHiddenSaveActionBtn">

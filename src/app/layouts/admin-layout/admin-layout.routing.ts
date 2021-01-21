@@ -29,7 +29,7 @@ import { CompaniesComponent } from 'app/companies/companies.component';
 import { CanDeactivateGuard } from 'core/services/can-deactivate-guard.service';
 
 export const AdminLayoutRoutes: Routes = [
-    
+    { path: 'chat',                     component: ChatComponent},
     { path: 'dashboard',            component: DashboardComponent },
     { path: 'table-list',           component: TableListComponent },
     { path: 'typography',           component: TypographyComponent },
@@ -52,6 +52,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'settings',             component: SettingsComponent},
     { path: 'users/:id',            component: ViewUserComponent},
     // { path: 'test',                 component: ActivitySelectorComponent},
-    { path: 'chat',                 component: ChatComponent},
+   
     { path: '**',                   component: PageNotFoundComponent }
 ];

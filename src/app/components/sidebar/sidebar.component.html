@@ -57,11 +57,16 @@
     </div>
 
     <ul class="nav">
+      <!-- {{sideMenuItems|json}} -->
+        <!-- <li *ngFor="let item of sideMenuItems">
+            {{item}}
+        </li> -->
+
         <li routerLinkActive="active"  class="nav-item">
             <a data-toggle="collapse" href="#collapseDash" class=" collapsed nav-link">
 
                 <i class="material-icons">home</i>
-                <p>Dashboard <b class="caret"></b></p>
+                <p>{{ 'sideBar.Dashboard' | translate}} <b class="caret"></b></p>
             </a>
         </li>
 
@@ -77,7 +82,7 @@
                     <a data-toggle="collapse" href="#collapseEntity" class="collapsed nav-link">
         
                         <i class="material-icons">format_list_bulleted</i>
-                        <p>Entites <b class="caret"></b></p>
+                        <p>{{ 'sideBar.Entities' | translate}} <b class="caret"></b></p>
                     </a>
                 </li>
         

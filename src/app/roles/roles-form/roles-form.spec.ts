@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteResponsibiltiyCurdComponent } from './roles-form.component';
+import { RolesFormComponent } from './roles-form.component';
 
-describe('SiteResponsibiltiyCurdComponent', () => {
-  let component: SiteResponsibiltiyCurdComponent;
-  let fixture: ComponentFixture<SiteResponsibiltiyCurdComponent>;
+describe('RolesFormComponent', () => {
+  let component: RolesFormComponent;
+  let fixture: ComponentFixture<RolesFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteResponsibiltiyCurdComponent ]
+      declarations: [ RolesFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteResponsibiltiyCurdComponent);
+    fixture = TestBed.createComponent(RolesFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
