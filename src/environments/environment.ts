@@ -10,5 +10,6 @@ export const environment = {
   production: false,
   // url var used in QrSignalR in login.service.ts
   url: 'http://192.168.6.20:15153/',
+  
   apiUrl: 'http://192.168.6.20:15153/api'
 };

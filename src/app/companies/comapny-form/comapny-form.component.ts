@@ -168,6 +168,7 @@ export class ComapnyFormComponent implements OnInit {
     company.arName = model.ComapnyNameAr;
     company.enName = model.CompanyNameEn;
     company.id = 0;
+    debugger
     this.companyService.CreateCompanies(company);
     // this.companyForm.reset();
     this.Cancel();

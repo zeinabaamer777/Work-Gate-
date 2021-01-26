@@ -15,7 +15,6 @@
         </span></a></td>
     </tbody>
   </table> -->
-
   <div class="custom-class-for-style activities-component-content">
     <div class="container-fluid">
       <div class="row">
@@ -26,7 +25,7 @@
               <h4 class="card-title">Places List</h4>
             </div>
             <div class="card-body">
-              <table mat-table [dataSource]="places | async" class="" multiTemplateDataRows>
+              <table mat-table [dataSource]="dataSource" class="" multiTemplateDataRows>
 
                 <!--- Note that these columns can be defined in any order.
                         The actual rendered columns are set as a property on the row definition" -->

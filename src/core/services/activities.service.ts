@@ -5,12 +5,13 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Activities } from 'core/models/activities.model';
 import { MainResponse } from 'core/models/mainResponse.model';
+import { HttpClientCrudService } from './http-client-crud.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivitiesService {
+export class ActivitiesService extends HttpClientCrudService<Activities, number>{
   activityFormData: Activities;
   private endpoint = environment.apiUrl + '/Activities';
 
@@ -19,11 +20,15 @@ export class ActivitiesService {
 
   readonly readonlyactivitiesModel = this.activitesBehaviorSubject.asObservable();
 
-  constructor(public http: HttpClient) { }
+  // constructor(public http: HttpClient) { }
+  constructor(protected _http: HttpClient) {
+    super(_http, `${environment.apiUrl}/Activities`);
+  }
+  
   // new code model handeling
   // elly mashta5alsh
   public getAllActivitesSubject() {
-    this.http.get<Activities[]>(`${this.endpoint}`)
+    this.findAll()
       .subscribe(
         (data: Activities[]) => {
           this.dataStoreActivites.activites = data;
@@ -42,8 +47,8 @@ export class ActivitiesService {
   //#endregion
 
   //#region 1 addActivities method to add new activity
-   createActivities(activityFormData: Activities) {
-     this.http.post<Activities>(this.endpoint, activityFormData)
+   createActivities(activity: Activities) {
+     this.save(activity)
       .subscribe((data: Activities) => {
         this.dataStoreActivites.activites.push(data);
         this.activitesBehaviorSubject.next(Object.assign({}, this.dataStoreActivites).activites);
@@ -55,7 +60,7 @@ export class ActivitiesService {
 
   //#region 2 updateActivity() method to update (put verb)
   updateActivity( id:number, activity: Activities) {
-    this.http.put<MainResponse<Activities>>(`${this.endpoint}/${id}`, activity)
+    this.update(id,activity )
     .subscribe(
        (result: MainResponse<Activities>)=> {
           let i = 0;
@@ -74,8 +79,8 @@ export class ActivitiesService {
   //#endregion
 
   //#region 3 deleteActivities() to delete Activity
-   deleteActivity(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe()
+   deleteActivity(id: number): Observable<Activities> {
+    return this.delete(id).pipe();
   }
   //#endregion
 

@@ -11,53 +11,68 @@ import { Place } from 'core/models/Response/places.model';
 import { createPlace } from 'core/models/Request/createPlcae.model';
 import { MainResponse } from 'core/models/mainResponse.model';
 import { data } from 'jquery';
+import { HttpClientCrudService } from './http-client-crud.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlacesService {
+export class PlacesService extends HttpClientCrudService<Place, number>{
   // private serverUrl = environment.apiUrl;
   // private serverreqHeader = environment.reqHeader;
   private endpoint = environment.apiUrl + "/Places";
 
   private placeBehaviorSubject = new BehaviorSubject<Place[]>([]);
-  private dataStorePlace: { place: Place[] } = { place: [] };
+  private dataStorePlace: { place: Place[]  } = { place: [] };
 
   readonly readonlyPlacesModel = this.placeBehaviorSubject.asObservable();
 
 
-  constructor(public http: HttpClient, private ToastrService: ToastrService, private NotificationService: NotificationService) { }
-
+  // constructor(public http: HttpClient, private ToastrService: ToastrService, private NotificationService: NotificationService) { }
+  constructor(protected _http: HttpClient, private ToastrService: ToastrService, private NotificationService: NotificationService) {
+    super(_http, `${environment.apiUrl}/Activities`);
+  }
   //#region 0 loadPlaces() method to load all places
-
-  loadPlaces(): void{
-    this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
+  // loadPlaces(): void{
+  //   this.http.get<MainResponse<Place[]>>(`${this.endpoint}`)
     
+  //   .subscribe(
+  //     (data: MainResponse<Place[]>) => {
+  //       if (data.code === 200) {
+  //         this.dataStorePlace.place = data.data;
+  //         this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place);
+  //       }
+  //       return data;
+  //     }
+  //   );
+
+
+  // }
+
+  // Observable<T[]>
+  loadPlaces(){
+    this.findAll() 
     .subscribe(
       (data: MainResponse<Place[]>) => {
         if (data.code === 200) {
           this.dataStorePlace.place = data.data;
           this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place);
         }
+        // console.log("data from service", data);
         return data;
       }
     );
-
-
   }
 
   //#endregion
 
   //#region  createPlace() method to insert new place
    createPlace(place: createPlace) {
-    this.http.post<MainResponse<createPlace[]>>(`${this.endpoint}`, place)
+    this.save(place)
       .subscribe(
         () => {
-     
           // this.placeBehaviorSubject.next(Object.assign({}, this.dataStorePlace).place)
           this.loadPlaces();
-         
         }
       )
   }
@@ -66,21 +81,20 @@ export class PlacesService {
   //#region updatePlace() method to update existing place 
   updatePlace(id: number, place: Place) {
 
-    this.http.put<MainResponse<Place[]>>(`${this.endpoint}/${id}`, place)
+    this.update(id, place)
       .subscribe(
         () => {
           this.loadPlaces();
         }
       )
-     
   }
   //#endregion
 
   //#region deletePlace() to delete record from table
-  deletePlace(id: number, event: Event): Observable<void> {
+  deletePlace(id: number, event: Event): Observable<Place> {
       event.preventDefault();
       event.stopPropagation();
-      return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
+      return this.delete(id).pipe(
         catchError(this.errorHandler)
       )
   }

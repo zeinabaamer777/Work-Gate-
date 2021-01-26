@@ -52,23 +52,21 @@
                         <div class="card-body">
 
                             <div class="container" id="pdfTable"  #TABLE>  
-                            <h1 class="printable">{{reportTitle}}</h1>
-                            
                             <div class="example-container" #TABLE>
-                                <table mat-table #table [dataSource]="dataSource" matSort>
+                                <table mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc">
                                         <!-- ID -->
-                                         <ng-container matColumnDef="ID">
+                                         <ng-container matColumnDef="id">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header>  # </th>
                                             <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.id}} </td>
                                         </ng-container>
                                         <!-- companyNameAr Column -->
-                                        <ng-container matColumnDef="NameAr">
+                                        <ng-container matColumnDef="arName">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> إسم الشركة </th>
                                         <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.arName}} </td>
                                         </ng-container>
 
                                         <!-- companyNameEn Column -->
-                                        <ng-container matColumnDef="NameEn">
+                                        <ng-container matColumnDef="enName">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
                                         <td mat-cell *matCellDef="let company"  (click)="catchCompany(company)"> {{company.enName}} </td>
                                         </ng-container>

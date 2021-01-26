@@ -5,11 +5,12 @@ import { map } from 'rxjs/internal/operators/map';
 import { environment } from '../../environments/environment';
 import { Company } from 'core/models/companies.model';
 import { MainResponse } from 'core/models/mainResponse.model';
+import { HttpClientCrudService } from './http-client-crud.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompaniesService {
+export class CompaniesService extends HttpClientCrudService<Company, number> {
   
 
   private endpoint = environment.apiUrl + "/Companies";
@@ -19,21 +20,33 @@ export class CompaniesService {
 
   readonly readonlyactivitiesModel = this.companyBehaviorSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  // constructor(private http: HttpClient) { }
+  constructor(protected _http: HttpClient) {
+    super(_http, `${environment.apiUrl}/Companies`);
+  }
+  
 
-  public getCompanies(): void {
-
-    this.http.get<Company[]>(`${this.endpoint}`)
-      .subscribe(
-        (data: Company[]) => {
-          this.dataStoreCompany.company = data;
-          this.companyBehaviorSubject.next(Object.assign({}, this.dataStoreCompany).company);
-        }
-      );
+  public getCompanies() {
+    this.findAll().subscribe(
+      (data: Company[]) => {
+        this.dataStoreCompany.company = data;
+        this.companyBehaviorSubject.next(Object.assign({}, this.dataStoreCompany).company);
+      }
+    );
   }
 
+  // public getCompanies(): void {
+  //   this.http.get<Company[]>(`${this.endpoint}`)
+  //     .subscribe(
+  //       (data: Company[]) => {
+  //         this.dataStoreCompany.company = data;
+  //         this.companyBehaviorSubject.next(Object.assign({}, this.dataStoreCompany).company);
+  //       }
+  //     );
+  // }
+
   public CreateCompanies(company: Company): void {
-    this.http.post<Company>(`${this.endpoint}`, company)
+    this.save(company)
       .subscribe(data => {
         this.dataStoreCompany.company.push(data);
           this.companyBehaviorSubject.next(Object.assign({}, this.dataStoreCompany).company);
@@ -41,13 +54,30 @@ export class CompaniesService {
         console.error(error);
       });
   }
+  // Update(company: Company) {
+  //   this.http.put<MainResponse<Company>>(`${this.endpoint}/${company.id}`, company)
+  //     .subscribe((data : MainResponse<Company>) => {
+  //       for(var index = 0; index < this.dataStoreCompany.company.length; index++){
+  //         if(this.dataStoreCompany.company[index].id === company.id){
+  //           this.dataStoreCompany.company[index] = data.data;
+  //           break;
+  //         }
+  //       }
+          
+  //         this.companyBehaviorSubject.next(Object.assign({}, this.dataStoreCompany).company);
+  //     }, error => {
+  //       console.error(error);
+  //     });
+  // }
 
   Update(company: Company) {
-    this.http.put<MainResponse<Company>>(`${this.endpoint}/${company.id}`, company)
+    this.update(company.id, company)
       .subscribe((data : MainResponse<Company>) => {
+        debugger
         for(var index = 0; index < this.dataStoreCompany.company.length; index++){
           if(this.dataStoreCompany.company[index].id === company.id){
             this.dataStoreCompany.company[index] = data.data;
+            console.log(data)
             break;
           }
         }
@@ -59,8 +89,8 @@ export class CompaniesService {
   }
 
   Delete(id: number): void{
-    this.http.delete(`${this.endpoint}/${id}`)
-      .subscribe( (data: Company) => {
+    this.delete(id)
+      .subscribe((data: Company) => {
         this.dataStoreCompany.company.forEach(e => {
           if(e.id === id){
             const index = this.dataStoreCompany.company.indexOf(e);

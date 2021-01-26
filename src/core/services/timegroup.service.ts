@@ -5,12 +5,13 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { timeGroups } from 'core/models/timeGroups.model';
 import { MainResponse } from 'core/models/mainResponse.model';
+import { HttpClientCrudService } from './http-client-crud.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimeGroupsService {
+export class TimeGroupsService extends HttpClientCrudService<timeGroups, number>{
   
   timeGroupsFormData: timeGroups;
   private endpoint = environment.apiUrl + '/TimeGroups';
@@ -20,10 +21,12 @@ export class TimeGroupsService {
 
   readonly readonlyTimeGroupsModel = this.behaviorSubjectTimeGroups.asObservable();
 
-  constructor(public http: HttpClient) { }
-
+  // constructor(public http: HttpClient) { }
+  constructor(protected _http: HttpClient) {
+    super(_http, `${environment.apiUrl}/TimeGroups`);
+  }
   public loadtimeGroups() {
-    this.http.get<timeGroups[]>(`${this.endpoint}`)
+    this.findAll()
       .subscribe(
         (data: timeGroups[]) => {
           this.dataStoretimeGroups.time = data;
@@ -35,7 +38,7 @@ export class TimeGroupsService {
 
   //#region 1 addActivities method to add new activity
    createTimeGroup(activityFormData: timeGroups) {
-     this.http.post<timeGroups>(this.endpoint, activityFormData)
+     this.save(activityFormData)
       .subscribe((data: timeGroups) => {
         this.dataStoretimeGroups.time.push(data);
         this.behaviorSubjectTimeGroups.next(Object.assign({}, this.dataStoretimeGroups).time);
@@ -47,7 +50,7 @@ export class TimeGroupsService {
 
   //#region 2 updateActivity() method to update (put verb)
   updateTimeGroup(timeGroup: timeGroups) {
-    this.http.put<MainResponse<timeGroups>>(`${this.endpoint}/${timeGroup.id}`, timeGroup)
+    this.update(timeGroup.id, timeGroup)
     .subscribe(
        (result: MainResponse<timeGroups>)=> {
           let i = 0;
@@ -66,8 +69,8 @@ export class TimeGroupsService {
   //#endregion
 
   //#region 3 deleteActivities() to delete Activity
-   deleteTimeGroup(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe()
+   deleteTimeGroup(id: number): Observable<timeGroups> {
+    return this.delete(id).pipe()
   }
   //#endregion
 

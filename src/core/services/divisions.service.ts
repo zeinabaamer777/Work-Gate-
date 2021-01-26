@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { HttpClientCrudService } from './http-client-crud.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DivisionsService {
+export class DivisionsService extends HttpClientCrudService<Division, number>{
 
    // private serverUrl = environment.apiUrl;
   
@@ -20,22 +21,23 @@ export class DivisionsService {
  
    readonly readonlyDivisionsModel = this.divisionBehaviorSubject.asObservable();
  
-   constructor(public http: HttpClient) { }
+   constructor(protected _http: HttpClient) {
+    super(_http, `${environment.apiUrl}/Activities`);
+  }
+  
  
-   public getDivisions(): void {
-     
-     this.http.get<Division[]>(`${this.endpoint}`)
+   public getDivisions(): void {  
+     this.findAll()
          .subscribe(
            (data: Division[]) => {
                this.dataStoreDivision.division = data;
                this.divisionBehaviorSubject.next(Object.assign({}, this.dataStoreDivision).division);
            }
          );
-
    }
  
-   public createDivision(division: Division): void  {
-       this.http.post<Division>(`${this.endpoint}`, division)
+   public createDivision(division: Division){
+       this.save(division)
            .subscribe(
                (data: Division) => {
                      this.dataStoreDivision.division.push(data);
@@ -44,12 +46,12 @@ export class DivisionsService {
            );
    }
  
-   public updateDivision(divisionId: number, division: Division): void {
-       this.http.put<boolean>(`${this.endpoint}/${divisionId}`, division)
+   public updateDivision(id: number, division: Division){
+       this.update(id, division)
            .subscribe(
              (data: boolean) => {
                for(var index = 0; index < this.dataStoreDivision.division.length; index++){
-                 if(this.dataStoreDivision.division[index].divisionId === divisionId){
+                 if(this.dataStoreDivision.division[index].divisionId === id){
                    this.dataStoreDivision.division[index] = division;
                    break;
                  }
@@ -60,7 +62,7 @@ export class DivisionsService {
    }
  
    public deleteDivision(divisionId: number) {
-     this.http.delete<Division>(`${this.endpoint}/${divisionId}`)
+     this.delete(divisionId)
          .subscribe(
            (data: Division) => {
              this.dataStoreDivision.division.forEach(e => {

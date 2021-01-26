@@ -74,13 +74,7 @@ export class PositionsService  {
                 return;
               }
             });
-          },
-          error => {
-            
           }
         );
   }
-
-
-
 }

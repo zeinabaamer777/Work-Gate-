@@ -6,12 +6,12 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Departments } from 'core/models/departments.model';
 import { MainResponse } from 'core/models/mainResponse.model';
-
+import { HttpClientCrudService } from './http-client-crud.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DepartmentsService {
+export class DepartmentsService  extends HttpClientCrudService<Departments, number>{
   DepartmentFormData: Departments;
   private endpoint = environment.apiUrl + '/Departments';
 
@@ -20,12 +20,13 @@ export class DepartmentsService {
 
   readonly readonlyDepartmentsModel = this.departmentsBehaviorSubject.asObservable();
 
-  constructor(public http: HttpClient, private ToastrService: ToastrService) { }
-
+  // constructor(public http: HttpClient, private ToastrService: ToastrService) { }
+  constructor(protected _http: HttpClient,private ToastrService: ToastrService) {
+    super(_http, `${environment.apiUrl}/Departments`);
+  }
  //#region 00  getDepartments() to read all departments data
-
   public getAlldepartmentsSubject() {
-    this.http.get<Departments[]>(`${this.endpoint}`)
+    this.findAll()
       .subscribe(
         (data: Departments[]) => {
           this.dataStoredepartments.departments = data;
@@ -38,7 +39,7 @@ export class DepartmentsService {
 
   //#region 1 addDepartments method to add new Department
    createDepartments(DepartmentFormData: Departments) {
-     this.http.post<Departments>(this.endpoint, DepartmentFormData)
+     this.save(DepartmentFormData)
       .subscribe((data: Departments) => {
         this.dataStoredepartments.departments.push(data);
         this.departmentsBehaviorSubject.next(Object.assign({}, this.dataStoredepartments).departments);
@@ -50,7 +51,7 @@ export class DepartmentsService {
 
   //#region 2 updateDepartment() method to update (put verb)
   updateDepartment(id:number, Department: Departments) {
-    this.http.put<Departments>(`${this.endpoint}/${id}`, Department)
+    this.update(id, Department)
     .subscribe(
        // ignore result and use the original object "Department" Because the body returned without response in swagger (203)
       //  (result: Departments)=> {
@@ -73,16 +74,15 @@ export class DepartmentsService {
   //#endregion
 
   //#region 3 deleteDepartments() to delete Department
-   deleteDepartment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
-      catchError(this.errorHandler)
-    )
+   deleteDepartment(id: number): Observable<Departments> {
+    return this.delete(id).pipe(catchError(this.errorHandler))
+    
   }
   //#endregion
 
     //#region 3 deleteDepartments() to delete Department
-    getDepartmentById(DepartmentId: number): Observable<void> {
-      return this.http.get<void>(`${this.endpoint}/${DepartmentId}`).pipe(
+    getDepartmentById(DepartmentId: number): Observable<Departments> {
+      return this.findOne(DepartmentId).pipe(
         catchError(this.errorHandler)
       )
     }
