@@ -1,5 +1,6 @@
 import { CompanyInfo } from './companyInfo.model';
 import { Place } from '../models/Response/places.model';
+import { Position } from '@angular/compiler';
 
 export interface Login {
     token: string;
